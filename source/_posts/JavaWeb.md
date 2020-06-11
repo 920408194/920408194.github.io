@@ -6,6 +6,7 @@ categories:
 tags:
 - java
 - 后端
+- 技术文档
 ---
 
 本文是我学习JavaWeb时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。
