@@ -101,3 +101,10 @@ deploy:
   type: git
   repo: https://github.com/920408194/920408194.github.io.git
   branch: master
+
+# Search 
+search:
+  path: ./public/search.xml
+  field: post
+  format: html
+  limit: 10000
