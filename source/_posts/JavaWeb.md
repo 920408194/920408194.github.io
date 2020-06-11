@@ -7,6 +7,7 @@ tags:
 - java
 - 后端
 ---
+
 本文是我学习JavaWeb时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。
 
 <!-- more -->
@@ -77,7 +78,7 @@ tags:
 
   - xml文件的代码如下，**docBase是你web站点的绝对路径**
 
-  - ```xml
+    ```xml
     <?xml version="1.0" encoding="UTF-8"?>
     <Context docBase="D:\web1" reloadable="true"></Context>
     ```
@@ -96,7 +97,7 @@ tags:
 
   - 在tomcat的server.xml文件中添加主机名
 
-  - ```xml
+    ```xml
     <Host name="panda" appBase="D:\web1">
     <Context path="/web1" docBase="D:\web1"/>
     </Host>
