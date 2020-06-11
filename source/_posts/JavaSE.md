@@ -6,7 +6,7 @@ categories:
 tags:
 - java
 ---
-我是短小精悍的文章摘要(๑•̀ㅂ•́) ✧
+本文是我学习JavaSE时的笔记，
 
 <!-- more -->
 
@@ -16,7 +16,7 @@ tags:
 
 ### 1、JavaSE
 
-![](/image/JavaSE.png)
+![JavaSE](https://raw.githubusercontent.com/920408194/pic/master/img/JavaSE.png)
 
 - Java SE就是标准版，包含标准的JVM和标准库，
 - Java EE是企业版，它只是在Java SE的基础上加上了大量的API和库，以便方便开发Web应用、数据库、消息服务等，Java EE的应用使用的虚拟机和Java SE完全相同。
@@ -24,7 +24,7 @@ tags:
 
 ### 2、JDK与JRE
 
-![](/image/JDKJRE.png)
+![JDKJRE](https://raw.githubusercontent.com/920408194/pic/master/img/JDKJRE.png)
 
 - JRE就是运行Java字节码的虚拟机。
 - 但是，如果只有Java源码，要编译成Java字节码，就需要JDK；
@@ -468,7 +468,7 @@ p.run();//应该打印Student.run
 
 - 实际上，因为包装类型非常有用，Java核心库为每种基本类型都提供了对应的包装类型：
 
-  ![](/image/class.png)
+  ![class](https://raw.githubusercontent.com/920408194/pic/master/img/class.png)
 
 - 因为`int`和`Integer`可以互相转换，所以，**Java**编译器可以帮助我们自动在`int`和`Integer`之间转型，这种直接把`int`变为`Integer`的赋值写法，称为自动装箱（`Auto Boxing`），反过来，把`Integer`变为`int`的赋值写法，称为自动拆箱（`Auto Unboxing`）。
 
@@ -693,7 +693,7 @@ p.run();//应该打印Student.run
   }
   ```
 
-- ![](/image/exception.png)
+- ![exception](https://raw.githubusercontent.com/920408194/pic/master/img/exception.png)
 
 - `Throwable`是异常体系的根，`Throwable`有两个体系：`Error`和`Exception`，
 
@@ -776,9 +776,9 @@ p.run();//应该打印Student.run
   4. 可以按包名控制日志级别，只输出某些包打的日志；
   5. 可以……
 
-- ![](/image/log1.png)
+- ![log1](https://raw.githubusercontent.com/920408194/pic/master/img/log1.png)
 
-- ![](/image/log2.png)
+- ![log2](https://raw.githubusercontent.com/920408194/pic/master/img/log2.png)
 
 - 和Java标准库提供的日志不同，`Commons Logging`是一个第三方日志库，它是由Apache创建的日志模块。
 - 使用`Commons Logging`只需要和两个类打交道，并且只有两步：第一步，通过`LogFactory`获取`Log`类的实例； 第二步，使用`Log`实例的方法打日志。（需要apache的第三方包）
@@ -1270,9 +1270,7 @@ p.run();//应该打印Student.run
 2. @Target用于描述注解的使用范围(即:被描述的注解可以用在什么地方)。
 3. @Documented说明该注解将被包含在javadoc中。
 
-![image-20200607143738113](/image/@Documented.png)
-
-2. @Inherited说明子类可以继承父类中的该注解。
+2. ![@Documented](https://raw.githubusercontent.com/920408194/pic/master/img/Documented.png)@Inherited说明子类可以继承父类中的该注解。
 
 ```java
 //注解可以用在什么地方：方法，类型
