@@ -831,6 +831,16 @@ p.run();//应该打印Student.run
   - 通过Class可以完整地得到一个类中的所有被加载的结构 
   - Class类是Reflection的根源，针对任何你想动态加载、运行的类，唯有先获得相应的Class对象
 
+- **哪些类型可以有****Class****对象?**
+
+  - class:外部类，成员(成员内部类，静态内部类)，局部内部类，匿名内部类。 
+  - interface:接口
+  -  []:数组
+  - enum:枚举
+  - annotation:注解@interface 
+  - primitive type:基本数据类型 
+  - void
+
 - 在Object类中定义了以下的方法，此方法将被所有子类继承
 
   ```java
