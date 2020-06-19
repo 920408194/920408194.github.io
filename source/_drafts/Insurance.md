@@ -1,6 +1,7 @@
 ---
 title: Insurance
-tags: work
+tags: 
+-work
 ---
 
 一些保险的知识和业务流程
