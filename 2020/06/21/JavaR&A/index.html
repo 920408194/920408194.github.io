@@ -79,13 +79,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Panda的技术笔记">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="一、反射1、反射 动态语言和讲台语言  动态语言是一类在运行时可以改变其结构的语言:例如新的函数、对象、甚至代码可以被引进，已有的 函数可以被删除或是其他结构上的变化。通俗点说就是在运行时代码可以根据某些条件改变自 身结构。主要动态语言:Object-C、C#、JavaScript、PHP、Python等。 静态语言与动态语言相对应的，运行时结构不可变的语言就是静态语言。如Java、C、C++。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaR&amp;A">
+<meta property="og:url" content="http://yoursite.com/2020/06/21/JavaR&A/index.html">
 <meta property="og:site_name" content="Panda的技术笔记">
+<meta property="og:description" content="一、反射1、反射 动态语言和讲台语言  动态语言是一类在运行时可以改变其结构的语言:例如新的函数、对象、甚至代码可以被引进，已有的 函数可以被删除或是其他结构上的变化。通俗点说就是在运行时代码可以根据某些条件改变自 身结构。主要动态语言:Object-C、C#、JavaScript、PHP、Python等。 静态语言与动态语言相对应的，运行时结构不可变的语言就是静态语言。如Java、C、C++。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://raw.githubusercontent.com/920408194/pic/master/img/Documented.png">
+<meta property="article:published_time" content="2020-06-20T22:25:50.000Z">
+<meta property="article:modified_time" content="2020-06-21T06:27:47.605Z">
 <meta property="article:author" content="panda">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/920408194/pic/master/img/Documented.png">
 
 
 
@@ -115,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/06/21/JavaR&A/"/>
 
 
 
 
 
-  <title>Panda的技术笔记</title>
+  <title>JavaR&amp;A | Panda的技术笔记</title>
   
 
 
@@ -140,8 +146,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -258,214 +263,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/JavaException/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Panda的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/21/JavaException/" itemprop="url">JavaException</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-21T06:30:41+08:00">
-                2020-06-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-
-<p>#Java异常处理</p>
-<h2 id="1、什么是异常"><a href="#1、什么是异常" class="headerlink" title="1、什么是异常"></a>1、什么是异常</h2><ul>
-<li><p>所谓错误，就是程序调用某个函数的时候，如果失败了，就表示出错。调用方如何获知调用失败的信息？有两种方法：</p>
-</li>
-<li><ul>
-<li>方法一：约定返回错误码。</li>
-<li>方法二：在语言层面上提供一个异常处理机制。</li>
-</ul>
-</li>
-<li><p>Java内置了一套异常处理机制，总是使用异常来表示错误。异常是一种<code>class</code>，因此它本身带有类型信息。异常可以在任何地方抛出，但只需要在上层捕获，这样就和方法调用分离了：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    String s = processFile(“C:\\test.txt”);</span><br><span class="line">    <span class="comment">// ok:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    <span class="comment">// file not found:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (SecurityException e) &#123;</span><br><span class="line">    <span class="comment">// no read permission:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    <span class="comment">// io error:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    <span class="comment">// other error:</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/exception.png" alt="exception"></p>
-</li>
-<li><p><code>Throwable</code>是异常体系的根，<code>Throwable</code>有两个体系：<code>Error</code>和<code>Exception</code>，</p>
-</li>
-<li><ul>
-<li><code>Error</code>表示严重的错误，程序对此一般无能为力，</li>
-<li>而<code>Exception</code>则是运行时的错误，它可以被捕获并处理。</li>
-</ul>
-</li>
-<li><p>必须捕获的异常，包括<code>Exception</code>及其子类，但不包括<code>RuntimeException</code>及其子类，这种类型的异常称为<code>Checked Exception</code>。</p>
-</li>
-<li><p>不需要捕获的异常，包括<code>Error</code>及其子类，<code>RuntimeException</code>及其子类。</p>
-</li>
-</ul>
-<h2 id="2、捕获异常"><a href="#2、捕获异常" class="headerlink" title="2、捕获异常"></a>2、捕获异常</h2><ul>
-<li><p>捕获异常使用<code>try...catch</code>语句，把可能发生异常的代码放到<code>try {…}</code>中，然后使用<code>catch</code>捕获对应的<code>Exception</code>及其子类：</p>
-</li>
-<li><p>还有一些童鞋喜欢在函数内部“消化”异常：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">byte</span>[] toGBK(String s) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> s.getBytes(<span class="string">"GBK"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">        <span class="comment">// 什么也不干</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以使用多个<code>catch</code>语句，每个<code>catch</code>分别捕获对应的<code>Exception</code>及其子类。<strong>JVM</strong>在捕获到异常后，会从上到下匹配<code>catch</code>语句，匹配到某个<code>catch</code>后，执行<code>catch</code>代码块，然后不再继续匹配。存在多个<code>catch</code>的时候，<code>catch</code>的顺序非常重要：子类必须写在前面。</p>
-</li>
-<li><p>那么如何消除这些重复的代码？<strong>Java</strong>的<code>try … catch</code>机制还提供了<code>finally</code>语句，<code>finally</code>语句块保证有无错误都会执行。<code>finally</code>语句不是必须的，可写可不写；<code>finally</code>总是最后执行。</p>
-</li>
-<li><p>某些情况下，可以没有<code>catch</code>，只使用<code>try … finally</code>结构。</p>
-</li>
-<li><p>如果处理某两个异常的代码是相同的，所以我们可以把它两用<code>|</code>合并到一起</p>
-</li>
-</ul>
-<h2 id="3、抛出异常"><a href="#3、抛出异常" class="headerlink" title="3、抛出异常"></a>3、抛出异常</h2><ul>
-<li><p>需要捕获异常的语句，一般在定义时会抛出一个异常：</p>
-</li>
-<li><pre><code class="java"><span class="keyword">public</span> <span class="keyword">byte</span>[] getBytes(String charsetName) <span class="keyword">throws</span> UnsupportedEncodingException{
-  ....
-}
-&lt;!--￼<span class="number">2</span>--&gt;</code></pre>
-</li>
-<li><p>如果一个方法捕获了某个异常后，又在<code>catch</code>子句中抛出新的异常，就相当于把抛出的异常类型“转换”了。但是新的异常丢失了原始异常信息，我们已经看不到原始异常的信息了。为了能追踪到完整的异常栈，在构造异常的时候，把原始的<code>Exception</code>实例作为参数传进去。<strong>捕获到异常并再次抛出时，一定要留住原始异常，否则很难定位第一案发现场！</strong></p>
-</li>
-<li><p><code>finally</code>抛出异常后，原来在<code>catch</code>中准备抛出的异常就“消失”了，因为只能抛出一个异常。没有被抛出的异常称为“被屏蔽”的异常（<code>Suppressed Exception</code>）我们一般先用<code>origin</code>变量保存原始异常，然后调用<code>Throwable.addSuppressed()</code>，把原始异常添加进来，最后在<code>finally</code>抛出</p>
-</li>
-</ul>
-<h2 id="4、自定义异常"><a href="#4、自定义异常" class="headerlink" title="4、自定义异常"></a>4、自定义异常</h2><ul>
-<li>自定义一个<code>BaseException</code>作为“根异常”，然后，派生出各种业务类型的异常。<code>BaseException</code>需要从一个适合的<code>Exception</code>派生，通常建议从<code>RuntimeException</code>派生</li>
-</ul>
-<h2 id="5、断言"><a href="#5、断言" class="headerlink" title="5、断言"></a>5、断言</h2><ul>
-<li>语句<code>assert x &gt;= 0</code>;即为断言，断言条件<code>x &gt;= 0</code>预期为<code>true</code>。如果计算结果为<code>false</code>，则断言失败，抛出<code>AssertionError</code>。</li>
-<li>Java断言的特点是：断言失败时会抛出<code>AssertionError</code>，导致程序结束退出。因此，断言不能用于可恢复的程序错误，只应该用于开发和测试阶段。</li>
-<li>断言需要命令行开启。</li>
-</ul>
-<h2 id="6、JDK-logging"><a href="#6、JDK-logging" class="headerlink" title="6、JDK logging"></a>6、JDK logging</h2><ul>
-<li><p>输出日志，而不是用<code>System.out.println()</code>，有以下几个好处：</p>
-</li>
-<li><ol>
-<li>可以设置输出样式，避免自己每次都写”ERROR: “ + var；</li>
-<li>可以设置输出级别，禁止某些级别输出。例如，只输出错误日志；</li>
-<li>可以被重定向到文件，这样可以在程序运行结束后查看日志；</li>
-<li>可以按包名控制日志级别，只输出某些包打的日志；</li>
-<li>可以……</li>
-</ol>
-</li>
-<li><p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/log1.png" alt="log1"></p>
-</li>
-<li><p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/log2.png" alt="log2"></p>
-</li>
-<li><p>和Java标准库提供的日志不同，<code>Commons Logging</code>是一个第三方日志库，它是由Apache创建的日志模块。</p>
-</li>
-<li><p>使用<code>Commons Logging</code>只需要和两个类打交道，并且只有两步：第一步，通过<code>LogFactory</code>获取<code>Log</code>类的实例； 第二步，使用<code>Log</code>实例的方法打日志。（需要apache的第三方包）</p>
-</li>
-<li><p><code>Log4j</code>是一种非常流行的日志框架，最新版本是2.x。当我们使用<code>Log4j</code>输出一条日志时，<code>Log4j</code>自动通过不同的<code>Appender</code>把同一条日志输出到不同的目的地。</p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -495,9 +295,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/21/JavaR&A/" itemprop="url">JavaR&amp;A</a></h1>
+          <h1 class="post-title" itemprop="name headline">JavaR&amp;A</h1>
         
 
         <div class="post-meta">
@@ -547,9 +345,7 @@
       
 
       
-        
-          
-            <a id="more"></a>
+        <a id="more"></a>
 <h1 id="一、反射"><a href="#一、反射" class="headerlink" title="一、反射"></a>一、反射</h1><h2 id="1、反射"><a href="#1、反射" class="headerlink" title="1、反射"></a>1、反射</h2><ul>
 <li><p>动态语言和讲台语言</p>
 <ul>
@@ -911,8 +707,6 @@ Class[] is = s.getInterfaces();
 </li>
 </ol>
 
-          
-        
       
     </div>
     
@@ -929,623 +723,32 @@ Class[] is = s.getInterfaces();
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/JavaMaven/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Panda的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/21/JavaMaven/" itemprop="url">JavaMaven</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-21T06:23:35+08:00">
-                2020-06-21
-              </time>
+              <a href="/2020/06/21/JavaMaven/" rel="next" title="JavaMaven">
+                <i class="fa fa-chevron-left"></i> JavaMaven
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><ul>
-<li>Maven是一个Java项目管理和构建工具，它可以定义项目结构、项目依赖，并使用统一的方式进行自动化构建，是Java项目不可缺少的工具。</li>
-<li>Maven是一个采用纯Java编写的开源项目管理工具, Maven采用了一种被称之为Project Object Model (POM)概念来管理项目，所有的项目配置信息都被定义在一个叫做POM.xml的文件中..</li>
-<li>Maven主要服务于<strong>基于Java平台的项目构建、依赖管理和项目信息管理</strong>…</li>
-<li>POM：<ul>
-<li><strong>我们使用Java是面向对象编程，对象就是我们的类</strong></li>
-<li><strong>而Maven是面向项目，把我们的项目看做成是一个对象来进行管理</strong></li>
-</ul>
-</li>
-</ul>
-<h2 id="1、why-maven"><a href="#1、why-maven" class="headerlink" title="1、why maven"></a>1、why maven</h2><ul>
-<li><p><strong>Maven可以管理项目的整个声明周期，包括清除、编译，测试，报告、打包、部署等等。</strong></p>
-</li>
-<li><p><strong>自动构建项目</strong></p>
-<ul>
-<li><p>软件开发： 可行性分析、需求分析、软件设计、软件开发、发布、运维</p>
-</li>
-<li><p>软件构建： 软件已经开发完毕，需要构建成一个产品进行发布</p>
-</li>
-<li><p>构建步骤： 清除–&gt; 编译–&gt;测试–&gt;报告–&gt;打包（jar\war）–&gt;安装–&gt;部署到远程 </p>
-<p><em>maven可以*</em>通过一个命令实现自动构建软件项目***</p>
-</li>
-</ul>
-</li>
-<li><p>Maven拥有“约定优于配置“这么一个理念，也就是说，把一些规范约定下来，人们就这么用！<strong>如果我们事先约定好所有项目的目录结构，标准开发过程(编译，测试) , 所有人都遵循这个约定。软件项目的管理就会变得简单很多</strong>。</p>
-</li>
-</ul>
-<p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/20200616113717.png" alt="maven目录结构"></p>
-<ul>
-<li></li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/JVM/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Panda的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/21/JVM/" itemprop="url">JVM</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-21T06:12:17+08:00">
-                2020-06-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>JVM笔记</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/21/JVM/#more" rel="contents">
-              Read more &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/JavaObject/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Panda的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/21/JavaObject/" itemprop="url">JavaObject</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-21T06:12:04+08:00">
-                2020-06-21
-              </time>
+              <a href="/2020/06/21/JavaException/" rel="prev" title="JavaException">
+                JavaException <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文是我学习Java面向对象编程时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/21/JavaObject/#more" rel="contents">
-              Read more &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/13/JavaSE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Panda的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/13/JavaSE/" itemprop="url">JavaSE</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-13T19:54:00+08:00">
-                2020-06-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>本文是我学习JavaSE时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。笔记内容主要是Java的基础语法部分。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/13/JavaSE/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1555,302 +758,11 @@ Class[] is = s.getInterfaces();
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/11/JavaWeb/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Panda的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/11/JavaWeb/" itemprop="url">JavaWeb</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-11T20:07:43+08:00">
-                2020-06-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index">
-                    <span itemprop="name">JavaWeb</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文是我学习JavaWeb时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/11/JavaWeb/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/10/vue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="panda">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Panda的技术笔记">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/06/10/vue/" itemprop="url">vue</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-10T20:08:36+08:00">
-                2020-06-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>本文是我学习VUE时的笔记，大部分内容来自VUE官网。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/06/10/vue/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1858,6 +770,10 @@ Class[] is = s.getInterfaces();
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1878,8 +794,17 @@ Class[] is = s.getInterfaces();
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1939,6 +864,22 @@ Class[] is = s.getInterfaces();
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、反射"><span class="nav-text">一、反射</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、反射"><span class="nav-text">1、反射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、Class实例"><span class="nav-text">2、Class实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3、Class实例方法"><span class="nav-text">3、Class实例方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、class实例构造方法"><span class="nav-text">3、class实例构造方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、动态代理"><span class="nav-text">4、动态代理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、注解"><span class="nav-text">七、注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、什么是注解"><span class="nav-text">1、什么是注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、注解的使用"><span class="nav-text">2、注解的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、元注解"><span class="nav-text">3、元注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、基本注解"><span class="nav-text">4、基本注解</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2066,6 +1007,10 @@ Class[] is = s.getInterfaces();
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
