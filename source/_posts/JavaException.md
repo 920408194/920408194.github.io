@@ -1,11 +1,18 @@
 ---
 title: JavaException
 date: 2020-06-21T14:30:41+08:00
+categories:
+- java
 tags:
+- java
+- 技术文档
 ---
+
+本文是我学习Java异常处理时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。
+
 <!-- more -->
 
-#Java异常处理
+# Java异常处理
 
 ## 1、什么是异常
 
