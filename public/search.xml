@@ -1,8 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>vue</title>
+    <url>/2020/06/10/vue/</url>
+    <content><![CDATA[<p>本文是我学习VUE时的笔记，大部分内容来自VUE官网。</p>
+<a id="more"></a>
+
+<h1 id="vue-js"><a href="#vue-js" class="headerlink" title="vue.js"></a>vue.js</h1><h2 id="1、-why-vue"><a href="#1、-why-vue" class="headerlink" title="1、 why vue"></a>1、 why vue</h2><h3 id="1、what‘s-vue"><a href="#1、what‘s-vue" class="headerlink" title="1、what‘s vue"></a>1、what‘s vue</h3><ul>
+<li>Vue是一套用于构建用户界面的<strong>渐进式框架</strong>，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与<a href="https://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">现代化的工具链</a>以及各种<a href="https://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="noopener">支持类库</a>结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</li>
+<li>虚拟DOM</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="2、起步-从html开始"><a href="#2、起步-从html开始" class="headerlink" title="2、起步-从html开始"></a>2、起步-从html开始</h2><h3 id="1、一个简单的vue-js网站"><a href="#1、一个简单的vue-js网站" class="headerlink" title="1、一个简单的vue.js网站"></a>1、一个简单的vue.js网站</h3><p><a href="../../../../../vue_test.html">页面</a></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>VUE<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>现在数据和 DOM 已经被建立了关联，所有东西都是<strong>响应式的</strong>。打开你的浏览器的 JavaScript 控制台 (就在这个页面打开)，并修改 <code>app.message</code> 的值，你将看到上例相应地更新。</li>
+<li>一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 <code>#app</code>) 然后对其进行完全控制。那个 HTML 是我们的入口，但其余都会发生在新创建的 Vue 实例内部。</li>
+</ul>
+<h3 id="2、动态"><a href="#2、动态" class="headerlink" title="2、动态"></a>2、动态</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-2"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">"message"</span>&gt;</span></span><br><span class="line">         鼠标悬停几秒钟查看此处动态绑定的提示信息！</span><br><span class="line">       <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">   <span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">       el: <span class="string">'#app-2'</span>,</span></span><br><span class="line">       data: &#123;</span><br><span class="line"><span class="javascript">           message: <span class="string">'页面加载于 '</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)</span><br><span class="line">       </span><br><span class="line">   <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>v-bind</code> attribute 被称为<strong>指令</strong>，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 <code>title</code> attribute 和 Vue 实例的 <code>message</code> property 保持一致”。如果你再次打开浏览器的 JavaScript 控制台，输入 <code>app2.message = &#39;新消息&#39;</code>，就会再一次看到这个绑定了 <code>title</code> attribute 的 HTML 已经进行了更新。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM</title>
+    <url>/2020/06/21/Java/JVM/</url>
+    <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<p>#JVM</p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>技术文档</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaException</title>
-    <url>/2020/06/21/JavaException/</url>
+    <url>/2020/06/21/Java/JavaException/</url>
     <content><![CDATA[<p>本文是我学习Java异常处理时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
 <a id="more"></a>
 
@@ -94,29 +141,13 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM</title>
-    <url>/2020/06/21/JVM/</url>
-    <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-<a id="more"></a>
-
-<p>#JVM</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
         <tag>java</tag>
-        <tag>技术文档</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaMaven</title>
-    <url>/2020/06/21/JavaMaven/</url>
+    <url>/2020/06/21/Java/JavaMaven/</url>
     <content><![CDATA[<a id="more"></a>
 <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><ul>
 <li>Maven是一个Java项目管理和构建工具，它可以定义项目结构、项目依赖，并使用统一的方式进行自动化构建，是Java项目不可缺少的工具。</li>
@@ -154,14 +185,14 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
+        <tag>java</tag>
         <tag>工具</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaObject</title>
-    <url>/2020/06/21/JavaObject/</url>
+    <url>/2020/06/21/Java/JavaObject/</url>
     <content><![CDATA[<p>本文是我学习Java面向对象编程时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
 <a id="more"></a>
 
@@ -446,13 +477,13 @@ System.out.println(sr.nextInt(<span class="number">100</span>));</code></pre>
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaR&amp;amp;A</title>
-    <url>/2020/06/21/JavaR&amp;A/</url>
+    <url>/2020/06/21/Java/JavaR&amp;A/</url>
     <content><![CDATA[<p>本文是我学习Java反射和注解时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
 <a id="more"></a>
 
@@ -821,13 +852,13 @@ Class[] is = s.getInterfaces();
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaSE</title>
-    <url>/2020/06/13/JavaSE/</url>
+    <url>/2020/06/13/Java/JavaSE/</url>
     <content><![CDATA[<p>本文是我学习JavaSE时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。笔记内容主要是Java的基础语法部分。</p>
 <a id="more"></a>
 
@@ -920,13 +951,13 @@ Class[] is = s.getInterfaces();
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
     <title>JavaWeb</title>
-    <url>/2020/06/11/JavaWeb/</url>
+    <url>/2020/06/11/Java/JavaWeb/</url>
     <content><![CDATA[<p>本文是我学习JavaWeb时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
 <a id="more"></a>
 
@@ -1348,40 +1379,9 @@ Class[] is = s.getInterfaces();
         <category>JavaWeb</category>
       </categories>
       <tags>
+        <tag>技术文档</tag>
         <tag>java</tag>
-        <tag>技术文档</tag>
         <tag>后端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue</title>
-    <url>/2020/06/10/vue/</url>
-    <content><![CDATA[<p>本文是我学习VUE时的笔记，大部分内容来自VUE官网。</p>
-<a id="more"></a>
-
-<h1 id="vue-js"><a href="#vue-js" class="headerlink" title="vue.js"></a>vue.js</h1><h2 id="1、-why-vue"><a href="#1、-why-vue" class="headerlink" title="1、 why vue"></a>1、 why vue</h2><h3 id="1、what‘s-vue"><a href="#1、what‘s-vue" class="headerlink" title="1、what‘s vue"></a>1、what‘s vue</h3><ul>
-<li>Vue是一套用于构建用户界面的<strong>渐进式框架</strong>，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与<a href="https://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">现代化的工具链</a>以及各种<a href="https://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="noopener">支持类库</a>结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</li>
-<li>虚拟DOM</li>
-</ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="2、起步-从html开始"><a href="#2、起步-从html开始" class="headerlink" title="2、起步-从html开始"></a>2、起步-从html开始</h2><h3 id="1、一个简单的vue-js网站"><a href="#1、一个简单的vue-js网站" class="headerlink" title="1、一个简单的vue.js网站"></a>1、一个简单的vue.js网站</h3><p><a href="../../../../../vue_test.html">页面</a></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>VUE<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>现在数据和 DOM 已经被建立了关联，所有东西都是<strong>响应式的</strong>。打开你的浏览器的 JavaScript 控制台 (就在这个页面打开)，并修改 <code>app.message</code> 的值，你将看到上例相应地更新。</li>
-<li>一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 <code>#app</code>) 然后对其进行完全控制。那个 HTML 是我们的入口，但其余都会发生在新创建的 Vue 实例内部。</li>
-</ul>
-<h3 id="2、动态"><a href="#2、动态" class="headerlink" title="2、动态"></a>2、动态</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-2"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">"message"</span>&gt;</span></span><br><span class="line">         鼠标悬停几秒钟查看此处动态绑定的提示信息！</span><br><span class="line">       <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">   <span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">       el: <span class="string">'#app-2'</span>,</span></span><br><span class="line">       data: &#123;</span><br><span class="line"><span class="javascript">           message: <span class="string">'页面加载于 '</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)</span><br><span class="line">       </span><br><span class="line">   <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>v-bind</code> attribute 被称为<strong>指令</strong>，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 <code>title</code> attribute 和 Vue 实例的 <code>message</code> property 保持一致”。如果你再次打开浏览器的 JavaScript 控制台，输入 <code>app2.message = &#39;新消息&#39;</code>，就会再一次看到这个绑定了 <code>title</code> attribute 的 HTML 已经进行了更新。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>技术文档</tag>
-        <tag>前端</tag>
       </tags>
   </entry>
 </search>
