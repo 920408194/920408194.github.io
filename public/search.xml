@@ -1,6 +1,482 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JVM</title>
+    <url>/2020/06/21/JVM/</url>
+    <content><![CDATA[<p>JVM笔记</p>
+<a id="more"></a>
+
+<p>#JVM</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>JavaObject</title>
+    <url>/2020/06/21/JavaObject/</url>
+    <content><![CDATA[<a id="more"></a>
+<p>#Java面向对象</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>JavaWeb</title>
+    <url>/2020/06/11/JavaWeb/</url>
+    <content><![CDATA[<p>本文是我学习JavaWeb时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><h2 id="一、web应用服务器"><a href="#一、web应用服务器" class="headerlink" title="一、web应用服务器"></a>一、web应用服务器</h2><p><code>tomcat</code>、<code>Jboos</code>、<code>Weblogic</code>、<code>jetty</code></p>
+<h3 id="1、Tomcat"><a href="#1、Tomcat" class="headerlink" title="1、Tomcat"></a>1、Tomcat</h3><ul>
+<li>Tomcat简单的说就是一个运行JAVA的网络服务器，底层是<code>Socket</code>的一个程序，它也是<code>JSP</code>和<code>Serlvet</code>的一个容器。</li>
+</ul>
+<h3 id="2、使用指南"><a href="#2、使用指南" class="headerlink" title="2、使用指南"></a>2、使用指南</h3><h4 id="1、官网下载tomcat-zip"><a href="#1、官网下载tomcat-zip" class="headerlink" title="1、官网下载tomcat zip"></a>1、官网下载tomcat zip</h4><h4 id="2、解压"><a href="#2、解压" class="headerlink" title="2、解压"></a>2、解压</h4><p>​        <code>bin</code>：存放各个平台下启动和停止<code>Tomcat</code>服务的脚本文件</p>
+<p>​        <code>conf</code>：存放各种<code>Tomcat</code>服务器的配置文件</p>
+<p>​        <code>lib</code>：第三方<code>jar</code>包</p>
+<p>​        <code>logs</code>：<code>Tomcat</code>服务的日志信息</p>
+<p>​        <code>temp</code>：<code>Tomcat</code>运行时的临时文件</p>
+<p>​        <code>webapps</code>：存放允许客户端访问的资源（<strong>java</strong>程序）</p>
+<p>​        <code>work</code>：存放<code>Tomcat</code>将<code>jsp</code>转换成的<code>servlet</code>文件</p>
+<h4 id="3、idea新建企业java-webapp"><a href="#3、idea新建企业java-webapp" class="headerlink" title="3、idea新建企业java webapp"></a>3、idea新建企业java webapp</h4><h4 id="4、tomcat控制台输出："><a href="#4、tomcat控制台输出：" class="headerlink" title="4、tomcat控制台输出："></a>4、tomcat控制台输出：</h4><ul>
+<li>需要动态查看tomcat控制台输出，在logs目录下执行：<code>tail -f catalina.out</code></li>
+</ul>
+<h3 id="3、url的组成"><a href="#3、url的组成" class="headerlink" title="3、url的组成"></a>3、url的组成</h3><table>
+<thead>
+<tr>
+<th align="center">http://</th>
+<th align="center">localhost:</th>
+<th align="center">8080/</th>
+<th align="center">web1/</th>
+<th align="center">Hello.html</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">协议</td>
+<td align="center">主机（域名）</td>
+<td align="center">端口</td>
+<td align="center">web应用</td>
+<td align="center">资源文件</td>
+</tr>
+</tbody></table>
+<p>其中，web应用和资源文件统称uri</p>
+<h3 id="4、虚拟目录"><a href="#4、虚拟目录" class="headerlink" title="4、虚拟目录"></a>4、虚拟目录</h3><ul>
+<li><p>如果把所有web站点的目录都放在webapps下，可能导致<strong>磁盘空间不够用</strong>，也<strong>不利于对web站点目录的管理</strong>【如果存在非常多的web站点目录】把<strong>web站点的目录分散到其他磁盘管理就需要配置虚拟目录【默认情况下，只有webapps下的目录才能被Tomcat自动管理成一个web站点】</strong>把web应用所在目录交给web服务器管理，这个过程称之为虚拟目录的映射</p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li><p>在其他盘符下创建一个web站点目录，并创建WEB-INF目录和一个html文件。</p>
+</li>
+<li><p>找到Tomcat目录下/conf/server.xml文件</p>
+</li>
+<li><p>在server.xml中的节点下添加如下代码。<strong>path表示的是访问时输入的web项目名，docBase表示的是站点目录的绝对路径</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/web1"</span> <span class="attr">docBase</span>=<span class="string">"D:\web1"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>方法2:</p>
+<ul>
+<li><p>进入到conf\Catalina\localhost文件下，创建一个xml文件，<strong>该文件的名字就是web应用的名字。</strong></p>
+</li>
+<li><p>xml文件的代码如下，<strong>docBase是你web站点的绝对路径</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"D:\web1"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问web站点下的html资源 </p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="5、配置临时域名"><a href="#5、配置临时域名" class="headerlink" title="5、配置临时域名"></a>5、配置临时域名</h3><ul>
+<li>在hosts文件下配置临时域名</li>
+</ul>
+<h3 id="6、虚拟主机"><a href="#6、虚拟主机" class="headerlink" title="6、虚拟主机"></a>6、虚拟主机</h3><ul>
+<li><p>为什么需要用到虚拟主机？例子：我现在开发了4个网站，有4个域名。如果我不配置虚拟主机，一个Tomcat服务器运行一个网站，我就需要4台电脑才能把4个网站运行起来。</p>
+</li>
+<li><p>步骤：</p>
+<ul>
+<li><p>在tomcat的server.xml文件中添加主机名</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"panda"</span> <span class="attr">appBase</span>=<span class="string">"D:\web1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/web1"</span> <span class="attr">docBase</span>=<span class="string">"D:\web1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问虚拟主机下的web站: panda:8080/web1</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="二、HTTP协议"><a href="#二、HTTP协议" class="headerlink" title="二、HTTP协议"></a>二、HTTP协议</h2><blockquote>
+<p>超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的WWW文件都必须遵守这个标准。它是TCP/IP协议的一个<strong>应用层协议</strong></p>
+</blockquote>
+<ul>
+<li><strong>HTTP协议就是客户端和服务器交互的一种通迅的格式</strong>。</li>
+<li>当在浏览器中点击某个链接的时候，<strong>浏览器会向服务器发送一段文本</strong>，<strong>告诉服务器请求打开的是哪一个网页。服务器收到请求后，就返回一段文本给浏览器，浏览器会将该文本解析，然后显示出来。</strong>这段文本就是遵循HTTP协议规范的。</li>
+</ul>
+<h3 id="1、HTTP1-0和HTTP1-1的区别"><a href="#1、HTTP1-0和HTTP1-1的区别" class="headerlink" title="1、HTTP1.0和HTTP1.1的区别"></a>1、HTTP1.0和HTTP1.1的区别</h3><ul>
+<li>HTTP1.0协议中，客户端与web服务器建立连接后，只能获得一个web资源【短连接，获取资源后就断开连接】</li>
+<li>HTTP1.1协议，允许客户端与web服务器建立连接后，在一个连接上获取多个web资源【保持连接】</li>
+</ul>
+<h3 id="2、http请求"><a href="#2、http请求" class="headerlink" title="2、http请求"></a>2、http请求</h3><ul>
+<li><p><strong>浏览器向服务器请求某个web资源时，称之为浏览器向服务器发送了一个http请求。</strong>一个完整http请求应该包含三个部分：</p>
+<ol>
+<li>请求行【描述客户端的<strong>请求方式</strong>、<strong>请求的资源名称</strong>，以及使用的<strong>HTTP协议版本号</strong>】</li>
+<li>多个消息头【描述客户端请求哪台主机，以及<strong>客户端的一些环境信息</strong>等】</li>
+<li>一个空行</li>
+</ol>
+</li>
+<li><p>请求行：GET /java.html HTTP/1.1</p>
+<ul>
+<li><p><strong>请求行中的GET称之为请求方式</strong>，请求方式有：POST,GET,HEAD,OPTIONS,DELETE,TRACE,PUT。<strong>常用的有：POST,GET</strong>。</p>
+<p>一般来说，当我们<strong>点击超链接，通过地址栏访问都是get请求方式</strong>。通过<strong>表单提交的数据一般是post方式</strong>。</p>
+<p>可以简单理解<strong>GET方式用来查询数据</strong>,<strong>POST方式用来提交数据</strong>，<strong>get的提交速度比post快</strong>。</p>
+<p>GET方式：在URL地址后<strong>附带的参数是有限制的</strong>，其<strong>数据容量通常不能超过1K</strong>。</p>
+<p>POST方式：可以在<strong>请求的实体内容中向服务器发送数据</strong>，<strong>传送的数据量无限制</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>请求头</strong></p>
+<ul>
+<li>Accept: text/html,image/* 【浏览器告诉服务器，它支持的数据类型】</li>
+<li>Accept-Charset: ISO-8859-1 【浏览器告诉服务器，它支持哪种<strong>字符集</strong>】</li>
+<li>Accept-Encoding: gzip,compress 【浏览器告诉服务器，它支持的<strong>压缩格式</strong>】</li>
+<li>Accept-Language: en-us,zh-cn 【浏览器告诉服务器，它的语言环境】</li>
+<li>Host: <a href="http://www.it315.org:80【浏览器告诉服务器，它的想访问哪台主机】">www.it315.org:80【浏览器告诉服务器，它的想访问哪台主机】</a></li>
+<li>If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT【浏览器告诉服务器，缓存数据的时间】</li>
+<li>Referer: <a href="http://www.it315.org/index.jsp【浏览器告诉服务器，客户机是从那个页面来的---**反盗链**】" target="_blank" rel="noopener">http://www.it315.org/index.jsp【浏览器告诉服务器，客户机是从那个页面来的---**反盗链**】</a></li>
+<li>8.User-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)【浏览器告诉服务器，浏览器的内核是什么】</li>
+<li>Cookie【浏览器告诉服务器，<strong>带来的Cookie是什么</strong>】</li>
+<li>Connection: close/Keep-Alive 【浏览器告诉服务器，请求完后是断开链接还是保持链接】</li>
+<li>Date: Tue, 11 Jul 2000 18:23:51 GMT【浏览器告诉服务器，请求的时间】</li>
+</ul>
+</li>
+</ul>
+<h3 id="3、HTTP响应"><a href="#3、HTTP响应" class="headerlink" title="3、HTTP响应"></a>3、HTTP响应</h3><ul>
+<li><p>一个HTTP响应代表着<strong>服务器向浏览器回送数据</strong>。一个完整的HTTP响应应该包含四个部分:</p>
+<ol>
+<li>一个状态行【用于描述<strong>服务器对请求的处理结果。</strong>】</li>
+<li>多个消息头【用于描述<strong>服务器的基本信息</strong>，以及<strong>数据的描述</strong>，<strong>服务器通过这些数据的描述信息，可以通知客户端如何处理等一会儿它回送的数据</strong>】</li>
+<li>一个空行</li>
+<li>实体内容【<strong>服务器向客户端回送的数据</strong>】</li>
+</ol>
+</li>
+<li><p>状态行：</p>
+<ul>
+<li><p>格式： HTTP版本号　状态码　原因叙述</p>
+</li>
+<li><p>状态行：HTTP/1.1 200 OK</p>
+</li>
+<li><p>状态码用于表示<strong>服务器对请求的处理结果</strong>，它是一个<strong>三位的十进制数</strong>。响应状态码分为5类</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100～199</td>
+<td align="left">表示成功接收请求，要求客户端继续提交下一次请求才能完成整个处理过程</td>
+</tr>
+<tr>
+<td>200～299</td>
+<td align="left">表示成功接收到请求并已完成整个处理过程，常用200</td>
+</tr>
+<tr>
+<td>300～399</td>
+<td align="left">为完成请求，客户需进一步细化请求。例如：请求的资源已移动到一个新地址，常用302、307和304</td>
+</tr>
+<tr>
+<td>400～499</td>
+<td align="left">客户端的请求有错误，常用404</td>
+</tr>
+<tr>
+<td>500～599</td>
+<td align="left">服务器端出现错误，常用500</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+</li>
+<li><p>响应头</p>
+<ul>
+<li>Location: <a href="http://www.it315.org/index.jsp" target="_blank" rel="noopener">http://www.it315.org/index.jsp</a> 【服务器告诉浏览器<strong>要跳转到哪个页面</strong>】</li>
+<li>Server:apache tomcat【服务器告诉浏览器，服务器的型号是什么】</li>
+<li>Content-Encoding: gzip 【服务器告诉浏览器<strong>数据压缩的格式</strong>】</li>
+<li>Content-Length: 80 【服务器告诉浏览器回送数据的长度】</li>
+<li>Content-Language: zh-cn 【服务器告诉浏览器，服务器的语言环境】</li>
+<li>Content-Type: text/html; charset=GB2312 【服务器告诉浏览器，<strong>回送数据的类型</strong>】</li>
+<li>Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT【服务器告诉浏览器该资源上次更新时间】</li>
+<li>Refresh: 1;url=<a href="http://www.it315.org【服务器告诉浏览器要**定时刷新**】" target="_blank" rel="noopener">http://www.it315.org【服务器告诉浏览器要**定时刷新**】</a></li>
+<li>Content-Disposition: attachment; filename=aaa.zip【服务器告诉浏览器<strong>以下载方式打开数据</strong>】</li>
+<li>Transfer-Encoding: chunked 【服务器告诉浏览器数据以分块方式回送】</li>
+<li>Set-Cookie:SS=Q0=5Lb_nQ; path=/search【服务器告诉浏览器要<strong>保存Cookie</strong>】</li>
+<li>Expires: -1【服务器告诉浏览器<strong>不要设置缓存</strong>】</li>
+<li>Cache-Control: no-cache 【服务器告诉浏览器<strong>不要设置缓存</strong>】</li>
+<li>Pragma: no-cache 【服务器告诉浏览器<strong>不要设置缓存</strong>】</li>
+<li>Connection: close/Keep-Alive 【服务器告诉浏览器连接方式】</li>
+<li>Date: Tue, 11 Jul 2000 18:23:51 GMT【服务器告诉浏览器回送数据的时间】</li>
+</ul>
+</li>
+</ul>
+<h2 id="三、Servlet和JSP"><a href="#三、Servlet和JSP" class="headerlink" title="三、Servlet和JSP"></a>三、Servlet和JSP</h2><h3 id="1、什么是Servlet"><a href="#1、什么是Servlet" class="headerlink" title="1、什么是Servlet"></a>1、什么是Servlet</h3><ul>
+<li><code>Servlet</code>是JavaWeb开发的基石，一种与平台无关的服务器组件</li>
+<li>它是运行在<code>Servlet</code>容器/Web应用服务器，负责与客户端进行通信</li>
+<li>是一个<strong>遵循Servlet开发的java类</strong>。Serlvet是<strong>由服务器调用的</strong>，<strong>运行在服务器端</strong>。</li>
+</ul>
+<h3 id="2、Servlet的功能"><a href="#2、Servlet的功能" class="headerlink" title="2、Servlet的功能"></a>2、Servlet的功能</h3><ul>
+<li><p><strong>处理浏览器带来HTTP请求，并返回一个响应给浏览器，从而实现浏览器和服务器的交互</strong>。</p>
+</li>
+<li><p>创建并返回基于客户端请求的动态HTML页面</p>
+</li>
+<li><p>与数据库进行通信</p>
+</li>
+</ul>
+<h3 id="3、JavaWeb目录结构"><a href="#3、JavaWeb目录结构" class="headerlink" title="3、JavaWeb目录结构"></a>3、JavaWeb目录结构</h3><p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/JavaWeb.png" alt="JavaWeb"></p>
+<ul>
+<li>bbs目录代表一个web应用</li>
+<li>bbs目录下的html,jsp文件可以直接被浏览器访问</li>
+<li><strong>WEB-INF目录下的资源是不能直接被浏览器访问的</strong></li>
+<li>web.xml文件是web程序的主要配置文件</li>
+<li>所有的classes文件都放在classes目录下</li>
+<li>jar文件放在lib目录下</li>
+</ul>
+<h3 id="4、使用Servlet"><a href="#4、使用Servlet" class="headerlink" title="4、使用Servlet"></a>4、使用Servlet</h3><ul>
+<li><code>Servlet</code>本身是一组接口，在<code>javax.servlet</code>包里面。</li>
+</ul>
+<h4 id="1、基础配置"><a href="#1、基础配置" class="headerlink" title="1、基础配置"></a>1、基础配置</h4><ul>
+<li><p>自定义一个类，并实现<code>Sevlet</code>接口，这个类就具备了接受客户端请求以及做出响应的功能。</p>
+<ul>
+<li><p>我们发现有5个方法需要重写，有init【初始化】，destroy【销毁】,service【服务】,ServletConfig【Servlet配置】,getServletInfo【Serlvet信息】。、</p>
+</li>
+<li><p>其中，service()方法是写逻辑代码的地方。调用ServletResponse对象的方法向浏览器输出</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        servletResponse.getWriter().write(<span class="string">"This is panda's server!"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置xml文件</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">web-app</span> <span class="attr">...</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/MyServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者用注解：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(value = <span class="string">"/MyServlet"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>访问：url/MyServlet</li>
+</ul>
+<h4 id="2、Servlet生命周期"><a href="#2、Servlet生命周期" class="headerlink" title="2、Servlet生命周期"></a>2、Servlet生命周期</h4><ul>
+<li><strong>加载Servlet</strong>。当Tomcat第一次访问Servlet的时候，<strong>Tomcat会负责创建Servlet的实例</strong></li>
+<li><strong>初始化</strong>。当Servlet被实例化后，Tomcat会<strong>调用init()方法初始化这个对象</strong></li>
+<li><strong>处理服务</strong>。当浏览器<strong>访问Servlet</strong>的时候，Servlet <strong>会调用service()方法处理请求</strong></li>
+<li><strong>销毁</strong>。当Tomcat关闭时或者检测到Servlet要从Tomcat删除的时候会自动调用destroy()方法，<strong>让该实例释放掉所占的资源</strong>。一个Servlet如果长时间不被使用的话，也会被Tomcat自动销毁</li>
+<li><strong>卸载</strong>。当Servlet调用完destroy()方法后，等待垃圾回收。如果<strong>有需要再次使用这个Servlet，会重新调用init()方法进行初始化操作</strong>。</li>
+</ul>
+<p>简单总结：<strong>只要访问Servlet，service()就会被调用。init()只有第一次访问Servlet的时候才会被调用。 destroy()只有在Tomcat关闭的时候才会被调用。</strong></p>
+<h4 id="3、Servlet补充细节"><a href="#3、Servlet补充细节" class="headerlink" title="3、Servlet补充细节"></a>3、Servlet补充细节</h4><ul>
+<li><p><strong>同一个Servlet可以被映射到多个URL上。</strong>(只能写在xml里面)</p>
+</li>
+<li><p>Servlet映射的URL可以使用通配符：*.扩展名、正斜杠（/）开头并以“/*”结尾。</p>
+<p>如果.扩展名和正斜杠（/）开头并以“/”结尾两种通配符同时出现:</p>
+<ol>
+<li><strong>看谁的匹配度高，谁就被选择</strong></li>
+<li><code>*.</code>扩展名的优先级最低</li>
+</ol>
+</li>
+<li><p>Servlet映射的URL可以使用通配符和Servlet可以被映射到多个URL上的作用：</p>
+<ol>
+<li><strong>隐藏网站是用什么编程语言写的</strong>【.php,.net,.asp实际上访问的都是同一个资源】</li>
+<li>用特定的<strong>后缀声明版权</strong>【公司缩写】</li>
+</ol>
+</li>
+<li><p>Servlet是单例的：<strong>浏览器多次对Servlet的请求</strong>，一般情况下，<strong>服务器只创建一个Servlet对象</strong>，也就是说，Servlet对象<strong>一旦创建了</strong>，就会<strong>驻留在内存中，为后续的请求做服务，直到服务器关闭</strong>。</p>
+<ul>
+<li>对于<strong>每次访问请求</strong>，Servlet引擎都会<strong>创建一个新的HttpServletRequest请求对象和一个新的HttpServletResponse响应对象</strong>，然后将这两<strong>个对象作为参数传递给它调用的Servlet的service()方法</strong>，<strong>service方法再根据请求方式分别调用doXXX方法</strong>。所以每次访问请求对象和响应对象都是新的</li>
+</ul>
+</li>
+<li><p>load-on-startup：如果配置了一个load-on-startup，那么<strong>WEB应用程序在启动时</strong>，就会<strong>装载并创建Servlet的实例对象</strong>、以及<strong>调用Servlet实例对象的init()方法</strong>。</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@javax</span>.servlet.annotation.WebServlet(value = <span class="string">"/MyServlet"</span>,loadOnStartup = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+<h4 id="4、线程安全问题"><a href="#4、线程安全问题" class="headerlink" title="4、线程安全问题"></a>4、线程安全问题</h4><p>​    当多个用户访问Servlet的时候，<strong>服务器会为每个用户创建一个线程</strong>。<strong>当多个用户并发访问Servlet共享资源的时候就会出现线程安全问题</strong>。</p>
+<ul>
+<li>如果一个<strong>变量需要多个用户共享</strong>，则应当在访问该变量的时候，<strong>加同步机制synchronized (对象){}</strong></li>
+<li>如果一个变量<strong>不需要共享</strong>，则<strong>直接在 doGet() 或者 doPost()定义</strong>.这样不会存在线程安全问题</li>
+</ul>
+<h4 id="5、在web访问任何资源都是访问Servlet"><a href="#5、在web访问任何资源都是访问Servlet" class="headerlink" title="5、在web访问任何资源都是访问Servlet"></a>5、在web访问任何资源都是访问Servlet</h4><ul>
+<li>凡是在web.xml文件中<strong>找不到匹配的元素的URL</strong>，它们的访问<strong>请求都将交给缺省Servlet处理</strong>，也就是说，<strong>缺省Servlet用于处理所有其他Servlet都不处理的访问请求</strong></li>
+<li>访问web上的任何字资源实质上都是在访问这个缺省的Servlet。没有手工配置缺省Servlet的时候，<strong>你访问静态图片，静态网页，缺省Servlet会在你web站点中寻找该图片或网页</strong>，如果有就返回给浏览器，没有就报404错误</li>
+</ul>
+<h4 id="6、ServletConfig对象"><a href="#6、ServletConfig对象" class="headerlink" title="6、ServletConfig对象"></a>6、ServletConfig对象</h4><ul>
+<li><p>通过此对象可以读取web.xml中配置的初始化参数。</p>
+</li>
+<li><p>xml写法</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>name<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>panda<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注解写法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(</span><br><span class="line">        name = <span class="string">"ServletByIdea"</span>,</span><br><span class="line">        value = <span class="string">"/ServletByIdea"</span>,</span><br><span class="line">        loadOnStartup = <span class="number">1</span>,</span><br><span class="line">        initParams = &#123;</span><br><span class="line">            <span class="meta">@WebInitParam</span>(name=<span class="string">"name"</span>,value = <span class="string">"panda"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>getServletConfig()</code>的实现：需要在<code>init()</code>中得到<code>ServletConfig</code>，然后在方法中返回</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ServletConfig servletConfig;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.servletConfig = servletConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> servletConfig;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="7、ServletContext对象"><a href="#7、ServletContext对象" class="headerlink" title="7、ServletContext对象"></a>7、ServletContext对象</h4><ul>
+<li><p>当Tomcat启动的时候，就会创建一个ServletContext对象。它<strong>代表着当前web站点</strong></p>
+</li>
+<li><p>ServletContext有什么用？</p>
+<ol>
+<li>ServletContext既然代表着当前web站点，那么<strong>所有Servlet都共享着一个ServletContext对象</strong>，所以<strong>Servlet之间可以通过ServletContext实现通讯</strong>。</li>
+<li>ServletConfig获取的是配置的是单个Servlet的参数信息，<strong>ServletContext可以获取的是配置整个web站点的参数信息</strong></li>
+<li><strong>利用ServletContext读取web站点的资源文件</strong></li>
+<li>实现Servlet的转发【用ServletContext转发不多，主要用request转发】</li>
+</ol>
+</li>
+<li><p>ServletContext对象可以被称之为<strong>域对象</strong>。可以简单理解成<strong>一个容器【类似于Map集合】</strong>。实现Servlet之间通讯就要<strong>用到ServletContext的setAttribute(String name,Object obj)方法</strong>， 第一个参数是关键字，第二个参数是你要存储的对象。</p>
+</li>
+<li><p>Servlet代码</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取ServletContext对象并存值到域对象</span></span><br><span class="line">ServletContext servletContext = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">String value = <span class="string">"panda!"</span>;</span><br><span class="line">servletContext.setAttribute(<span class="string">"MyName"</span>,value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取其他Servlet存储的信息，实现多Servlet通信</span></span><br><span class="line">ServletContext servletContext = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">String value = (String) servletContext.getAttribute(<span class="string">"MyName"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注意：要先执行存值的servlet！！！！</p>
+</li>
+<li><p><code>getServletContext()</code>实现</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ServletContext <span class="title">getServletContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> getServletConfig().getServletContext();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="8、获取web站点配置的信息"><a href="#8、获取web站点配置的信息" class="headerlink" title="8、获取web站点配置的信息"></a>8、获取web站点配置的信息</h4><ul>
+<li><p>web.xml文件支持<strong>对整个站点进行配置参数信息</strong>【<strong>所有Servlet都可以取到该参数信息</strong>】</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>usr<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>panda<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="9、读取资源文件"><a href="#9、读取资源文件" class="headerlink" title="9、读取资源文件"></a>9、读取资源文件</h4><ul>
+<li><p>通过<strong>ServletContext读取</strong>（文件在包目录/img下）</p>
+<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg.png" alt="xxximg" style="zoom: 50%;" />
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//读取文件/图片</span></span><br><span class="line">String path = <span class="string">"/WEB-INF/classes/img/xxx.jpg"</span>;</span><br><span class="line">InputStream inputStream = servletContext.getResourceAsStream(path);<span class="comment">//java.io.ByteArrayInputStream@64bcce8a</span></span><br><span class="line">response.getWriter().write(inputStream+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>文件在web目录下</p>
+<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg2.png" style="zoom:50%;" />
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//从web目录读取文件/图片</span></span><br><span class="line">InputStream inputStream2 = servletContext.getResourceAsStream(<span class="string">"xxx.jpg"</span>);</span><br><span class="line">response.getWriter().write(inputStream2+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过<strong>类装载器读取资源文件</strong>。</p>
+<p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg3.png" alt=""></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//通过类装载器读取资源文件。</span></span><br><span class="line">InputStream inputStream3 = servletContext.getResourceAsStream(<span class="string">"xxx.jpg"</span>);</span><br><span class="line">response.getWriter().write(inputStream3+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>如果文件太大，就不能用类装载器的方式去读取，会导致内存溢出</strong></p>
+</li>
+<li></li>
+</ul>
+<h4 id="10、继承HttpServlet编写Servlet程序"><a href="#10、继承HttpServlet编写Servlet程序" class="headerlink" title="10、继承HttpServlet编写Servlet程序"></a>10、继承HttpServlet编写Servlet程序</h4><p>在上面我们实现Servlet接口，要实现5个方法。这样太麻烦了！而<strong>HttpServlet类已经实现了Servlet接口的所有方法</strong>，编写Servlet时，只需要<strong>继承HttpServlet，重写你需要的方法即可</strong>，并且它在原有Servlet接口上<strong>添加了一些与HTTP协议处理方法</strong>，它<strong>比Servlet接口的功能更为强大</strong>。</p>
+<ul>
+<li>一般我们开发的时候，都是<strong>重写doGet()和doPost()方法的</strong>。对于idea而言，创建Servlet的时候已经帮你重写好了</li>
+</ul>
+<h3 id="5、request和response"><a href="#5、request和response" class="headerlink" title="5、request和response"></a>5、request和response</h3><h4 id="1、response、request对象"><a href="#1、response、request对象" class="headerlink" title="1、response、request对象"></a>1、response、request对象</h4><ul>
+<li>Tomcat收到客户端的http请求，会针对每一次请求，分别创建一个<strong>代表请求的request对象</strong>、和<strong>代表响应的response对象</strong></li>
+<li>我们<strong>获取浏览器提交过来的数据，找request对象</strong>即可；我们<strong>向浏览器输出数据，找response对象</strong>即可。</li>
+</ul>
+<h4 id="2、HttpServletResponse对象"><a href="#2、HttpServletResponse对象" class="headerlink" title="2、HttpServletResponse对象"></a>2、HttpServletResponse对象</h4><ul>
+<li><p><strong>HttpServletResponse对象封装了http响应的信息。</strong>http响应由状态行、实体内容、消息头、一个空行组成。</p>
+</li>
+<li><p>调用getOutputStream()方法向浏览器输出数据,<strong>getOutputStream()方法可以使用print()也可以使用write()</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//调用getOutputStream()方法向浏览器输出数据</span></span><br><span class="line">ServletOutputStream servletOutputStream = response.getOutputStream();</span><br><span class="line">servletOutputStream.println(<span class="string">"aaa"</span>);<span class="comment">//输出中文可能出现乱码</span></span><br><span class="line">servletOutputStream.write(<span class="string">"bbb"</span>.getBytes());</span><br></pre></td></tr></table></figure>
+
+<p>但是，程序<strong>要实现通用性，应该使用的是UTF-8编码</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">servletOutputStream.write(<span class="string">"ccc"</span>.getBytes(<span class="string">"UTF-8"</span>));</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>但是浏览器编码不为utf-8时，又会出现乱码。于是乎<strong>设置消息头</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置头信息，告诉浏览器我回送的数据编码是utf-8的</span></span><br><span class="line">response.setHeader(<span class="string">"Content-Type"</span>, <span class="string">"text/html;charset=UTF-8"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>除了使用HttpServletResponse对象设置消息头的方法，我可以<strong>使用html的标签模拟一个http消息头</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用meta标签模拟http消息头，告诉浏览器回送数据的编码和格式</span></span><br><span class="line">servletOutputStream.</span><br><span class="line">write(<span class="string">"&lt;meta http-equiv='content-type' content='text/html;charset=UTF-8'&gt;"</span>.getBytes());</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="3、调用getWriter-方法向浏览器输出数据"><a href="#3、调用getWriter-方法向浏览器输出数据" class="headerlink" title="3、调用getWriter()方法向浏览器输出数据"></a>3、调用getWriter()方法向浏览器输出数据</h4><ul>
+<li><p>对于getWriter()方法而言，是Writer的子类，那么<strong>只能向浏览器输出字符数据，不能输出二进制数据</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取到printWriter对象</span></span><br><span class="line">PrintWriter printWriter = response.getWriter();</span><br><span class="line">printWriter.write(<span class="string">"看完博客点赞！"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li></li>
+</ul>
+<h2 id="四、JDBC"><a href="#四、JDBC" class="headerlink" title="四、JDBC"></a>四、JDBC</h2><p><code>Java DataBase Connectivity</code>是一个独立与特定数据库的管理系统，通用的SQL数据存取和操作的公共接口，定义了一组标准，未访问不同数据库提供了统一的途径。</p>
+<h3 id="1、JDBC体系结构"><a href="#1、JDBC体系结构" class="headerlink" title="1、JDBC体系结构"></a>1、JDBC体系结构</h3><ul>
+<li><p>JDBC的接口包含两个层面：</p>
+<ul>
+<li>面向应用的api，供开发者调用；</li>
+<li>面向数据库的api，供厂商开发数据库驱动；</li>
+</ul>
+</li>
+<li><p>提供者：java官方；内容：供开发者调用的接口；</p>
+</li>
+<li><p><code>java.sql</code>和<code>javax.sql</code>：<code>DriverManager</code>类、<code>Connection</code>接口、<code>Statement</code>接口、<code>ResultSet</code>接口</p>
+</li>
+<li><p><code>DriverManager</code></p>
+<ul>
+<li>提供者：java官方</li>
+<li>作用：管理不同的JDBC驱动</li>
+</ul>
+</li>
+<li><p>JDBC驱动</p>
+</li>
+<li><ul>
+<li>提供者：各数据库厂商</li>
+<li>作用：负责连接数据库</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、JDBC的使用"><a href="#2、JDBC的使用" class="headerlink" title="2、JDBC的使用"></a>2、JDBC的使用</h3><ul>
+<li><p>加载数据库驱动，Java程序和数据库之间的桥梁</p>
+</li>
+<li><p>获取<code>Connection</code>，Java程序与数据库一次连接</p>
+</li>
+<li><p>创建<code>Statement</code>对象，由<code>Connection</code>产生，执行SQL语句</p>
+</li>
+<li><p>如果需要接收返回值，创建<code>Result</code>对象，保存<code>Statement</code>执行之后所查询到的结果</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.panda.tomcat0314;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> panda</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/3/14</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//try catch处理异常</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//反射加载驱动</span></span><br><span class="line">            Class.forName(<span class="string">"com.mysql.cj.jdbc.Driver"</span>);</span><br><span class="line">            <span class="comment">//获取连接地址,并处理中文乱码</span></span><br><span class="line">            String url = <span class="string">"jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8"</span>;</span><br><span class="line">            <span class="comment">//用户信息</span></span><br><span class="line">            String usr = <span class="string">"root"</span>;</span><br><span class="line">            String password = <span class="string">"panyuwen"</span>;</span><br><span class="line">            <span class="comment">//新建connection连接</span></span><br><span class="line">            Connection connection = DriverManager.getConnection(url,usr,password);</span><br><span class="line">            <span class="comment">//获取statement并执行语句</span></span><br><span class="line">            Statement statement = connection.createStatement();</span><br><span class="line">            <span class="comment">//String sql = "insert into foods(title,owner,price,date,sold,image) values('可乐','panda',2.5,'2020-01-01',0,'n')";</span></span><br><span class="line">            <span class="comment">//statement.executeUpdate(sql);</span></span><br><span class="line">            String sql = <span class="string">"select * from foods"</span>;</span><br><span class="line">            ResultSet resultSet =  statement.executeQuery(sql);</span><br><span class="line">            <span class="keyword">while</span> (resultSet.next())&#123;</span><br><span class="line">                <span class="keyword">int</span> id  = resultSet.getInt(<span class="string">"id"</span>);</span><br><span class="line">                String title = resultSet.getString(<span class="string">"title"</span>);</span><br><span class="line">                String owner = resultSet.getString(<span class="string">"owner"</span>);</span><br><span class="line">                <span class="keyword">double</span> price = resultSet.getDouble(<span class="string">"price"</span>);</span><br><span class="line">                Date date = resultSet.getDate(<span class="string">"date"</span>);</span><br><span class="line">                <span class="keyword">int</span> sold = resultSet.getInt(<span class="string">"sold"</span>);</span><br><span class="line">                String image = resultSet.getString(<span class="string">"image"</span>);</span><br><span class="line">                System.out.println(title);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException | SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>后端</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue</title>
+    <url>/2020/06/10/vue/</url>
+    <content><![CDATA[<p>本文是我学习VUE时的笔记，大部分内容来自VUE官网。</p>
+<a id="more"></a>
+
+<h1 id="vue-js"><a href="#vue-js" class="headerlink" title="vue.js"></a>vue.js</h1><h2 id="1、-why-vue"><a href="#1、-why-vue" class="headerlink" title="1、 why vue"></a>1、 why vue</h2><h3 id="1、what‘s-vue"><a href="#1、what‘s-vue" class="headerlink" title="1、what‘s vue"></a>1、what‘s vue</h3><ul>
+<li>Vue是一套用于构建用户界面的<strong>渐进式框架</strong>，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与<a href="https://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">现代化的工具链</a>以及各种<a href="https://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="noopener">支持类库</a>结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</li>
+<li>虚拟DOM</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="2、起步-从html开始"><a href="#2、起步-从html开始" class="headerlink" title="2、起步-从html开始"></a>2、起步-从html开始</h2><h3 id="1、一个简单的vue-js网站"><a href="#1、一个简单的vue-js网站" class="headerlink" title="1、一个简单的vue.js网站"></a>1、一个简单的vue.js网站</h3><p><a href="../../../../../vue_test.html">页面</a></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>VUE<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>现在数据和 DOM 已经被建立了关联，所有东西都是<strong>响应式的</strong>。打开你的浏览器的 JavaScript 控制台 (就在这个页面打开)，并修改 <code>app.message</code> 的值，你将看到上例相应地更新。</li>
+<li>一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 <code>#app</code>) 然后对其进行完全控制。那个 HTML 是我们的入口，但其余都会发生在新创建的 Vue 实例内部。</li>
+</ul>
+<h3 id="2、动态"><a href="#2、动态" class="headerlink" title="2、动态"></a>2、动态</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-2"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">"message"</span>&gt;</span></span><br><span class="line">         鼠标悬停几秒钟查看此处动态绑定的提示信息！</span><br><span class="line">       <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">   <span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">       el: <span class="string">'#app-2'</span>,</span></span><br><span class="line">       data: &#123;</span><br><span class="line"><span class="javascript">           message: <span class="string">'页面加载于 '</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)</span><br><span class="line">       </span><br><span class="line">   <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>v-bind</code> attribute 被称为<strong>指令</strong>，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 <code>title</code> attribute 和 Vue 实例的 <code>message</code> property 保持一致”。如果你再次打开浏览器的 JavaScript 控制台，输入 <code>app2.message = &#39;新消息&#39;</code>，就会再一次看到这个绑定了 <code>title</code> attribute 的 HTML 已经进行了更新。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>技术文档</tag>
+        <tag>前端</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaSE</title>
     <url>/2020/06/13/JavaSE/</url>
     <content><![CDATA[<p>本文是我学习JavaSE时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
@@ -834,466 +1310,6 @@ Class[] is = s.getInterfaces();
       <tags>
         <tag>java</tag>
         <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaWeb</title>
-    <url>/2020/06/11/JavaWeb/</url>
-    <content><![CDATA[<p>本文是我学习JavaWeb时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-<a id="more"></a>
-
-<h1 id="JavaWeb"><a href="#JavaWeb" class="headerlink" title="JavaWeb"></a>JavaWeb</h1><h2 id="一、web应用服务器"><a href="#一、web应用服务器" class="headerlink" title="一、web应用服务器"></a>一、web应用服务器</h2><p><code>tomcat</code>、<code>Jboos</code>、<code>Weblogic</code>、<code>jetty</code></p>
-<h3 id="1、Tomcat"><a href="#1、Tomcat" class="headerlink" title="1、Tomcat"></a>1、Tomcat</h3><ul>
-<li>Tomcat简单的说就是一个运行JAVA的网络服务器，底层是<code>Socket</code>的一个程序，它也是<code>JSP</code>和<code>Serlvet</code>的一个容器。</li>
-</ul>
-<h3 id="2、使用指南"><a href="#2、使用指南" class="headerlink" title="2、使用指南"></a>2、使用指南</h3><h4 id="1、官网下载tomcat-zip"><a href="#1、官网下载tomcat-zip" class="headerlink" title="1、官网下载tomcat zip"></a>1、官网下载tomcat zip</h4><h4 id="2、解压"><a href="#2、解压" class="headerlink" title="2、解压"></a>2、解压</h4><p>​        <code>bin</code>：存放各个平台下启动和停止<code>Tomcat</code>服务的脚本文件</p>
-<p>​        <code>conf</code>：存放各种<code>Tomcat</code>服务器的配置文件</p>
-<p>​        <code>lib</code>：第三方<code>jar</code>包</p>
-<p>​        <code>logs</code>：<code>Tomcat</code>服务的日志信息</p>
-<p>​        <code>temp</code>：<code>Tomcat</code>运行时的临时文件</p>
-<p>​        <code>webapps</code>：存放允许客户端访问的资源（<strong>java</strong>程序）</p>
-<p>​        <code>work</code>：存放<code>Tomcat</code>将<code>jsp</code>转换成的<code>servlet</code>文件</p>
-<h4 id="3、idea新建企业java-webapp"><a href="#3、idea新建企业java-webapp" class="headerlink" title="3、idea新建企业java webapp"></a>3、idea新建企业java webapp</h4><h4 id="4、tomcat控制台输出："><a href="#4、tomcat控制台输出：" class="headerlink" title="4、tomcat控制台输出："></a>4、tomcat控制台输出：</h4><ul>
-<li>需要动态查看tomcat控制台输出，在logs目录下执行：<code>tail -f catalina.out</code></li>
-</ul>
-<h3 id="3、url的组成"><a href="#3、url的组成" class="headerlink" title="3、url的组成"></a>3、url的组成</h3><table>
-<thead>
-<tr>
-<th align="center">http://</th>
-<th align="center">localhost:</th>
-<th align="center">8080/</th>
-<th align="center">web1/</th>
-<th align="center">Hello.html</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">协议</td>
-<td align="center">主机（域名）</td>
-<td align="center">端口</td>
-<td align="center">web应用</td>
-<td align="center">资源文件</td>
-</tr>
-</tbody></table>
-<p>其中，web应用和资源文件统称uri</p>
-<h3 id="4、虚拟目录"><a href="#4、虚拟目录" class="headerlink" title="4、虚拟目录"></a>4、虚拟目录</h3><ul>
-<li><p>如果把所有web站点的目录都放在webapps下，可能导致<strong>磁盘空间不够用</strong>，也<strong>不利于对web站点目录的管理</strong>【如果存在非常多的web站点目录】把<strong>web站点的目录分散到其他磁盘管理就需要配置虚拟目录【默认情况下，只有webapps下的目录才能被Tomcat自动管理成一个web站点】</strong>把web应用所在目录交给web服务器管理，这个过程称之为虚拟目录的映射</p>
-</li>
-<li><p>步骤：</p>
-<ul>
-<li><p>在其他盘符下创建一个web站点目录，并创建WEB-INF目录和一个html文件。</p>
-</li>
-<li><p>找到Tomcat目录下/conf/server.xml文件</p>
-</li>
-<li><p>在server.xml中的节点下添加如下代码。<strong>path表示的是访问时输入的web项目名，docBase表示的是站点目录的绝对路径</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/web1"</span> <span class="attr">docBase</span>=<span class="string">"D:\web1"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>方法2:</p>
-<ul>
-<li><p>进入到conf\Catalina\localhost文件下，创建一个xml文件，<strong>该文件的名字就是web应用的名字。</strong></p>
-</li>
-<li><p>xml文件的代码如下，<strong>docBase是你web站点的绝对路径</strong></p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">docBase</span>=<span class="string">"D:\web1"</span> <span class="attr">reloadable</span>=<span class="string">"true"</span>&gt;</span><span class="tag">&lt;/<span class="name">Context</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>访问web站点下的html资源 </p>
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="5、配置临时域名"><a href="#5、配置临时域名" class="headerlink" title="5、配置临时域名"></a>5、配置临时域名</h3><ul>
-<li>在hosts文件下配置临时域名</li>
-</ul>
-<h3 id="6、虚拟主机"><a href="#6、虚拟主机" class="headerlink" title="6、虚拟主机"></a>6、虚拟主机</h3><ul>
-<li><p>为什么需要用到虚拟主机？例子：我现在开发了4个网站，有4个域名。如果我不配置虚拟主机，一个Tomcat服务器运行一个网站，我就需要4台电脑才能把4个网站运行起来。</p>
-</li>
-<li><p>步骤：</p>
-<ul>
-<li><p>在tomcat的server.xml文件中添加主机名</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Host</span> <span class="attr">name</span>=<span class="string">"panda"</span> <span class="attr">appBase</span>=<span class="string">"D:\web1"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">Context</span> <span class="attr">path</span>=<span class="string">"/web1"</span> <span class="attr">docBase</span>=<span class="string">"D:\web1"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">Host</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>访问虚拟主机下的web站: panda:8080/web1</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="二、HTTP协议"><a href="#二、HTTP协议" class="headerlink" title="二、HTTP协议"></a>二、HTTP协议</h2><blockquote>
-<p>超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的WWW文件都必须遵守这个标准。它是TCP/IP协议的一个<strong>应用层协议</strong></p>
-</blockquote>
-<ul>
-<li><strong>HTTP协议就是客户端和服务器交互的一种通迅的格式</strong>。</li>
-<li>当在浏览器中点击某个链接的时候，<strong>浏览器会向服务器发送一段文本</strong>，<strong>告诉服务器请求打开的是哪一个网页。服务器收到请求后，就返回一段文本给浏览器，浏览器会将该文本解析，然后显示出来。</strong>这段文本就是遵循HTTP协议规范的。</li>
-</ul>
-<h3 id="1、HTTP1-0和HTTP1-1的区别"><a href="#1、HTTP1-0和HTTP1-1的区别" class="headerlink" title="1、HTTP1.0和HTTP1.1的区别"></a>1、HTTP1.0和HTTP1.1的区别</h3><ul>
-<li>HTTP1.0协议中，客户端与web服务器建立连接后，只能获得一个web资源【短连接，获取资源后就断开连接】</li>
-<li>HTTP1.1协议，允许客户端与web服务器建立连接后，在一个连接上获取多个web资源【保持连接】</li>
-</ul>
-<h3 id="2、http请求"><a href="#2、http请求" class="headerlink" title="2、http请求"></a>2、http请求</h3><ul>
-<li><p><strong>浏览器向服务器请求某个web资源时，称之为浏览器向服务器发送了一个http请求。</strong>一个完整http请求应该包含三个部分：</p>
-<ol>
-<li>请求行【描述客户端的<strong>请求方式</strong>、<strong>请求的资源名称</strong>，以及使用的<strong>HTTP协议版本号</strong>】</li>
-<li>多个消息头【描述客户端请求哪台主机，以及<strong>客户端的一些环境信息</strong>等】</li>
-<li>一个空行</li>
-</ol>
-</li>
-<li><p>请求行：GET /java.html HTTP/1.1</p>
-<ul>
-<li><p><strong>请求行中的GET称之为请求方式</strong>，请求方式有：POST,GET,HEAD,OPTIONS,DELETE,TRACE,PUT。<strong>常用的有：POST,GET</strong>。</p>
-<p>一般来说，当我们<strong>点击超链接，通过地址栏访问都是get请求方式</strong>。通过<strong>表单提交的数据一般是post方式</strong>。</p>
-<p>可以简单理解<strong>GET方式用来查询数据</strong>,<strong>POST方式用来提交数据</strong>，<strong>get的提交速度比post快</strong>。</p>
-<p>GET方式：在URL地址后<strong>附带的参数是有限制的</strong>，其<strong>数据容量通常不能超过1K</strong>。</p>
-<p>POST方式：可以在<strong>请求的实体内容中向服务器发送数据</strong>，<strong>传送的数据量无限制</strong>。</p>
-</li>
-</ul>
-</li>
-<li><p><strong>请求头</strong></p>
-<ul>
-<li>Accept: text/html,image/* 【浏览器告诉服务器，它支持的数据类型】</li>
-<li>Accept-Charset: ISO-8859-1 【浏览器告诉服务器，它支持哪种<strong>字符集</strong>】</li>
-<li>Accept-Encoding: gzip,compress 【浏览器告诉服务器，它支持的<strong>压缩格式</strong>】</li>
-<li>Accept-Language: en-us,zh-cn 【浏览器告诉服务器，它的语言环境】</li>
-<li>Host: <a href="http://www.it315.org:80【浏览器告诉服务器，它的想访问哪台主机】">www.it315.org:80【浏览器告诉服务器，它的想访问哪台主机】</a></li>
-<li>If-Modified-Since: Tue, 11 Jul 2000 18:23:51 GMT【浏览器告诉服务器，缓存数据的时间】</li>
-<li>Referer: <a href="http://www.it315.org/index.jsp【浏览器告诉服务器，客户机是从那个页面来的---**反盗链**】" target="_blank" rel="noopener">http://www.it315.org/index.jsp【浏览器告诉服务器，客户机是从那个页面来的---**反盗链**】</a></li>
-<li>8.User-Agent: Mozilla/4.0 (compatible; MSIE 5.5; Windows NT 5.0)【浏览器告诉服务器，浏览器的内核是什么】</li>
-<li>Cookie【浏览器告诉服务器，<strong>带来的Cookie是什么</strong>】</li>
-<li>Connection: close/Keep-Alive 【浏览器告诉服务器，请求完后是断开链接还是保持链接】</li>
-<li>Date: Tue, 11 Jul 2000 18:23:51 GMT【浏览器告诉服务器，请求的时间】</li>
-</ul>
-</li>
-</ul>
-<h3 id="3、HTTP响应"><a href="#3、HTTP响应" class="headerlink" title="3、HTTP响应"></a>3、HTTP响应</h3><ul>
-<li><p>一个HTTP响应代表着<strong>服务器向浏览器回送数据</strong>。一个完整的HTTP响应应该包含四个部分:</p>
-<ol>
-<li>一个状态行【用于描述<strong>服务器对请求的处理结果。</strong>】</li>
-<li>多个消息头【用于描述<strong>服务器的基本信息</strong>，以及<strong>数据的描述</strong>，<strong>服务器通过这些数据的描述信息，可以通知客户端如何处理等一会儿它回送的数据</strong>】</li>
-<li>一个空行</li>
-<li>实体内容【<strong>服务器向客户端回送的数据</strong>】</li>
-</ol>
-</li>
-<li><p>状态行：</p>
-<ul>
-<li><p>格式： HTTP版本号　状态码　原因叙述</p>
-</li>
-<li><p>状态行：HTTP/1.1 200 OK</p>
-</li>
-<li><p>状态码用于表示<strong>服务器对请求的处理结果</strong>，它是一个<strong>三位的十进制数</strong>。响应状态码分为5类</p>
-<table>
-<thead>
-<tr>
-<th>状态码</th>
-<th align="left">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>100～199</td>
-<td align="left">表示成功接收请求，要求客户端继续提交下一次请求才能完成整个处理过程</td>
-</tr>
-<tr>
-<td>200～299</td>
-<td align="left">表示成功接收到请求并已完成整个处理过程，常用200</td>
-</tr>
-<tr>
-<td>300～399</td>
-<td align="left">为完成请求，客户需进一步细化请求。例如：请求的资源已移动到一个新地址，常用302、307和304</td>
-</tr>
-<tr>
-<td>400～499</td>
-<td align="left">客户端的请求有错误，常用404</td>
-</tr>
-<tr>
-<td>500～599</td>
-<td align="left">服务器端出现错误，常用500</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-</li>
-<li><p>响应头</p>
-<ul>
-<li>Location: <a href="http://www.it315.org/index.jsp" target="_blank" rel="noopener">http://www.it315.org/index.jsp</a> 【服务器告诉浏览器<strong>要跳转到哪个页面</strong>】</li>
-<li>Server:apache tomcat【服务器告诉浏览器，服务器的型号是什么】</li>
-<li>Content-Encoding: gzip 【服务器告诉浏览器<strong>数据压缩的格式</strong>】</li>
-<li>Content-Length: 80 【服务器告诉浏览器回送数据的长度】</li>
-<li>Content-Language: zh-cn 【服务器告诉浏览器，服务器的语言环境】</li>
-<li>Content-Type: text/html; charset=GB2312 【服务器告诉浏览器，<strong>回送数据的类型</strong>】</li>
-<li>Last-Modified: Tue, 11 Jul 2000 18:23:51 GMT【服务器告诉浏览器该资源上次更新时间】</li>
-<li>Refresh: 1;url=<a href="http://www.it315.org【服务器告诉浏览器要**定时刷新**】" target="_blank" rel="noopener">http://www.it315.org【服务器告诉浏览器要**定时刷新**】</a></li>
-<li>Content-Disposition: attachment; filename=aaa.zip【服务器告诉浏览器<strong>以下载方式打开数据</strong>】</li>
-<li>Transfer-Encoding: chunked 【服务器告诉浏览器数据以分块方式回送】</li>
-<li>Set-Cookie:SS=Q0=5Lb_nQ; path=/search【服务器告诉浏览器要<strong>保存Cookie</strong>】</li>
-<li>Expires: -1【服务器告诉浏览器<strong>不要设置缓存</strong>】</li>
-<li>Cache-Control: no-cache 【服务器告诉浏览器<strong>不要设置缓存</strong>】</li>
-<li>Pragma: no-cache 【服务器告诉浏览器<strong>不要设置缓存</strong>】</li>
-<li>Connection: close/Keep-Alive 【服务器告诉浏览器连接方式】</li>
-<li>Date: Tue, 11 Jul 2000 18:23:51 GMT【服务器告诉浏览器回送数据的时间】</li>
-</ul>
-</li>
-</ul>
-<h2 id="三、Servlet和JSP"><a href="#三、Servlet和JSP" class="headerlink" title="三、Servlet和JSP"></a>三、Servlet和JSP</h2><h3 id="1、什么是Servlet"><a href="#1、什么是Servlet" class="headerlink" title="1、什么是Servlet"></a>1、什么是Servlet</h3><ul>
-<li><code>Servlet</code>是JavaWeb开发的基石，一种与平台无关的服务器组件</li>
-<li>它是运行在<code>Servlet</code>容器/Web应用服务器，负责与客户端进行通信</li>
-<li>是一个<strong>遵循Servlet开发的java类</strong>。Serlvet是<strong>由服务器调用的</strong>，<strong>运行在服务器端</strong>。</li>
-</ul>
-<h3 id="2、Servlet的功能"><a href="#2、Servlet的功能" class="headerlink" title="2、Servlet的功能"></a>2、Servlet的功能</h3><ul>
-<li><p><strong>处理浏览器带来HTTP请求，并返回一个响应给浏览器，从而实现浏览器和服务器的交互</strong>。</p>
-</li>
-<li><p>创建并返回基于客户端请求的动态HTML页面</p>
-</li>
-<li><p>与数据库进行通信</p>
-</li>
-</ul>
-<h3 id="3、JavaWeb目录结构"><a href="#3、JavaWeb目录结构" class="headerlink" title="3、JavaWeb目录结构"></a>3、JavaWeb目录结构</h3><p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/JavaWeb.png" alt="JavaWeb"></p>
-<ul>
-<li>bbs目录代表一个web应用</li>
-<li>bbs目录下的html,jsp文件可以直接被浏览器访问</li>
-<li><strong>WEB-INF目录下的资源是不能直接被浏览器访问的</strong></li>
-<li>web.xml文件是web程序的主要配置文件</li>
-<li>所有的classes文件都放在classes目录下</li>
-<li>jar文件放在lib目录下</li>
-</ul>
-<h3 id="4、使用Servlet"><a href="#4、使用Servlet" class="headerlink" title="4、使用Servlet"></a>4、使用Servlet</h3><ul>
-<li><code>Servlet</code>本身是一组接口，在<code>javax.servlet</code>包里面。</li>
-</ul>
-<h4 id="1、基础配置"><a href="#1、基础配置" class="headerlink" title="1、基础配置"></a>1、基础配置</h4><ul>
-<li><p>自定义一个类，并实现<code>Sevlet</code>接口，这个类就具备了接受客户端请求以及做出响应的功能。</p>
-<ul>
-<li><p>我们发现有5个方法需要重写，有init【初始化】，destroy【销毁】,service【服务】,ServletConfig【Servlet配置】,getServletInfo【Serlvet信息】。、</p>
-</li>
-<li><p>其中，service()方法是写逻辑代码的地方。调用ServletResponse对象的方法向浏览器输出</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">service</span><span class="params">(ServletRequest servletRequest, ServletResponse servletResponse)</span> <span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">        servletResponse.getWriter().write(<span class="string">"This is panda's server!"</span>);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置xml文件</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">web-app</span> <span class="attr">...</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/MyServlet<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">web-app</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>或者用注解：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(value = <span class="string">"/MyServlet"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>访问：url/MyServlet</li>
-</ul>
-<h4 id="2、Servlet生命周期"><a href="#2、Servlet生命周期" class="headerlink" title="2、Servlet生命周期"></a>2、Servlet生命周期</h4><ul>
-<li><strong>加载Servlet</strong>。当Tomcat第一次访问Servlet的时候，<strong>Tomcat会负责创建Servlet的实例</strong></li>
-<li><strong>初始化</strong>。当Servlet被实例化后，Tomcat会<strong>调用init()方法初始化这个对象</strong></li>
-<li><strong>处理服务</strong>。当浏览器<strong>访问Servlet</strong>的时候，Servlet <strong>会调用service()方法处理请求</strong></li>
-<li><strong>销毁</strong>。当Tomcat关闭时或者检测到Servlet要从Tomcat删除的时候会自动调用destroy()方法，<strong>让该实例释放掉所占的资源</strong>。一个Servlet如果长时间不被使用的话，也会被Tomcat自动销毁</li>
-<li><strong>卸载</strong>。当Servlet调用完destroy()方法后，等待垃圾回收。如果<strong>有需要再次使用这个Servlet，会重新调用init()方法进行初始化操作</strong>。</li>
-</ul>
-<p>简单总结：<strong>只要访问Servlet，service()就会被调用。init()只有第一次访问Servlet的时候才会被调用。 destroy()只有在Tomcat关闭的时候才会被调用。</strong></p>
-<h4 id="3、Servlet补充细节"><a href="#3、Servlet补充细节" class="headerlink" title="3、Servlet补充细节"></a>3、Servlet补充细节</h4><ul>
-<li><p><strong>同一个Servlet可以被映射到多个URL上。</strong>(只能写在xml里面)</p>
-</li>
-<li><p>Servlet映射的URL可以使用通配符：*.扩展名、正斜杠（/）开头并以“/*”结尾。</p>
-<p>如果.扩展名和正斜杠（/）开头并以“/”结尾两种通配符同时出现:</p>
-<ol>
-<li><strong>看谁的匹配度高，谁就被选择</strong></li>
-<li><code>*.</code>扩展名的优先级最低</li>
-</ol>
-</li>
-<li><p>Servlet映射的URL可以使用通配符和Servlet可以被映射到多个URL上的作用：</p>
-<ol>
-<li><strong>隐藏网站是用什么编程语言写的</strong>【.php,.net,.asp实际上访问的都是同一个资源】</li>
-<li>用特定的<strong>后缀声明版权</strong>【公司缩写】</li>
-</ol>
-</li>
-<li><p>Servlet是单例的：<strong>浏览器多次对Servlet的请求</strong>，一般情况下，<strong>服务器只创建一个Servlet对象</strong>，也就是说，Servlet对象<strong>一旦创建了</strong>，就会<strong>驻留在内存中，为后续的请求做服务，直到服务器关闭</strong>。</p>
-<ul>
-<li>对于<strong>每次访问请求</strong>，Servlet引擎都会<strong>创建一个新的HttpServletRequest请求对象和一个新的HttpServletResponse响应对象</strong>，然后将这两<strong>个对象作为参数传递给它调用的Servlet的service()方法</strong>，<strong>service方法再根据请求方式分别调用doXXX方法</strong>。所以每次访问请求对象和响应对象都是新的</li>
-</ul>
-</li>
-<li><p>load-on-startup：如果配置了一个load-on-startup，那么<strong>WEB应用程序在启动时</strong>，就会<strong>装载并创建Servlet的实例对象</strong>、以及<strong>调用Servlet实例对象的init()方法</strong>。</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@javax</span>.servlet.annotation.WebServlet(value = <span class="string">"/MyServlet"</span>,loadOnStartup = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li></li>
-</ul>
-<h4 id="4、线程安全问题"><a href="#4、线程安全问题" class="headerlink" title="4、线程安全问题"></a>4、线程安全问题</h4><p>​    当多个用户访问Servlet的时候，<strong>服务器会为每个用户创建一个线程</strong>。<strong>当多个用户并发访问Servlet共享资源的时候就会出现线程安全问题</strong>。</p>
-<ul>
-<li>如果一个<strong>变量需要多个用户共享</strong>，则应当在访问该变量的时候，<strong>加同步机制synchronized (对象){}</strong></li>
-<li>如果一个变量<strong>不需要共享</strong>，则<strong>直接在 doGet() 或者 doPost()定义</strong>.这样不会存在线程安全问题</li>
-</ul>
-<h4 id="5、在web访问任何资源都是访问Servlet"><a href="#5、在web访问任何资源都是访问Servlet" class="headerlink" title="5、在web访问任何资源都是访问Servlet"></a>5、在web访问任何资源都是访问Servlet</h4><ul>
-<li>凡是在web.xml文件中<strong>找不到匹配的元素的URL</strong>，它们的访问<strong>请求都将交给缺省Servlet处理</strong>，也就是说，<strong>缺省Servlet用于处理所有其他Servlet都不处理的访问请求</strong></li>
-<li>访问web上的任何字资源实质上都是在访问这个缺省的Servlet。没有手工配置缺省Servlet的时候，<strong>你访问静态图片，静态网页，缺省Servlet会在你web站点中寻找该图片或网页</strong>，如果有就返回给浏览器，没有就报404错误</li>
-</ul>
-<h4 id="6、ServletConfig对象"><a href="#6、ServletConfig对象" class="headerlink" title="6、ServletConfig对象"></a>6、ServletConfig对象</h4><ul>
-<li><p>通过此对象可以读取web.xml中配置的初始化参数。</p>
-</li>
-<li><p>xml写法</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>MyServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>name<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>panda<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>注解写法</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@WebServlet</span>(</span><br><span class="line">        name = <span class="string">"ServletByIdea"</span>,</span><br><span class="line">        value = <span class="string">"/ServletByIdea"</span>,</span><br><span class="line">        loadOnStartup = <span class="number">1</span>,</span><br><span class="line">        initParams = &#123;</span><br><span class="line">            <span class="meta">@WebInitParam</span>(name=<span class="string">"name"</span>,value = <span class="string">"panda"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>getServletConfig()</code>的实现：需要在<code>init()</code>中得到<code>ServletConfig</code>，然后在方法中返回</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyServlet</span> <span class="keyword">implements</span> <span class="title">Servlet</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> ServletConfig servletConfig;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(ServletConfig servletConfig)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.servletConfig = servletConfig;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ServletConfig <span class="title">getServletConfig</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> servletConfig;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="7、ServletContext对象"><a href="#7、ServletContext对象" class="headerlink" title="7、ServletContext对象"></a>7、ServletContext对象</h4><ul>
-<li><p>当Tomcat启动的时候，就会创建一个ServletContext对象。它<strong>代表着当前web站点</strong></p>
-</li>
-<li><p>ServletContext有什么用？</p>
-<ol>
-<li>ServletContext既然代表着当前web站点，那么<strong>所有Servlet都共享着一个ServletContext对象</strong>，所以<strong>Servlet之间可以通过ServletContext实现通讯</strong>。</li>
-<li>ServletConfig获取的是配置的是单个Servlet的参数信息，<strong>ServletContext可以获取的是配置整个web站点的参数信息</strong></li>
-<li><strong>利用ServletContext读取web站点的资源文件</strong></li>
-<li>实现Servlet的转发【用ServletContext转发不多，主要用request转发】</li>
-</ol>
-</li>
-<li><p>ServletContext对象可以被称之为<strong>域对象</strong>。可以简单理解成<strong>一个容器【类似于Map集合】</strong>。实现Servlet之间通讯就要<strong>用到ServletContext的setAttribute(String name,Object obj)方法</strong>， 第一个参数是关键字，第二个参数是你要存储的对象。</p>
-</li>
-<li><p>Servlet代码</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取ServletContext对象并存值到域对象</span></span><br><span class="line">ServletContext servletContext = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">String value = <span class="string">"panda!"</span>;</span><br><span class="line">servletContext.setAttribute(<span class="string">"MyName"</span>,value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取其他Servlet存储的信息，实现多Servlet通信</span></span><br><span class="line">ServletContext servletContext = <span class="keyword">this</span>.getServletContext();</span><br><span class="line">String value = (String) servletContext.getAttribute(<span class="string">"MyName"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>注意：要先执行存值的servlet！！！！</p>
-</li>
-<li><p><code>getServletContext()</code>实现</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ServletContext <span class="title">getServletContext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> getServletConfig().getServletContext();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="8、获取web站点配置的信息"><a href="#8、获取web站点配置的信息" class="headerlink" title="8、获取web站点配置的信息"></a>8、获取web站点配置的信息</h4><ul>
-<li><p>web.xml文件支持<strong>对整个站点进行配置参数信息</strong>【<strong>所有Servlet都可以取到该参数信息</strong>】</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>usr<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>panda<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="9、读取资源文件"><a href="#9、读取资源文件" class="headerlink" title="9、读取资源文件"></a>9、读取资源文件</h4><ul>
-<li><p>通过<strong>ServletContext读取</strong>（文件在包目录/img下）</p>
-<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg.png" alt="xxximg" style="zoom: 50%;" />
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//读取文件/图片</span></span><br><span class="line">String path = <span class="string">"/WEB-INF/classes/img/xxx.jpg"</span>;</span><br><span class="line">InputStream inputStream = servletContext.getResourceAsStream(path);<span class="comment">//java.io.ByteArrayInputStream@64bcce8a</span></span><br><span class="line">response.getWriter().write(inputStream+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>文件在web目录下</p>
-<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg2.png" style="zoom:50%;" />
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//从web目录读取文件/图片</span></span><br><span class="line">InputStream inputStream2 = servletContext.getResourceAsStream(<span class="string">"xxx.jpg"</span>);</span><br><span class="line">response.getWriter().write(inputStream2+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>通过<strong>类装载器读取资源文件</strong>。</p>
-<p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg3.png" alt=""></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//通过类装载器读取资源文件。</span></span><br><span class="line">InputStream inputStream3 = servletContext.getResourceAsStream(<span class="string">"xxx.jpg"</span>);</span><br><span class="line">response.getWriter().write(inputStream3+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><strong>如果文件太大，就不能用类装载器的方式去读取，会导致内存溢出</strong></p>
-</li>
-<li></li>
-</ul>
-<h4 id="10、继承HttpServlet编写Servlet程序"><a href="#10、继承HttpServlet编写Servlet程序" class="headerlink" title="10、继承HttpServlet编写Servlet程序"></a>10、继承HttpServlet编写Servlet程序</h4><p>在上面我们实现Servlet接口，要实现5个方法。这样太麻烦了！而<strong>HttpServlet类已经实现了Servlet接口的所有方法</strong>，编写Servlet时，只需要<strong>继承HttpServlet，重写你需要的方法即可</strong>，并且它在原有Servlet接口上<strong>添加了一些与HTTP协议处理方法</strong>，它<strong>比Servlet接口的功能更为强大</strong>。</p>
-<ul>
-<li>一般我们开发的时候，都是<strong>重写doGet()和doPost()方法的</strong>。对于idea而言，创建Servlet的时候已经帮你重写好了</li>
-</ul>
-<h3 id="5、request和response"><a href="#5、request和response" class="headerlink" title="5、request和response"></a>5、request和response</h3><h4 id="1、response、request对象"><a href="#1、response、request对象" class="headerlink" title="1、response、request对象"></a>1、response、request对象</h4><ul>
-<li>Tomcat收到客户端的http请求，会针对每一次请求，分别创建一个<strong>代表请求的request对象</strong>、和<strong>代表响应的response对象</strong></li>
-<li>我们<strong>获取浏览器提交过来的数据，找request对象</strong>即可；我们<strong>向浏览器输出数据，找response对象</strong>即可。</li>
-</ul>
-<h4 id="2、HttpServletResponse对象"><a href="#2、HttpServletResponse对象" class="headerlink" title="2、HttpServletResponse对象"></a>2、HttpServletResponse对象</h4><ul>
-<li><p><strong>HttpServletResponse对象封装了http响应的信息。</strong>http响应由状态行、实体内容、消息头、一个空行组成。</p>
-</li>
-<li><p>调用getOutputStream()方法向浏览器输出数据,<strong>getOutputStream()方法可以使用print()也可以使用write()</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//调用getOutputStream()方法向浏览器输出数据</span></span><br><span class="line">ServletOutputStream servletOutputStream = response.getOutputStream();</span><br><span class="line">servletOutputStream.println(<span class="string">"aaa"</span>);<span class="comment">//输出中文可能出现乱码</span></span><br><span class="line">servletOutputStream.write(<span class="string">"bbb"</span>.getBytes());</span><br></pre></td></tr></table></figure>
-
-<p>但是，程序<strong>要实现通用性，应该使用的是UTF-8编码</strong>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">servletOutputStream.write(<span class="string">"ccc"</span>.getBytes(<span class="string">"UTF-8"</span>));</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>但是浏览器编码不为utf-8时，又会出现乱码。于是乎<strong>设置消息头</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//设置头信息，告诉浏览器我回送的数据编码是utf-8的</span></span><br><span class="line">response.setHeader(<span class="string">"Content-Type"</span>, <span class="string">"text/html;charset=UTF-8"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>除了使用HttpServletResponse对象设置消息头的方法，我可以<strong>使用html的标签模拟一个http消息头</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//使用meta标签模拟http消息头，告诉浏览器回送数据的编码和格式</span></span><br><span class="line">servletOutputStream.</span><br><span class="line">write(<span class="string">"&lt;meta http-equiv='content-type' content='text/html;charset=UTF-8'&gt;"</span>.getBytes());</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="3、调用getWriter-方法向浏览器输出数据"><a href="#3、调用getWriter-方法向浏览器输出数据" class="headerlink" title="3、调用getWriter()方法向浏览器输出数据"></a>3、调用getWriter()方法向浏览器输出数据</h4><ul>
-<li><p>对于getWriter()方法而言，是Writer的子类，那么<strong>只能向浏览器输出字符数据，不能输出二进制数据</strong></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//获取到printWriter对象</span></span><br><span class="line">PrintWriter printWriter = response.getWriter();</span><br><span class="line">printWriter.write(<span class="string">"看完博客点赞！"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li></li>
-</ul>
-<h2 id="四、JDBC"><a href="#四、JDBC" class="headerlink" title="四、JDBC"></a>四、JDBC</h2><p><code>Java DataBase Connectivity</code>是一个独立与特定数据库的管理系统，通用的SQL数据存取和操作的公共接口，定义了一组标准，未访问不同数据库提供了统一的途径。</p>
-<h3 id="1、JDBC体系结构"><a href="#1、JDBC体系结构" class="headerlink" title="1、JDBC体系结构"></a>1、JDBC体系结构</h3><ul>
-<li><p>JDBC的接口包含两个层面：</p>
-<ul>
-<li>面向应用的api，供开发者调用；</li>
-<li>面向数据库的api，供厂商开发数据库驱动；</li>
-</ul>
-</li>
-<li><p>提供者：java官方；内容：供开发者调用的接口；</p>
-</li>
-<li><p><code>java.sql</code>和<code>javax.sql</code>：<code>DriverManager</code>类、<code>Connection</code>接口、<code>Statement</code>接口、<code>ResultSet</code>接口</p>
-</li>
-<li><p><code>DriverManager</code></p>
-<ul>
-<li>提供者：java官方</li>
-<li>作用：管理不同的JDBC驱动</li>
-</ul>
-</li>
-<li><p>JDBC驱动</p>
-</li>
-<li><ul>
-<li>提供者：各数据库厂商</li>
-<li>作用：负责连接数据库</li>
-</ul>
-</li>
-</ul>
-<h3 id="2、JDBC的使用"><a href="#2、JDBC的使用" class="headerlink" title="2、JDBC的使用"></a>2、JDBC的使用</h3><ul>
-<li><p>加载数据库驱动，Java程序和数据库之间的桥梁</p>
-</li>
-<li><p>获取<code>Connection</code>，Java程序与数据库一次连接</p>
-</li>
-<li><p>创建<code>Statement</code>对象，由<code>Connection</code>产生，执行SQL语句</p>
-</li>
-<li><p>如果需要接收返回值，创建<code>Result</code>对象，保存<code>Statement</code>执行之后所查询到的结果</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> com.panda.tomcat0314;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> panda</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2020/3/14</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//try catch处理异常</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">//反射加载驱动</span></span><br><span class="line">            Class.forName(<span class="string">"com.mysql.cj.jdbc.Driver"</span>);</span><br><span class="line">            <span class="comment">//获取连接地址,并处理中文乱码</span></span><br><span class="line">            String url = <span class="string">"jdbc:mysql://localhost:3306/test?useUnicode=true&amp;characterEncoding=UTF-8"</span>;</span><br><span class="line">            <span class="comment">//用户信息</span></span><br><span class="line">            String usr = <span class="string">"root"</span>;</span><br><span class="line">            String password = <span class="string">"panyuwen"</span>;</span><br><span class="line">            <span class="comment">//新建connection连接</span></span><br><span class="line">            Connection connection = DriverManager.getConnection(url,usr,password);</span><br><span class="line">            <span class="comment">//获取statement并执行语句</span></span><br><span class="line">            Statement statement = connection.createStatement();</span><br><span class="line">            <span class="comment">//String sql = "insert into foods(title,owner,price,date,sold,image) values('可乐','panda',2.5,'2020-01-01',0,'n')";</span></span><br><span class="line">            <span class="comment">//statement.executeUpdate(sql);</span></span><br><span class="line">            String sql = <span class="string">"select * from foods"</span>;</span><br><span class="line">            ResultSet resultSet =  statement.executeQuery(sql);</span><br><span class="line">            <span class="keyword">while</span> (resultSet.next())&#123;</span><br><span class="line">                <span class="keyword">int</span> id  = resultSet.getInt(<span class="string">"id"</span>);</span><br><span class="line">                String title = resultSet.getString(<span class="string">"title"</span>);</span><br><span class="line">                String owner = resultSet.getString(<span class="string">"owner"</span>);</span><br><span class="line">                <span class="keyword">double</span> price = resultSet.getDouble(<span class="string">"price"</span>);</span><br><span class="line">                Date date = resultSet.getDate(<span class="string">"date"</span>);</span><br><span class="line">                <span class="keyword">int</span> sold = resultSet.getInt(<span class="string">"sold"</span>);</span><br><span class="line">                String image = resultSet.getString(<span class="string">"image"</span>);</span><br><span class="line">                System.out.println(title);</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (ClassNotFoundException | SQLException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>技术文档</tag>
-        <tag>后端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue</title>
-    <url>/2020/06/10/vue/</url>
-    <content><![CDATA[<p>本文是我学习VUE时的笔记，大部分内容来自VUE官网。</p>
-<a id="more"></a>
-
-<h1 id="vue-js"><a href="#vue-js" class="headerlink" title="vue.js"></a>vue.js</h1><h2 id="1、-why-vue"><a href="#1、-why-vue" class="headerlink" title="1、 why vue"></a>1、 why vue</h2><h3 id="1、what‘s-vue"><a href="#1、what‘s-vue" class="headerlink" title="1、what‘s vue"></a>1、what‘s vue</h3><ul>
-<li>Vue是一套用于构建用户界面的<strong>渐进式框架</strong>，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与<a href="https://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">现代化的工具链</a>以及各种<a href="https://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="noopener">支持类库</a>结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</li>
-<li>虚拟DOM</li>
-</ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="2、起步-从html开始"><a href="#2、起步-从html开始" class="headerlink" title="2、起步-从html开始"></a>2、起步-从html开始</h2><h3 id="1、一个简单的vue-js网站"><a href="#1、一个简单的vue-js网站" class="headerlink" title="1、一个简单的vue.js网站"></a>1、一个简单的vue.js网站</h3><p><a href="../../../../../vue_test.html">页面</a></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>VUE<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>现在数据和 DOM 已经被建立了关联，所有东西都是<strong>响应式的</strong>。打开你的浏览器的 JavaScript 控制台 (就在这个页面打开)，并修改 <code>app.message</code> 的值，你将看到上例相应地更新。</li>
-<li>一个 Vue 应用会将其挂载到一个 DOM 元素上 (对于这个例子是 <code>#app</code>) 然后对其进行完全控制。那个 HTML 是我们的入口，但其余都会发生在新创建的 Vue 实例内部。</li>
-</ul>
-<h3 id="2、动态"><a href="#2、动态" class="headerlink" title="2、动态"></a>2、动态</h3><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app-2"</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">"message"</span>&gt;</span></span><br><span class="line">         鼠标悬停几秒钟查看此处动态绑定的提示信息！</span><br><span class="line">       <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">   <span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">       el: <span class="string">'#app-2'</span>,</span></span><br><span class="line">       data: &#123;</span><br><span class="line"><span class="javascript">           message: <span class="string">'页面加载于 '</span> + <span class="keyword">new</span> <span class="built_in">Date</span>().toLocaleString()</span></span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)</span><br><span class="line">       </span><br><span class="line">   <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>v-bind</code> attribute 被称为<strong>指令</strong>，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 <code>title</code> attribute 和 Vue 实例的 <code>message</code> property 保持一致”。如果你再次打开浏览器的 JavaScript 控制台，输入 <code>app2.message = &#39;新消息&#39;</code>，就会再一次看到这个绑定了 <code>title</code> attribute 的 HTML 已经进行了更新。</li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>技术文档</tag>
-        <tag>前端</tag>
       </tags>
   </entry>
 </search>
