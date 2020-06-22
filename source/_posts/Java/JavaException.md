@@ -38,7 +38,7 @@ tags:
   }
   ```
 
-- ![exception](https://raw.githubusercontent.com/920408194/pic/master/img/exception.png)
+![exception](JavaException/exception.png)
 
 - `Throwable`是异常体系的根，`Throwable`有两个体系：`Error`和`Exception`，
 
@@ -121,10 +121,10 @@ tags:
   4. 可以按包名控制日志级别，只输出某些包打的日志；
   5. 可以……
 
-- ![log1](https://raw.githubusercontent.com/920408194/pic/master/img/log1.png)
-
-- ![log2](https://raw.githubusercontent.com/920408194/pic/master/img/log2.png)
-
+  ![log1](JavaException/log1.png)
+  
+  ![log2](JavaException/log2.png)
+  
 - 和Java标准库提供的日志不同，`Commons Logging`是一个第三方日志库，它是由Apache创建的日志模块。
 - 使用`Commons Logging`只需要和两个类打交道，并且只有两步：第一步，通过`LogFactory`获取`Log`类的实例； 第二步，使用`Log`实例的方法打日志。（需要apache的第三方包）
 - `Log4j`是一种非常流行的日志框架，最新版本是2.x。当我们使用`Log4j`输出一条日志时，`Log4j`自动通过不同的`Appender`把同一条日志输出到不同的目的地。

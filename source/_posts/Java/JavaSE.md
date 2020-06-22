@@ -25,7 +25,7 @@ tags:
 
 ### 2、JDK与JRE
 
-![JDKJRE](https://raw.githubusercontent.com/920408194/pic/master/img/JDKJRE.png)
+![JDKJRE](JavaSE/JDKJRE.png)
 
 - JRE就是运行Java字节码的虚拟机。
 - 但是，如果只有Java源码，要编译成Java字节码，就需要JDK；

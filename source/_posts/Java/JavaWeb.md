@@ -212,7 +212,7 @@ tags:
 
 ### 3、JavaWeb目录结构
 
-![JavaWeb](https://raw.githubusercontent.com/920408194/pic/master/img/JavaWeb.png)
+![JavaWeb](JavaWeb/JavaWeb.png)
 
 - bbs目录代表一个web应用
 - bbs目录下的html,jsp文件可以直接被浏览器访问
@@ -427,7 +427,7 @@ tags:
 
 - 通过**ServletContext读取**（文件在包目录/img下）
 
-  <img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg.png" alt="xxximg" style="zoom: 50%;" />
+  <img src="JavaWeb/xxximg.png" alt="xxximg" style="zoom: 50%;" />
 
   ```java
   //读取文件/图片
@@ -438,7 +438,7 @@ tags:
 
 - 文件在web目录下
 
-  <img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg2.png" style="zoom:50%;" />
+  <img src="JavaWeb/xxximg2.png" style="zoom:50%;" />
 
   ```java
   //从web目录读取文件/图片
@@ -448,7 +448,7 @@ tags:
 
 - 通过**类装载器读取资源文件**。
 
-  ![](https://raw.githubusercontent.com/920408194/pic/master/img/xxximg3.png)
+  ![](JavaWeb/xxximg3.png)
 
   ```java
   //通过类装载器读取资源文件。

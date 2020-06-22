@@ -508,7 +508,7 @@ tags:
 2. @Target用于描述注解的使用范围(即:被描述的注解可以用在什么地方)。
 3. @Documented说明该注解将被包含在javadoc中。
 
-2. ![@Documented](https://raw.githubusercontent.com/920408194/pic/master/img/Documented.png)@Inherited说明子类可以继承父类中的该注解。
+2. ![Documented](JavaR&A/Documented.png)@Inherited说明子类可以继承父类中的该注解。
 
 ```java
 //注解可以用在什么地方：方法，类型

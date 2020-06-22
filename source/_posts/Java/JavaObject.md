@@ -356,7 +356,7 @@ p.run();//应该打印Student.run
 
 - 实际上，因为包装类型非常有用，Java核心库为每种基本类型都提供了对应的包装类型：
 
-  ![class](https://raw.githubusercontent.com/920408194/pic/master/img/class.png)
+  ![class](JavaObject/class.png)
 
 - 因为`int`和`Integer`可以互相转换，所以，**Java**编译器可以帮助我们自动在`int`和`Integer`之间转型，这种直接把`int`变为`Integer`的赋值写法，称为自动装箱（`Auto Boxing`），反过来，把`Integer`变为`int`的赋值写法，称为自动拆箱（`Auto Unboxing`）。
 
