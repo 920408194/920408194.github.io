@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="技术文档,Spring," />
 
 
 
@@ -79,15 +79,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+<meta name="description" content="SpringMVC本文是我学习SpringMVC是的笔记，资源来自互联网。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC">
+<meta property="og:url" content="http://yoursite.com/2020/06/22/Spring/SpringMVC/index.html">
 <meta property="og:site_name" content="Panda的技术笔记">
+<meta property="og:description" content="SpringMVC本文是我学习SpringMVC是的笔记，资源来自互联网。">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-06-10T13:50:36.000Z">
-<meta property="article:modified_time" content="2020-06-16T10:59:01.574Z">
+<meta property="og:image" content="http://yoursite.com/2020/06/22/Spring/SpringMVC/20180817135644542">
+<meta property="og:image" content="http://yoursite.com/2020/06/22/Spring/SpringMVC/20180817135701102">
+<meta property="article:published_time" content="2020-06-22T02:44:54.000Z">
+<meta property="article:modified_time" content="2020-06-22T10:53:01.461Z">
 <meta property="article:author" content="panda">
+<meta property="article:tag" content="技术文档">
+<meta property="article:tag" content="Spring">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/06/22/Spring/SpringMVC/20180817135644542">
 
 
 
@@ -117,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/06/22/Spring/SpringMVC/"/>
 
 
 
 
 
-  <title>tags | Panda的技术笔记</title>
+  <title>SpringMVC | Panda的技术笔记</title>
   
 
 
@@ -262,40 +269,224 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/22/Spring/SpringMVC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="panda">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Panda的技术笔记">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                6 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Spring/" style="font-size: 12px; color: #ccc">Spring</a> <a href="/tags/java/" style="font-size: 21px; color: #6f6f6f">java</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 12px; color: #ccc">前端</a> <a href="/tags/%E5%90%8E%E7%AB%AF/" style="font-size: 12px; color: #ccc">后端</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 12px; color: #ccc">工具</a> <a href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/" style="font-size: 30px; color: #111">技术文档</a>
-            </div>
-          </div>
+          <h1 class="post-title" itemprop="name headline">SpringMVC</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-22T10:44:54+08:00">
+                2020-06-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><p>本文是我学习SpringMVC是的笔记，资源来自互联网。</p>
+<a id="more"></a>
+
+<h2 id="springMVC中的-ModelAndView"><a href="#springMVC中的-ModelAndView" class="headerlink" title="springMVC中的 ModelAndView"></a>springMVC中的 ModelAndView</h2><ul>
+<li><p><strong>ModelAndView构造方法可以指定返回的页面名称，也可以通过setViewName()方法跳转到指定的页面 ,</strong></p>
+</li>
+<li><p>构造ModelAndView对象当控制器处理完请求时，通常会将包含视图名称或视图对象以及一些模型属性的ModelAndView对象返回到DispatcherServlet。因此，经常需要在控制器中构造ModelAndView对象。</p>
+</li>
+<li><p>ModelAndView类提供了几个重载的构造器和一些方便的方法，让你可以根据自己的喜好来构造ModelAndView对象。这些构造器和方法以类似的方式支持视图名称和视图对象。</p>
+</li>
+<li><p><strong>通过ModelAndView构造方法可以指定返回的页面名称，也可以通过setViewName()方法跳转到指定的页面 , 使用addObject()设置需要返回的值，addObject()有几个不同参数的方法，可以默认和指定返回对象的名字</strong>。</p>
+<h3 id="ModelAndView的构造方法"><a href="#ModelAndView的构造方法" class="headerlink" title="ModelAndView的构造方法"></a>ModelAndView的构造方法</h3></li>
+<li><p>ModelAndView的第一种用法，先创建ModelAndView对象，再通过它的方法去设置数据与转发的视图名</p>
+<ul>
+<li>setViewName(String viewName)：‎设置此 ModelAndView 的视图名称, 由 DispatcherServlet 通过 ViewResolver 解析‎</li>
+<li>addObject(String attributeName, Object attributeValue)：通过key/value的方式绑定数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 利用ModelAndView来转发数据,给前端视图</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/m06"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m06</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        modelAndView.setViewName(<span class="string">"m06"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"message"</span>, <span class="string">"Hello World, Hello Kitty"</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ModelAndView的第二种方法，可以直接通过带有参数的构造方法 ModelAndView(String viewName, String attributeName, Object attributeValue) 来返回数据与转发的视图名</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// 利用ModelAndView来转发数据,给前端视图</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/m07"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m07</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"m07"</span>, <span class="string">"message"</span>, <span class="string">"Hello World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li><p>ModelAndView的第三种用法，设置重定向</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ModelAndView默认转发</span></span><br><span class="line">    <span class="comment">// ModelAndView还是可以设置重定向</span></span><br><span class="line">    <span class="comment">// 1. 重定向另一个控制器</span></span><br><span class="line">    <span class="comment">// 2. 重定向具体的jsp页面</span></span><br><span class="line">    <span class="comment">// @param name</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/&#123;name&#125;/m07"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m07</span><span class="params">(@PathVariable String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="string">"admin"</span>.equals(name)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:/m07.jsp"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"m07"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ModelAndView使用实例"><a href="#ModelAndView使用实例" class="headerlink" title="ModelAndView使用实例"></a>ModelAndView使用实例</h3></li>
+<li><p>要点：</p>
+</li>
+</ul>
+<ol>
+<li><p>@RequestMapping 注解的使用</p>
+</li>
+<li><p>modelandview 的使用</p>
+</li>
+<li><p>jsp页面request作用域的取值</p>
+</li>
+<li><p>视图解析器配置</p>
+</li>
+</ol>
+ <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ModelAndView 使用代码</span></span><br><span class="line"><span class="keyword">package</span> com.dgr.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"mvc"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRequestMMapping</span> </span>&#123;</span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/testModelAndView"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">testModelAndView</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ModelAndView mav = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mav.setViewName(<span class="string">"hello"</span>);<span class="comment">//跳转新的页面名称</span></span><br><span class="line">        mav.addObject(<span class="string">"address"</span>, <span class="string">"中国广东省广州市"</span>);<span class="comment">//传入request作用域参数</span></span><br><span class="line">        <span class="keyword">return</span> mav;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 跳转前jsp页面链接设置</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href="mvc/testModelAndView"&gt;Test ModelAndView&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 跳转后jsp页面以及request作用于取值</p>
+ <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;h1&gt;ModelAndView 跳转&lt;/h1&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    $&#123;requestScope.address&#125;   </span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    $&#123;address &#125;    </span><br><span class="line">    &lt;br&gt;	</span><br><span class="line">    </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>视图解析器配置</p>
+<p><img src="/2020/06/22/Spring/SpringMVC/20180817135644542" alt="img"></p>
+<p><img src="/2020/06/22/Spring/SpringMVC/20180817135701102" alt="img"></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/" rel="tag"># 技术文档</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/21/Java/JavaException/" rel="next" title="JavaException">
+                <i class="fa fa-chevron-left"></i> JavaException
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -328,8 +519,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -389,6 +589,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpringMVC"><span class="nav-text">SpringMVC</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#springMVC中的-ModelAndView"><span class="nav-text">springMVC中的 ModelAndView</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ModelAndView的构造方法"><span class="nav-text">ModelAndView的构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ModelAndView使用实例"><span class="nav-text">ModelAndView使用实例</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
