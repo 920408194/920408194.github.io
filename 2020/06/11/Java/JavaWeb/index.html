@@ -703,17 +703,17 @@
 </ul>
 <h4 id="9、读取资源文件"><a href="#9、读取资源文件" class="headerlink" title="9、读取资源文件"></a>9、读取资源文件</h4><ul>
 <li><p>通过<strong>ServletContext读取</strong>（文件在包目录/img下）</p>
-<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg.png" alt="xxximg" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg.png" alt="xxximg" style="zoom: 50%;">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//读取文件/图片</span></span><br><span class="line">String path = <span class="string">"/WEB-INF/classes/img/xxx.jpg"</span>;</span><br><span class="line">InputStream inputStream = servletContext.getResourceAsStream(path);<span class="comment">//java.io.ByteArrayInputStream@64bcce8a</span></span><br><span class="line">response.getWriter().write(inputStream+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>文件在web目录下</p>
-<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg2.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg2.png" style="zoom:50%;">
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从web目录读取文件/图片</span></span><br><span class="line">InputStream inputStream2 = servletContext.getResourceAsStream(<span class="string">"xxx.jpg"</span>);</span><br><span class="line">response.getWriter().write(inputStream2+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>通过<strong>类装载器读取资源文件</strong>。</p>
-<p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg3.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg3.png" alt></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通过类装载器读取资源文件。</span></span><br><span class="line">InputStream inputStream3 = servletContext.getResourceAsStream(<span class="string">"xxx.jpg"</span>);</span><br><span class="line">response.getWriter().write(inputStream3+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>如果文件太大，就不能用类装载器的方式去读取，会导致内存溢出</strong></p>

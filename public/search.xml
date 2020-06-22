@@ -10,7 +10,7 @@
 <li>Vue是一套用于构建用户界面的<strong>渐进式框架</strong>，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与<a href="https://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">现代化的工具链</a>以及各种<a href="https://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="noopener">支持类库</a>结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</li>
 <li>虚拟DOM</li>
 </ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="2、起步-从html开始"><a href="#2、起步-从html开始" class="headerlink" title="2、起步-从html开始"></a>2、起步-从html开始</h2><h3 id="1、一个简单的vue-js网站"><a href="#1、一个简单的vue-js网站" class="headerlink" title="1、一个简单的vue.js网站"></a>1、一个简单的vue.js网站</h3><p><a href="../../../../../vue_test.html">页面</a></p>
+<h3 id><a href="#" class="headerlink" title></a></h3><h2 id="2、起步-从html开始"><a href="#2、起步-从html开始" class="headerlink" title="2、起步-从html开始"></a>2、起步-从html开始</h2><h3 id="1、一个简单的vue-js网站"><a href="#1、一个简单的vue-js网站" class="headerlink" title="1、一个简单的vue.js网站"></a>1、一个简单的vue.js网站</h3><p><a href="../../../../../vue_test.html">页面</a></p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>VUE<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -148,7 +148,9 @@
   <entry>
     <title>JavaMaven</title>
     <url>/2020/06/21/Java/JavaMaven/</url>
-    <content><![CDATA[<a id="more"></a>
+    <content><![CDATA[<p>本文是我学习Java面向对象编程时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
 <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><ul>
 <li>Maven是一个Java项目管理和构建工具，它可以定义项目结构、项目依赖，并使用统一的方式进行自动化构建，是Java项目不可缺少的工具。</li>
 <li>Maven是一个采用纯Java编写的开源项目管理工具, Maven采用了一种被称之为Project Object Model (POM)概念来管理项目，所有的项目配置信息都被定义在一个叫做POM.xml的文件中..</li>
@@ -188,6 +190,105 @@
         <tag>技术文档</tag>
         <tag>java</tag>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaSE</title>
+    <url>/2020/06/13/Java/JavaSE/</url>
+    <content><![CDATA[<p>本文是我学习JavaSE时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。笔记内容主要是Java的基础语法部分。</p>
+<a id="more"></a>
+
+<h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h2 id="一、什么是Java"><a href="#一、什么是Java" class="headerlink" title="一、什么是Java"></a>一、什么是Java</h2><h3 id="1、JavaSE"><a href="#1、JavaSE" class="headerlink" title="1、JavaSE"></a>1、JavaSE</h3><p><img src="/2020/06/13/Java/JavaSE/JavaSE.png" alt="JavaSE"></p>
+<ul>
+<li>Java SE就是标准版，包含标准的JVM和标准库，</li>
+<li>Java EE是企业版，它只是在Java SE的基础上加上了大量的API和库，以便方便开发Web应用、数据库、消息服务等，Java EE的应用使用的虚拟机和Java SE完全相同。</li>
+<li>Java ME就和Java SE不同，它是一个针对嵌入式设备的“瘦身版”，Java SE的标准库无法在Java ME上使用，Java ME的虚拟机也是“瘦身版”。</li>
+</ul>
+<h3 id="2、JDK与JRE"><a href="#2、JDK与JRE" class="headerlink" title="2、JDK与JRE"></a>2、JDK与JRE</h3><p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/JDKJRE.png" alt="JDKJRE"></p>
+<ul>
+<li>JRE就是运行Java字节码的虚拟机。</li>
+<li>但是，如果只有Java源码，要编译成Java字节码，就需要JDK；</li>
+<li>JDK除了包含JRE，还提供了编译器、调试器等开发工具。</li>
+<li>JSR是一系列的规范，从JVM的内存模型到Web程序接口，全部都标准化了。而负责审核JSR的组织就是JCP。</li>
+</ul>
+<h3 id="3、白皮书关键术语"><a href="#3、白皮书关键术语" class="headerlink" title="3、白皮书关键术语"></a>3、白皮书关键术语</h3><ul>
+<li>面向对象：重点在数据对象和对象的接口上</li>
+<li>网络能力：能够通过url打开和访问网络上的对象</li>
+<li>健壮性：java编译器能够检测出一些其他语言仅在运行时才能检测出的错误；java不需要指针来构造数据结构，在必要时却能具有指针的能力</li>
+<li>可移植性：数据类型规范</li>
+<li>多线程：带来更好的交互和响应</li>
+</ul>
+<h2 id="二、java程序基础"><a href="#二、java程序基础" class="headerlink" title="二、java程序基础"></a>二、java程序基础</h2><h3 id="1、基本数据类型"><a href="#1、基本数据类型" class="headerlink" title="1、基本数据类型"></a>1、基本数据类型</h3><ul>
+<li><p>整数类型：<code>byte</code>，<code>short</code>，<code>int</code>，<code>long</code></p>
+<ul>
+<li><code>byte</code>：-128 ~ 127</li>
+<li><code>short</code>: -32768 ~ 32767</li>
+<li><code>int</code>: -2147483648 ~ 2147483647</li>
+<li><code>long</code>: -9223372036854775808 ~ 9223372036854775807</li>
+</ul>
+</li>
+<li><p>浮点数类型：<code>float</code>，<code>double</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> f2 = <span class="number">3.14e38f</span>; <span class="comment">// 科学计数法表示的3.14x10^38（对于float类型，需要加上f后缀。）</span></span><br><span class="line"><span class="keyword">double</span> d3 = <span class="number">4.9e-324</span>; <span class="comment">// 科学计数法表示的4.9x10^-324</span></span><br><span class="line"><span class="comment">//float类型可最大表示3.4x1038，而double类型可最大表示1.79x10308。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符类型：<code>char</code></p>
+</li>
+<li><p>布尔类型：<code>boolean</code></p>
+</li>
+<li><p>定义变量的时候，如果加上<code>final</code>修饰符，这个变量就变成了常量（根据习惯，常量名通常全部大写。）</p>
+</li>
+</ul>
+<h3 id="2、计算"><a href="#2、计算" class="headerlink" title="2、计算"></a>2、计算</h3><ul>
+<li><p>普通运算、自增自减</p>
+</li>
+<li><p>移位计算、与或运算</p>
+</li>
+<li><p>由于浮点数存在运算误差，所以比较两个浮点数是否相等常常会出现错误的结果。正确的比较方法是判断两个浮点数之差的绝对值是否小于一个很小的数:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> r = Math.abs(x - y);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>溢出：<code>NaN</code>表示<strong>Not a Number</strong>   <code>Infinity</code>表示无穷大   <code>-Infinity</code>表示负无穷大</p>
+</li>
+<li><p>三元计算  <code>b ? x : y</code>会首先计算<strong>b</strong>，如果<strong>b</strong>为<code>true</code>，则只计算<strong>x</strong>，否则，只计算<strong>y</strong></p>
+</li>
+</ul>
+<h3 id="3、字符串"><a href="#3、字符串" class="headerlink" title="3、字符串"></a>3、字符串</h3><ul>
+<li><p><code>\n</code>表示换行符</p>
+</li>
+<li><p><code>\r</code> 表示回车符</p>
+</li>
+<li><p><code>\t</code> 表示Tab</p>
+</li>
+<li><p>从Java 13开始//预览功能//，字符串可以用<code>&quot;&quot;&quot;...&quot;&quot;&quot;</code>表示多行字符串（<code>Text Blocks</code>）了。举个例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">	         SELECT * FROM</span></span><br><span class="line"><span class="string">	           users</span></span><br><span class="line"><span class="string">	         WHERE id &gt; 100</span></span><br><span class="line"><span class="string">	         ORDER BY name DESC</span></span><br><span class="line"><span class="string">           "</span><span class="string">""</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上述多行字符串实际上是5行，在最后一个<code>DESC</code>后面还有一个<code>\n</code>。如果我们不想在字符串末尾加一个<code>\n</code>，就需要这么写：<code>ORDER BY name DESC&quot;&quot;&quot;</code>;</li>
+<li>多行字符串前面共同的空格会被去掉</li>
+</ul>
+</li>
+<li><p>字符串匹配：两个<code>String</code>类型，它们的内容是相同的，但是，分别指向不同的对象，用<code>==</code>判断，结果为<code>false</code>，要判断引用类型的变量内容是否相等，必须使用<code>equals()</code>方法：<code>s1.equals(s2)</code></p>
+</li>
+</ul>
+<h3 id="4、循环和流程"><a href="#4、循环和流程" class="headerlink" title="4、循环和流程"></a>4、循环和流程</h3><ul>
+<li><p><code>while</code>循环是先判断循环条件，再执行循环。而另一种<code>do while</code>循环则是先执行循环，再判断条件，条件满足时继续循环，条件不满足时退出。</p>
+</li>
+<li><p>Java还提供了另一种<code>for each</code>循环，它可以更简单地遍历数组：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[]ns=&#123;<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(intn:ns)&#123;</span><br><span class="line">  System.*out*.println(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>break</code>和<code>continue</code></p>
+</li>
+</ul>
+<h3 id="5、数组操作"><a href="#5、数组操作" class="headerlink" title="5、数组操作"></a>5、数组操作</h3><ul>
+<li>直接打印数组变量，得到的是数组在<strong>JVM</strong>中的引用地址</li>
+<li>我们只需要调用<strong>JDK</strong>提供的<code>Arrays.sort()</code>就可以排序</li>
+<li><code>Arrays.deepToString()</code>二维数组变字符串</li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>技术文档</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -857,105 +958,6 @@ Class[] is = s.getInterfaces();
       </tags>
   </entry>
   <entry>
-    <title>JavaSE</title>
-    <url>/2020/06/13/Java/JavaSE/</url>
-    <content><![CDATA[<p>本文是我学习JavaSE时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。笔记内容主要是Java的基础语法部分。</p>
-<a id="more"></a>
-
-<h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h2 id="一、什么是Java"><a href="#一、什么是Java" class="headerlink" title="一、什么是Java"></a>一、什么是Java</h2><h3 id="1、JavaSE"><a href="#1、JavaSE" class="headerlink" title="1、JavaSE"></a>1、JavaSE</h3><p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/JavaSE.png" alt="JavaSE"></p>
-<ul>
-<li>Java SE就是标准版，包含标准的JVM和标准库，</li>
-<li>Java EE是企业版，它只是在Java SE的基础上加上了大量的API和库，以便方便开发Web应用、数据库、消息服务等，Java EE的应用使用的虚拟机和Java SE完全相同。</li>
-<li>Java ME就和Java SE不同，它是一个针对嵌入式设备的“瘦身版”，Java SE的标准库无法在Java ME上使用，Java ME的虚拟机也是“瘦身版”。</li>
-</ul>
-<h3 id="2、JDK与JRE"><a href="#2、JDK与JRE" class="headerlink" title="2、JDK与JRE"></a>2、JDK与JRE</h3><p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/JDKJRE.png" alt="JDKJRE"></p>
-<ul>
-<li>JRE就是运行Java字节码的虚拟机。</li>
-<li>但是，如果只有Java源码，要编译成Java字节码，就需要JDK；</li>
-<li>JDK除了包含JRE，还提供了编译器、调试器等开发工具。</li>
-<li>JSR是一系列的规范，从JVM的内存模型到Web程序接口，全部都标准化了。而负责审核JSR的组织就是JCP。</li>
-</ul>
-<h3 id="3、白皮书关键术语"><a href="#3、白皮书关键术语" class="headerlink" title="3、白皮书关键术语"></a>3、白皮书关键术语</h3><ul>
-<li>面向对象：重点在数据对象和对象的接口上</li>
-<li>网络能力：能够通过url打开和访问网络上的对象</li>
-<li>健壮性：java编译器能够检测出一些其他语言仅在运行时才能检测出的错误；java不需要指针来构造数据结构，在必要时却能具有指针的能力</li>
-<li>可移植性：数据类型规范</li>
-<li>多线程：带来更好的交互和响应</li>
-</ul>
-<h2 id="二、java程序基础"><a href="#二、java程序基础" class="headerlink" title="二、java程序基础"></a>二、java程序基础</h2><h3 id="1、基本数据类型"><a href="#1、基本数据类型" class="headerlink" title="1、基本数据类型"></a>1、基本数据类型</h3><ul>
-<li><p>整数类型：<code>byte</code>，<code>short</code>，<code>int</code>，<code>long</code></p>
-<ul>
-<li><code>byte</code>：-128 ~ 127</li>
-<li><code>short</code>: -32768 ~ 32767</li>
-<li><code>int</code>: -2147483648 ~ 2147483647</li>
-<li><code>long</code>: -9223372036854775808 ~ 9223372036854775807</li>
-</ul>
-</li>
-<li><p>浮点数类型：<code>float</code>，<code>double</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> f2 = <span class="number">3.14e38f</span>; <span class="comment">// 科学计数法表示的3.14x10^38（对于float类型，需要加上f后缀。）</span></span><br><span class="line"><span class="keyword">double</span> d3 = <span class="number">4.9e-324</span>; <span class="comment">// 科学计数法表示的4.9x10^-324</span></span><br><span class="line"><span class="comment">//float类型可最大表示3.4x1038，而double类型可最大表示1.79x10308。</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字符类型：<code>char</code></p>
-</li>
-<li><p>布尔类型：<code>boolean</code></p>
-</li>
-<li><p>定义变量的时候，如果加上<code>final</code>修饰符，这个变量就变成了常量（根据习惯，常量名通常全部大写。）</p>
-</li>
-</ul>
-<h3 id="2、计算"><a href="#2、计算" class="headerlink" title="2、计算"></a>2、计算</h3><ul>
-<li><p>普通运算、自增自减</p>
-</li>
-<li><p>移位计算、与或运算</p>
-</li>
-<li><p>由于浮点数存在运算误差，所以比较两个浮点数是否相等常常会出现错误的结果。正确的比较方法是判断两个浮点数之差的绝对值是否小于一个很小的数:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> r = Math.abs(x - y);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>溢出：<code>NaN</code>表示<strong>Not a Number</strong>   <code>Infinity</code>表示无穷大   <code>-Infinity</code>表示负无穷大</p>
-</li>
-<li><p>三元计算  <code>b ? x : y</code>会首先计算<strong>b</strong>，如果<strong>b</strong>为<code>true</code>，则只计算<strong>x</strong>，否则，只计算<strong>y</strong></p>
-</li>
-</ul>
-<h3 id="3、字符串"><a href="#3、字符串" class="headerlink" title="3、字符串"></a>3、字符串</h3><ul>
-<li><p><code>\n</code>表示换行符</p>
-</li>
-<li><p><code>\r</code> 表示回车符</p>
-</li>
-<li><p><code>\t</code> 表示Tab</p>
-</li>
-<li><p>从Java 13开始//预览功能//，字符串可以用<code>&quot;&quot;&quot;...&quot;&quot;&quot;</code>表示多行字符串（<code>Text Blocks</code>）了。举个例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">	         SELECT * FROM</span></span><br><span class="line"><span class="string">	           users</span></span><br><span class="line"><span class="string">	         WHERE id &gt; 100</span></span><br><span class="line"><span class="string">	         ORDER BY name DESC</span></span><br><span class="line"><span class="string">           "</span><span class="string">""</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>上述多行字符串实际上是5行，在最后一个<code>DESC</code>后面还有一个<code>\n</code>。如果我们不想在字符串末尾加一个<code>\n</code>，就需要这么写：<code>ORDER BY name DESC&quot;&quot;&quot;</code>;</li>
-<li>多行字符串前面共同的空格会被去掉</li>
-</ul>
-</li>
-<li><p>字符串匹配：两个<code>String</code>类型，它们的内容是相同的，但是，分别指向不同的对象，用<code>==</code>判断，结果为<code>false</code>，要判断引用类型的变量内容是否相等，必须使用<code>equals()</code>方法：<code>s1.equals(s2)</code></p>
-</li>
-</ul>
-<h3 id="4、循环和流程"><a href="#4、循环和流程" class="headerlink" title="4、循环和流程"></a>4、循环和流程</h3><ul>
-<li><p><code>while</code>循环是先判断循环条件，再执行循环。而另一种<code>do while</code>循环则是先执行循环，再判断条件，条件满足时继续循环，条件不满足时退出。</p>
-</li>
-<li><p>Java还提供了另一种<code>for each</code>循环，它可以更简单地遍历数组：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[]ns=&#123;<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(intn:ns)&#123;</span><br><span class="line">  System.*out*.println(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>break</code>和<code>continue</code></p>
-</li>
-</ul>
-<h3 id="5、数组操作"><a href="#5、数组操作" class="headerlink" title="5、数组操作"></a>5、数组操作</h3><ul>
-<li>直接打印数组变量，得到的是数组在<strong>JVM</strong>中的引用地址</li>
-<li>我们只需要调用<strong>JDK</strong>提供的<code>Arrays.sort()</code>就可以排序</li>
-<li><code>Arrays.deepToString()</code>二维数组变字符串</li>
-</ul>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>技术文档</tag>
-        <tag>java</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaWeb</title>
     <url>/2020/06/11/Java/JavaWeb/</url>
     <content><![CDATA[<p>本文是我学习JavaWeb时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
@@ -1288,17 +1290,17 @@ Class[] is = s.getInterfaces();
 </ul>
 <h4 id="9、读取资源文件"><a href="#9、读取资源文件" class="headerlink" title="9、读取资源文件"></a>9、读取资源文件</h4><ul>
 <li><p>通过<strong>ServletContext读取</strong>（文件在包目录/img下）</p>
-<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg.png" alt="xxximg" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg.png" alt="xxximg" style="zoom: 50%;">
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//读取文件/图片</span></span><br><span class="line">String path = <span class="string">"/WEB-INF/classes/img/xxx.jpg"</span>;</span><br><span class="line">InputStream inputStream = servletContext.getResourceAsStream(path);<span class="comment">//java.io.ByteArrayInputStream@64bcce8a</span></span><br><span class="line">response.getWriter().write(inputStream+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>文件在web目录下</p>
-<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg2.png" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg2.png" style="zoom:50%;">
 
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//从web目录读取文件/图片</span></span><br><span class="line">InputStream inputStream2 = servletContext.getResourceAsStream(<span class="string">"xxx.jpg"</span>);</span><br><span class="line">response.getWriter().write(inputStream2+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>通过<strong>类装载器读取资源文件</strong>。</p>
-<p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg3.png" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/920408194/pic/master/img/xxximg3.png" alt></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//通过类装载器读取资源文件。</span></span><br><span class="line">InputStream inputStream3 = servletContext.getResourceAsStream(<span class="string">"xxx.jpg"</span>);</span><br><span class="line">response.getWriter().write(inputStream3+<span class="string">"\n"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>如果文件太大，就不能用类装载器的方式去读取，会导致内存溢出</strong></p>
