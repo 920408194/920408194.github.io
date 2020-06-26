@@ -1,7 +1,10 @@
 ---
 title: Insurance
+date: 2020-06-26T16:27:06+08:00
+categories:
+- 保险
 tags: 
--work
+- work
 ---
 
 一些保险的知识和业务流程
