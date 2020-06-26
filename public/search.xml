@@ -1,30 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>JSP</title>
-    <url>/2020/06/24/JSP/</url>
-    <content><![CDATA[<p>本文是我学习JSP所记录的笔记，内容大部分来自互联网。</p>
-<a id="more"></a>
-
-<h3 id="jspf"><a href="#jspf" class="headerlink" title="jspf"></a>jspf</h3><ul>
-<li><p>jspf扩展名文件可以看作是jsp文件include进其他需要的jsp文件中。</p>
-</li>
-<li><p>网上有的说的jspf (Java Simple Plugin Framework) 是一个插件框架，集成了很多 IoC 框架的概念在里面。此jspf不是彼jspf。</p>
-</li>
-<li><p>jspf里可以直接读取XML。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>前端</tag>
-        <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue</title>
     <url>/2020/06/10/vue/</url>
     <content><![CDATA[<p>本文是我学习VUE时的笔记，大部分内容来自VUE官网。</p>
@@ -53,6 +29,332 @@
       <tags>
         <tag>前端</tag>
         <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JSP</title>
+    <url>/2020/06/24/JSP/</url>
+    <content><![CDATA[<p>本文是我学习JSP所记录的笔记，内容大部分来自互联网。</p>
+<a id="more"></a>
+
+<h1 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h1><h3 id="jspf"><a href="#jspf" class="headerlink" title="jspf"></a>jspf</h3><ul>
+<li><p>jspf扩展名文件可以看作是jsp文件include进其他需要的jsp文件中。</p>
+</li>
+<li><p>网上有的说的jspf (Java Simple Plugin Framework) 是一个插件框架，集成了很多 IoC 框架的概念在里面。此jspf不是彼jspf。</p>
+</li>
+<li><p>jspf里可以直接读取XML。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>技术文档</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Insurance</title>
+    <url>/2020/06/26/Insurance/</url>
+    <content><![CDATA[<p>一些保险的知识和业务流程</p>
+<a id="more"></a>
+
+<h1 id="保险"><a href="#保险" class="headerlink" title="保险"></a>保险</h1><ul>
+<li><p>保险是个人或者组织转移自身所面临风险的一种方法。</p>
+</li>
+<li><p>保险公司将<strong>风险损失资料</strong>进行集中分析管理,用统计方法来预测风险带来的损失,并用所有风险转移者缴纳的保险费建立起保险基金,来集中承担被保险人因风险事故发生造成的经济损失。通过保险制度,被保险人个人的风险得以转移和分散。所谓一人损失,大家<strong>分摊</strong>,”人人为我,我为人人”。</p>
+</li>
+<li><p>作为一种法律行为,保险活动是通过<strong>保险合同</strong>来实现的,投保人按照合同规定向保险公司缴纳一定数量的保险费,保险公司则按照合同规定对被保险人提供保险保障。在保险制度中,保险费率的高低,建立保险基金的大小,是根据风险的程度,用概率论和大数法则的原理计算出来的。</p>
+</li>
+<li><p>以财产及有关利益为标的的保险叫财产保险，包括财产损失险、责任保险、信用保险和保证保险</p>
+</li>
+<li><p>以人的寿命和身体为保险标的的保险叫人身保险，包括人寿保险、健康保险、意外伤害保险、年金保险等。</p>
+</li>
+</ul>
+<h2 id="一、基础术语"><a href="#一、基础术语" class="headerlink" title="一、基础术语"></a>一、基础术语</h2><h3 id="1、参与人"><a href="#1、参与人" class="headerlink" title="1、参与人"></a>1、参与人</h3><ul>
+<li>保险人指与投保人定理保险合同，按照合同约定承担赔偿或者给付保险金责任的保险公司。</li>
+<li>投保人又称为要保人,是指与保险公司订立保险合同,并按照保险合同负有交付保险费义务的人。<strong>就是出钱买保险的人</strong></li>
+<li>被保险人,是指根据保险合同,其财产利益或人身受保险合同保障,在保险事故发生后,享有保险金请求权的人。<strong>就是保险标的，承保对象</strong></li>
+<li>受益人,是指在人身保险合同中,由被保险人或者投保人指定的享有保险金请求权的人,投保人或者被保险人可以同时作为受益人。<strong>就是出险后得钱的人</strong>   一般如果被保险人没有身故，那么收益人就是被保险人。如果身故，则按合同上写的身故收益人。</li>
+<li>保单持有人指依法享有保单利益请求权的保险合同当事人，包括投保人、被保险人或收益人。</li>
+<li>在投保人、被保险人与受益人不是同一人时,投保人指定受益人必须经被保险人同意,投保人变更受益人时,也必须经被保险人同意。在指定受益人的情况下,实际上是被保险人将保险金请求权转让给受益人。</li>
+</ul>
+<h3 id="2、经纪人和其他从业人员"><a href="#2、经纪人和其他从业人员" class="headerlink" title="2、经纪人和其他从业人员"></a>2、经纪人和其他从业人员</h3><ul>
+<li><p><strong>保险中介</strong>是接受保险公司或投保人和被保险人委托,提供展业、风险管理、理赔等专业性服务,并收取佣金、手续费或咨询费的自然人或法人机构。</p>
+<ul>
+<li>保险中介包括保险代理人、保险经纪人和保险公估人。</li>
+<li>保险中介的存在有利于促进保险交易活动顺利进行,降低市场交易费用成本,维护市场公平竞争。</li>
+</ul>
+</li>
+<li><p><strong>保险经纪人/直接保险经纪</strong>基于投保人的利益．为投保人与保险人订立保险合同提供中介服务，并依法收取佣金的机构。</p>
+</li>
+<li><p><strong>再保险经纪人/再保险经纪公司</strong>在保险人和再保险人之问促成业务交易和提供顾问服务的中间人，并按约定收取佣金的中介机构。</p>
+</li>
+<li><p><strong>保险代理人</strong> 根据保险公司的委托，向保险公司收取代理佣金．并在保险公司授权的范嗍内代为办理保险业务的机构或个人。</p>
+<ul>
+<li>保险代理人与保险公司是<strong>委托代理关系</strong>,保险代理人在保险公司授权范围内代理保险业务的行为所产生的法律责任,由保险公司承担。</li>
+<li>个人代理人不得签发保单。专业代理人和兼业代理人必须经保险监管机关批准方可签发保单。</li>
+<li>个人保险代理人需持所代理保险公司核发的《保险代理人展业证书》方可展业。</li>
+<li>个人代理人不得办理企业财产保险业务和团体人身保险业务。</li>
+</ul>
+</li>
+<li><p><strong>保险公估人</strong>受保险当事人的委托．专门从事保险标的或保险事故的评估、鉴定、勘验、估损或理锌业务的机构。</p>
+</li>
+<li><p><strong>保险销售从业人员</strong></p>
+</li>
+</ul>
+<h3 id="3、投保与承保"><a href="#3、投保与承保" class="headerlink" title="3、投保与承保"></a>3、投保与承保</h3><ul>
+<li>投保指机构或个人购买保险产品的过程。</li>
+<li>承保指保险人接受投保人的投保申请，并与投保人订立保险合同的过程。</li>
+</ul>
+<h3 id="4、商业保险和社会保险"><a href="#4、商业保险和社会保险" class="headerlink" title="4、商业保险和社会保险"></a>4、商业保险和社会保险</h3><ul>
+<li><p>商业保险是指通过订立保险合同运营,<strong>以营利为目的</strong>的保险形式,由专门的保险企业经营:商业保险关系是由当事人自愿缔结的合同关系,投保人根据合同约定,向保险公司支付保险费,保险公司根据合同约定的可能发生的事故因其发生所造成的财产损失承担赔偿保险金责任,或者当被保险人死亡、伤残、疾病或达到约定的年龄、期限时承担给付保险金责任。</p>
+</li>
+<li><p>社会保险,是指收险费,形成社会保险基金,用来对其中因年老、疾病、生育、伤残、死亡和失业而导致丧失劳动能力或失去工作机会的成员<strong>提供基本生活保障</strong>的一种社会保障制度。</p>
+</li>
+<li><p>商业保险和社会保险的区别</p>
+<pre><code>1. - 商业保险是一种**经营行为**,保险业经营者以追求利润为目的,独立核算、自主经营、自负盈亏
+- 社会保险是**国家社会保障制度**的一种,目的是为人民提供基本的生活保障,以国家财政支持为后盾。 </code></pre><ol start="2">
+<li><ul>
+<li><p>商业保险依照<strong>平等自愿</strong>的原则,是否建立保险关系完全由投保人自主决定</p>
+</li>
+<li><p>而社会保险<strong>具有强制性</strong>,凡是符合法定条件的公民或劳动者,其缴纳保险费用,接受保障,都是由国家立法直接规定的。 </p>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><p>商业保险的<strong>保障范围由投保人、被保险人与保险公司协商确定</strong>,不同的保险合同项下,不同的险种,被保险人所受的保障范围和水平是不同的,</p>
+</li>
+<li><p>而社会保险的<strong>保障范围一般由国家事先规定</strong>,风险保障范围比较窄,保障的水平也比较低。这是由它的社会保障性质所决定的。</p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="5、强制保险和自愿保险"><a href="#5、强制保险和自愿保险" class="headerlink" title="5、强制保险和自愿保险"></a>5、强制保险和自愿保险</h3><ul>
+<li>自愿保险,是指投保人和保险公司在平等互利、等价有偿的原则基础上,通过<strong>协商一致,双方完全自愿</strong>订立保险合同,建立保险关系。换句话说,是否投保和承保,参加什么保险,保险合同的具体内容,完全由双方自愿自主决定,不受任何第三者干预。平等自愿是商业保险的一个基本原则。</li>
+<li>强制保险，又称法定保险，指根据<strong>国家的有关法律法规</strong>，某些特殊的群体或行业,不管当事人愿意与否,都必须参加规定的保险。</li>
+<li>由于强制保险某种意义上表现为国家对个人意愿的干预,所以强制保险的范围是受严格限制的。我国《保险法》规定,除法律、行政法规规定必须保险的以外,保险公司和其他任何单位不得强制他人订立保险合同。</li>
+</ul>
+<h3 id="6、保险类别"><a href="#6、保险类别" class="headerlink" title="6、保险类别"></a>6、保险类别</h3><ul>
+<li>互相保险指具有同质风险保障需求的机构或个人，通过订立合同成为会员．并缴纳保费形成互助基金，油该基金对合同约定的事故发生所造成的损失承担赔偿责任．或者当被保险人死产、伤残、疾病或者达到合同约定的年龄、期限等条件时承担给付保险金责任的保险活动。</li>
+<li>财产保险的险别分为<strong>基本险和附加险</strong>。所谓<strong>基本险/主险</strong>是指<strong>可以单独投保和承保</strong>的险别。所谓附加险是指不能单独投保和承保的险别,投保人只能在投保基本险的基础上,根据自己的需要选择加以投保。</li>
+<li>如果附加险的条款和基本险条款发生抵触,对<strong>抵触之处的解释以附加险条款为准</strong>:如果附加险条款未作规定,则以基本险条款为准。</li>
+</ul>
+<h3 id="7、合同等"><a href="#7、合同等" class="headerlink" title="7、合同等"></a>7、合同等</h3><ul>
+<li>保险合同一般采用书面形式。<strong>保险单</strong>是保险合同的主要体现形式和证明。此外,投保单、暂保单、保险凭证、批单等也在不同程度上构成保险合同的一部分。</li>
+<li>投保单又称要保单,是投保人向保险公司申请订立保险合同的书面文件,投保单本身不是合同,但保险合同成立后,投保单是保险合同的重要组成部分。</li>
+<li>保险单是保险合同双方确定权利义务和索赔理赔的主要依据。</li>
+<li>保险凭证,是保险公司签发给投保人的<strong>证明保险合同已经订立</strong>的书面文件,一般不记载保险条款,实质上是一种简化的保险单,具有与保险单同等的法律效力。</li>
+<li>暂保单是在某些情况下,正式出具保险单或保险凭证之前,保险公司签发给投保人的<strong>临时保险凭证</strong>,其作用是证明保险公司已经同意承保,暂保单一般都有一个有效期限,待保险单出具,自动失效。</li>
+<li>批单是保险公司应投保人或被保险人的要求出具的<strong>修订或更改保险合同内容的书面文件</strong>,其实质是对保险合同内容的变更,一经签发,就成为保险合同的重要组成部分。</li>
+<li>保险标的指<strong>作为保险对象</strong>的财产及其有关利益或者人的寿命和身体。</li>
+<li>保险期间/保险期限</li>
+<li>保险责任指保险合同中约定的保险人向被保险人提供保险保障的范围。</li>
+<li>责任免除保险合同中约定的，保险人不承担或者限制承担的责任范围。</li>
+<li>保险价值,是指投保人与保险公司订立保险合同约定的<strong>保险标的的实际价值</strong>,即投保人对保险标的所享有的保险利益的货币价值。它是财产保险合同构成的基本要素之一。</li>
+<li>确定保险价值的方式一般有两种:<ol>
+<li>一是根据合同订立时保险标的的实际价值确定,即由双方当事人在订立保险合同时,在合同中约定。</li>
+<li>二是根据保险事故发生时保险标的的市场价值确定。</li>
+</ol>
+</li>
+</ul>
+<h3 id="8、费用相关"><a href="#8、费用相关" class="headerlink" title="8、费用相关"></a>8、费用相关</h3><ul>
+<li>保险金额/保额指保险人承担赔偿或者给付保险金责任的<strong>最高限额</strong>。</li>
+<li>保险费率指应交纳保险费与保险金额的比率。</li>
+<li>保险费/保费指投保人按保险合同约定向保险人支付的费用</li>
+<li>保险金指保险事故发生后，保险人根据保险合同的约定的方式、数额或标准．向被保险人或受益人赔偿或给<br>付的金额。</li>
+<li>免赔额指保险合同中约定的，保险人不负赔偿责任的、由被保险人自行承担损失的数额。</li>
+<li>保险利益/可保利益指投保人或者被保险人对保险标的具有的法律上承认的利益。</li>
+</ul>
+<h3 id="9、如实告知义务和保险公司说明义务（理解）"><a href="#9、如实告知义务和保险公司说明义务（理解）" class="headerlink" title="9、如实告知义务和保险公司说明义务（理解）"></a>9、如实告知义务和保险公司说明义务（理解）</h3><h2 id="二、保险产品术语"><a href="#二、保险产品术语" class="headerlink" title="二、保险产品术语"></a>二、保险产品术语</h2><h3 id="1、财产保险产品术语"><a href="#1、财产保险产品术语" class="headerlink" title="1、财产保险产品术语"></a>1、财产保险产品术语</h3><h3 id="2、车险产品术语"><a href="#2、车险产品术语" class="headerlink" title="2、车险产品术语"></a>2、车险产品术语</h3><h4 id="a、免赔率"><a href="#a、免赔率" class="headerlink" title="a、免赔率"></a>a、免赔率</h4><ul>
+<li>车辆损失险和第三者责任险的损失在经保险双方确认后，保险公司还根据保险车辆驾驶员在事故中所负责任，按照免赔率扣除一定的金额，以致出现了保险赔偿少于实际损失的情况。</li>
+<li>免赔率，是指不赔金额与损失金额的比率。免赔率分为相对免赔率与绝对免赔率两种。现行的车辆保险采用的是绝对免赔率，其做法是：保险公司对超出免赔率部分的损失进行赔偿，赔偿金额不包含免赔金额。</li>
+<li>车辆损失险、第三者责任险、全车盗抢险、车上责任险、新增加设备损失险、无过失责任险、车载货物掉落责任险、自燃损失险等险别是又免赔率的。</li>
+</ul>
+<h3 id="3、船舶保险产品术语"><a href="#3、船舶保险产品术语" class="headerlink" title="3、船舶保险产品术语"></a>3、船舶保险产品术语</h3><ul>
+<li>广义的船舶保险是以船舶及其附属品为保险标的的保险业务。根据船舶所处的状态分为船舶营运险、船舶建造险、船舶停航险、船舶修理险、拆船保险和集装箱保险等。</li>
+<li>狭义的船舶保险就是指船舶营运险 </li>
+</ul>
+<h2 id="三、核保术语"><a href="#三、核保术语" class="headerlink" title="三、核保术语"></a>三、核保术语</h2><ul>
+<li>核保指保险人再掌握保险标的的重要事实的基础上，对风险进行评估与分类，进而决定是否承保、以何种条件承保的过程。</li>
+</ul>
+<h3 id="1、一般概念"><a href="#1、一般概念" class="headerlink" title="1、一般概念"></a>1、一般概念</h3><ul>
+<li>​    </li>
+</ul>
+<h1 id="车险"><a href="#车险" class="headerlink" title="车险"></a>车险</h1><h2 id="一、险种"><a href="#一、险种" class="headerlink" title="一、险种"></a>一、险种</h2><ul>
+<li><strong>财产保险险种</strong>是财产保险市场用来交换的特殊商品，它一般以保险单为单位，以保险条款为主要内容，是构成财产保险市场的基本要素。</li>
+</ul>
+<h3 id="1、交强险"><a href="#1、交强险" class="headerlink" title="1、交强险"></a>1、交强险</h3><ul>
+<li><p>交强险的全称是“机动车交通事故责任强制保险”，是由保险公司对<strong>被保险机动车</strong>发生道路交通事故造成<strong>受害人（不包括本车人员和被保险人）</strong>的人身伤亡、财产损失，在责任限额内予以赔偿的<strong>强制性责任保险</strong>。</p>
+</li>
+<li><p>交强险是中国首个由国家法律规定实行的强制保险制度。</p>
+</li>
+<li><p>其保费是<strong>实行全国统一收费标准</strong>的，由国家统一规定的，但是<strong>不同的汽车型号的交强险价格也不同，主要影响因素是“汽车座位数”</strong>。</p>
+<p><img src="/2020/06/26/Insurance/202006220900.png" alt="交强险的赔偿限额"></p>
+</li>
+</ul>
+<h3 id="2、商业险"><a href="#2、商业险" class="headerlink" title="2、商业险"></a>2、商业险</h3><p><img src="/2020/06/26/Insurance/syx-1592787709091.png" alt="商业险"></p>
+<h3 id="3、主险"><a href="#3、主险" class="headerlink" title="3、主险"></a>3、主险</h3><p><img src="/2020/06/26/Insurance/zx.png" alt="主险"></p>
+<h3 id="4、附加险"><a href="#4、附加险" class="headerlink" title="4、附加险"></a>4、附加险</h3><p><img src="/2020/06/26/Insurance/fjx.png" alt="附加险"></p>
+<h2 id="二、平台框架"><a href="#二、平台框架" class="headerlink" title="二、平台框架"></a>二、平台框架</h2><h3 id="1、行业信息集中平台"><a href="#1、行业信息集中平台" class="headerlink" title="1、行业信息集中平台"></a>1、行业信息集中平台</h3><ul>
+<li><p>行业信息集中平台是集交强险、商业险承保、理赔功能为一体的综合性车险信息平台。</p>
+<ol>
+<li>行业车险信息集中平台实现保险行业数据共享和统一。包括保险行业车险承保、理赔信息共享；统一车型信息和车价库；</li>
+</ol>
+</li>
+</ul>
+<ol start="2">
+<li>行业车险信息集中平台实现与其它行业数据共享。包括交管数据、车船税数据，运管数据等的共享；<ol start="3">
+<li>行业车险信息集中平台实现了公众查询服务。它面向社会公众，提供查询车险相关信息；</li>
+</ol>
+</li>
+<li>行业车险信息集中平台提供行业数据分析服务。它提供为行业数据统计、分析的功能；</li>
+</ol>
+<p><img src="/2020/06/26/Insurance/xxjzpt.png" alt="行业车险信息集中平台"></p>
+<h3 id="2、平台业务功能"><a href="#2、平台业务功能" class="headerlink" title="2、平台业务功能"></a>2、平台业务功能</h3><ul>
+<li>行业车险信息集中平台目前已经实现了以下几个功能：交强险核心子系统、商业险核心子系统、电子联系单子系统、查询统计子系统、数据维护子系统、公共服务子系统、运维管理系统。目前我国已实现除西藏外所有省市的平台上线。</li>
+</ul>
+<h4 id="a、交强险核心-子系统"><a href="#a、交强险核心-子系统" class="headerlink" title="a、交强险核心 子系统"></a>a、交强险核心 子系统</h4><ul>
+<li><p>交强险核心子系统是<strong>行业车险信息集中平台与保险公司进行保险业务交互</strong>的数据接口，是平台的核心需求功能。</p>
+</li>
+<li><p>平台提供20个接口完成交强险的投、承保，批改，理赔业务的询价和数据共享。</p>
+</li>
+<li><p>交强险平台上线运行，意味着<strong>全市交强险保费可全部通过平台系统计算获得</strong>，保险行业实现了交强险信息实时数据共享，<strong><em>实现了交强险费率与保险理赔记录挂钩浮动</em></strong>。</p>
+</li>
+</ul>
+<h4 id="b、商业险核心-子系统"><a href="#b、商业险核心-子系统" class="headerlink" title="b、商业险核心 子系统"></a>b、商业险核心 子系统</h4><ul>
+<li>商业险核心子系统是<strong>行业车险信息集中平台与保险公司进行商业车险业务</strong>交互的数据接口，是平台的核心需求功能。</li>
+<li>平台目前提供15个接口完成<strong>商业险的投、承保，批改，理赔业务的浮动系统计算和数据共享</strong>。</li>
+</ul>
+<h4 id="c、查询统计-子系统"><a href="#c、查询统计-子系统" class="headerlink" title="c、查询统计 子系统"></a>c、查询统计 子系统</h4><ul>
+<li>查询统计子系统<strong>为各保险公司（分公司）数据管理人员提供查看本公司的平台业务数据的查询功能</strong>。此系统也为平台管理人员提供平台数据的查询及统计功能。</li>
+</ul>
+<h4 id="d、数据维护-子系统"><a href="#d、数据维护-子系统" class="headerlink" title="d、数据维护 子系统"></a>d、数据维护 子系统</h4><ul>
+<li>各省<strong>保协数据维护人员</strong>，通过数据维护子系统进行平台数据的维护管理。</li>
+</ul>
+<h4 id="e、公共服务-子系统"><a href="#e、公共服务-子系统" class="headerlink" title="e、公共服务 子系统"></a>e、公共服务 子系统</h4><ul>
+<li>集中平台系统管理人员，通过公共服务子系统<strong>进行平台的个性化参数，平台机构用户（保险主体）的权限增加及配置</strong>。</li>
+</ul>
+<h4 id="f、电子联系单-子系统"><a href="#f、电子联系单-子系统" class="headerlink" title="f、电子联系单 子系统"></a>f、电子联系单 子系统</h4><ul>
+<li>电子联系单子系统是<strong>提供给项目分部</strong>，<strong>应用于平台系统与保险公司</strong>对<strong>数据正确性、特殊业务等进行核实和调整</strong>的通信桥梁。</li>
+</ul>
+<h4 id="g、运维管理系统"><a href="#g、运维管理系统" class="headerlink" title="g、运维管理系统"></a>g、运维管理系统</h4><ul>
+<li>运维管理系统是提供给项目部和项目分部，应用于项目部<strong>对项目分部无法解决的数据正确性、特殊业务等事宜进行核实和调整的通信桥梁</strong>。</li>
+</ul>
+<p><img src="/2020/06/26/Insurance/qqq.png" alt="车险信息集中平台系统关系图"></p>
+<h3 id="3、车险承保与平台交互流程"><a href="#3、车险承保与平台交互流程" class="headerlink" title="3、车险承保与平台交互流程"></a>3、车险承保与平台交互流程</h3><p><img src="/2020/06/26/Insurance/image-20200622090828638.png" alt="车险承保与平台交互流程图-承保"></p>
+<p><img src="/2020/06/26/Insurance/pggggg.png" alt="车险承保与平台交互流程图-批改"></p>
+<h3 id="4、ILOG交互流程图"><a href="#4、ILOG交互流程图" class="headerlink" title="4、ILOG交互流程图"></a>4、ILOG交互流程图</h3><ul>
+<li><p>ILOG规则目前有五个模块：</p>
+<ol>
+<li>报价前置规则；</li>
+<li>报价折扣规则；</li>
+<li>投保保存规则；</li>
+<li>提交核保规则；</li>
+<li>核保权限规则。</li>
+</ol>
+</li>
+<li><p>其中报价前置规则<strong>在核心与平台交互前</strong>进行规则对接，主要是<strong>校验是否允许保费计算</strong>。</p>
+</li>
+<li><p>报价折扣规则<strong>在核心与平台交互后</strong>，与光博报价器交互前与规则对接，主要用于<strong>获取行业自律折扣，公司核保政策以及团车核保折扣信息</strong>，这些信息用于对接光博报价器。</p>
+</li>
+<li><p>投保保存规则在<strong>投保单保存后与规则对接</strong>，主要与规则交互返回录入相关规则，如果触发返回录入规则，则不允许提交核保。</p>
+</li>
+<li><p>提交核保规则<strong>在提交核保环节与规则交互</strong>，主要交互公司转人工规则以及自核通过规则，用于<strong>提交核保后转人工处理还是自核通过</strong>。</p>
+</li>
+<li><p>核保权限规则在<strong>核保员点击待核保单时与规则交互</strong>，主要<strong>用户交互该业务最低审核通过级别</strong>。</p>
+</li>
+</ul>
+<p><img src="/2020/06/26/Insurance/ILOG.png" alt="ILOG系统交互流程图"></p>
+<h3 id="5、保费计算流程"><a href="#5、保费计算流程" class="headerlink" title="5、保费计算流程"></a>5、保费计算流程</h3><p><img src="/2020/06/26/Insurance/20200615145656.png" alt="保费计算流程"></p>
+<h1 id="非车险"><a href="#非车险" class="headerlink" title="非车险"></a>非车险</h1><h2 id="一、非车险产品线"><a href="#一、非车险产品线" class="headerlink" title="一、非车险产品线"></a>一、非车险产品线</h2><h3 id="1、企业财产保险"><a href="#1、企业财产保险" class="headerlink" title="1、企业财产保险"></a>1、企业财产保险</h3><ul>
+<li>企业财产综合保险是中国财产保险的主要险种，它以<strong>企业的固定资产和流动资产为保险标的</strong>，以<strong>企业存放在固定地点的财产为对象的保险业务</strong>，即保险财产的存放地点相对固定且处于相对静止的状态。 </li>
+</ul>
+<p>企业财产保险具有一般财产保险的性质，许多适用于其他财产保险的原则同样适用于企业财产保险。</p>
+<p><img src="/2020/06/26/Insurance/20200615152201.png" alt="企业财产保险"></p>
+<h3 id="2、工程保险"><a href="#2、工程保险" class="headerlink" title="2、工程保险"></a>2、工程保险</h3><ul>
+<li><p>工程保险是<strong>承保建筑安装工程期间一切意外物质损失和对第三人经济赔偿责任的保险</strong>。包括建筑工程一切险与安装工程一切险,属综合性保险。保险标的为<strong>工程项目主体、工程用的机械设备以及第三者责任</strong>，此外尚有些附带项目。</p>
+<p> <img src="/2020/06/26/Insurance/20200615152134.png" alt="工程保险"></p>
+</li>
+</ul>
+<h3 id="3、责任保险"><a href="#3、责任保险" class="headerlink" title="3、责任保险"></a>3、责任保险</h3><ul>
+<li>责任保险，是指保险人在被保险人依法应对第三人负赔偿责任，并被提出赔偿要求时，<strong>承担赔偿责任的财产保险形式</strong>。</li>
+<li>责任保险以被保险人对他人依法应负的民事赔的责任为保险标的，在合同中<strong>无保险金额，而规定赔偿限额</strong>。</li>
+</ul>
+<p><img src="/2020/06/26/Insurance/20200615153109.png" alt="责任保险"></p>
+<h3 id="4、家庭财产保险"><a href="#4、家庭财产保险" class="headerlink" title="4、家庭财产保险"></a>4、家庭财产保险</h3><ul>
+<li>家庭财产保险简称家财险，是个人和家庭投保的最主要险种。凡存放、坐落在<strong>保险单列明的地址</strong>，属于被保险人自有的家庭财产，都可以向保险人投保家庭财产保险。</li>
+<li>家庭财产保险的投保范围一般包括房屋及房屋装修，衣服、卧具，家具、燃气用具、厨具、乐器、体育器械，家用电器；附加险有盗窃、抢劫和金银首饰、钞票、债券保险以及第三者责任保险等。<br><img src="/2020/06/26/Insurance/20200615153726.png" alt="家庭财产保险"></li>
+</ul>
+<h3 id="5、保证保险"><a href="#5、保证保险" class="headerlink" title="5、保证保险"></a>5、保证保险</h3><ul>
+<li><p>保证保险是指在约定的保险事故发生时，被保险人需<strong>在约定的条件和程序成熟时方能获得赔偿</strong>的一种保险方式，其主体包括投保人，被保险人和保险人。投保人和被保险人就是贷款合同的借款方和贷款方，保险人是依据保险法取得经营保证保险业务的商业保险公司，保证保险常见的有诚实保证保险和消费贷款保证保险。</p>
+<p><img src="/2020/06/26/Insurance/20200615153742.png" alt="保证保险"></p>
+</li>
+</ul>
+<h3 id="6、货物运输保险"><a href="#6、货物运输保险" class="headerlink" title="6、货物运输保险"></a>6、货物运输保险</h3><ul>
+<li><p>货物运输保险是以运输途中的货物作为保险标的，保险人对由<strong>自然灾害和意外事故</strong>造成的货物损失负赔偿责任的保险。</p>
+<p><img src="/2020/06/26/Insurance/20200615154327.png" alt="货物运输保险"></p>
+</li>
+</ul>
+<h3 id="7、船舶保险"><a href="#7、船舶保险" class="headerlink" title="7、船舶保险"></a>7、船舶保险</h3><ul>
+<li><p>船舶保险是海上保险中保险人对被保险的各类船舶和水上浮动物体的物质损失，以及有关利益和经济责任承担赔偿责任的一种保险。海上船舶包括货轮、客轮、油轮、驳船、集装箱船、作业船 (钻井船、挖泥船) 及水上浮动物体包括趸船、浮码头等。</p>
+<p><img src="/2020/06/26/Insurance/20200615154358.png" alt="船舶保险"></p>
+</li>
+</ul>
+<h3 id="8、意外险"><a href="#8、意外险" class="headerlink" title="8、意外险"></a>8、意外险</h3><ul>
+<li><p>意外保险即人身意外保险，又称为意外或伤害保险，是指投保人向保险公司缴纳一定金额的保费，当被保险人在保险期限内遭受意外伤害，并以此为直接原因造成死亡或残废时，保险公司按照保险合同的约定向被保险人或受益人支付一定数量保险金的保险。</p>
+<p><img src="/2020/06/26/Insurance/20200615154411.png" alt="意外险"></p>
+</li>
+</ul>
+<h3 id="9、短期健康险"><a href="#9、短期健康险" class="headerlink" title="9、短期健康险"></a>9、短期健康险</h3><ul>
+<li><p>短期健康保险是指，保险期间在一年及一年以下且不含有保证续保条款的健康保险。</p>
+<p><img src="/2020/06/26/Insurance/20200615154216.png" alt="短期健康险"></p>
+</li>
+</ul>
+<h3 id="10、特殊保险"><a href="#10、特殊保险" class="headerlink" title="10、特殊保险"></a>10、特殊保险</h3><h2 id="二、非车险系统流程"><a href="#二、非车险系统流程" class="headerlink" title="二、非车险系统流程"></a>二、非车险系统流程</h2><h3 id="1、见费出单流程"><a href="#1、见费出单流程" class="headerlink" title="1、见费出单流程"></a>1、见费出单流程</h3><p><img src="/2020/06/26/Insurance/20200615154714.png" alt="见费出单"></p>
+<h3 id="2、非见费出单流程"><a href="#2、非见费出单流程" class="headerlink" title="2、非见费出单流程"></a>2、非见费出单流程</h3><p><img src="/2020/06/26/Insurance/20200615155345.png" alt="非见费出单流程"></p>
+<h2 id="三、非车险承保系统外部系统对接"><a href="#三、非车险承保系统外部系统对接" class="headerlink" title="三、非车险承保系统外部系统对接"></a>三、非车险承保系统外部系统对接</h2><h3 id="1、数据提取类"><a href="#1、数据提取类" class="headerlink" title="1、数据提取类"></a>1、数据提取类</h3><ul>
+<li>贵州消保、广西消保、江西法院平台、上海意健险平台</li>
+</ul>
+<h3 id="2、系统交互类"><a href="#2、系统交互类" class="headerlink" title="2、系统交互类"></a>2、系统交互类</h3><ul>
+<li>广东十三行业平台、山东意健险平台、四川意健险平台</li>
+</ul>
+<h4 id="1、广东十三行业平台"><a href="#1、广东十三行业平台" class="headerlink" title="1、广东十三行业平台"></a>1、广东十三行业平台</h4><ul>
+<li><p>行业指十三行业大类，各行业大类项下还包若干行业中类，十三行业包括：</p>
+<pre><code>1. 纺织服装、鞋、帽制造业；
+ 2. 印刷和记录媒介复制业；
+ 3. 纺织业；
+ 4. 家具制造业；
+ 5. 造纸及纸制品业；
+ 6. 塑料制品业；
+ 7. 非金属矿物制品业项下的“陶瓷制品制造”；
+ 8. 电气机械及器材制造业；
+ 9. 计算机、通信和其他电子设备制造业；
+ 10. 皮革、毛皮、羽毛及其制品和制鞋业；
+ 11. 仓储业；
+ 12. 木材加工及木、竹、藤、棕、草制品业；
+ 13. 公路管理与养护（高速公路财产险）</code></pre></li>
+<li><p>报价流程：2101财产基本险、2102财产综合险、2104财产一切险、2309道路客运承运人责任险</p>
+<p><img src="/2020/06/26/Insurance/20200615155637.png" alt="广东十三行业平台-报价流程"></p>
+</li>
+<li><p>无报价流程：2310危险货物道路承运人责任险</p>
+<p><img src="/2020/06/26/Insurance/20200615155722.png" alt="广东十三行业平台-无报价流程"></p>
+</li>
+</ul>
+<h4 id="2、山东意健险平台"><a href="#2、山东意健险平台" class="headerlink" title="2、山东意健险平台"></a>2、山东意健险平台</h4><p><img src="/2020/06/26/Insurance/20200615160915.png" alt="山东意健险平台承保业务流程"></p>
+<p><img src="/2020/06/26/Insurance/20200615160936.png" alt="山东意健险平台保全业务流程"></p>
+<h4 id="3、四川意健险平台"><a href="#3、四川意健险平台" class="headerlink" title="3、四川意健险平台"></a>3、四川意健险平台</h4><p><img src="/2020/06/26/Insurance/20200615160949.png" alt="四川意健险投保流程"></p>
+<p><img src="/2020/06/26/Insurance/20200615161003.png" alt="四川意健险一般批改及退保流程"></p>
+]]></content>
+      <categories>
+        <category>保险</category>
+      </categories>
+      <tags>
+        <tag>work</tag>
       </tags>
   </entry>
   <entry>
@@ -97,9 +399,24 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
+        <tag>java</tag>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JVM</title>
+    <url>/2020/06/21/Java/JVM/</url>
+    <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>技术文档</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -196,24 +513,8 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JVM</title>
-    <url>/2020/06/21/Java/JVM/</url>
-    <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-<a id="more"></a>
-
-<p>#JVM</p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
         <tag>java</tag>
-        <tag>技术文档</tag>
       </tags>
   </entry>
   <entry>
@@ -503,8 +804,8 @@ System.out.println(sr.nextInt(<span class="number">100</span>));</code></pre>
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -878,8 +1179,8 @@ Class[] is = s.getInterfaces();
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -977,8 +1278,178 @@ Class[] is = s.getInterfaces();
         <category>java</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>技术文档</tag>
+        <tag>java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringMVC</title>
+    <url>/2020/06/22/Spring/SpringMVC/</url>
+    <content><![CDATA[<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><p>本文是我学习SpringMVC是的笔记，资源来自互联网。</p>
+<a id="more"></a>
+
+<h3 id="RequestMapping和-RequestParam"><a href="#RequestMapping和-RequestParam" class="headerlink" title="@RequestMapping和@RequestParam"></a>@RequestMapping和@RequestParam</h3><h4 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h4><ul>
+<li><p><strong>@RequestMapping</strong> 是 Spring Web 应用程序中最常被用到的注解之一。这个注解会将 HTTP 请求映射到 MVC 和 REST 控制器的处理方法上。</p>
+</li>
+<li><p>要配置 Web 请求的映射，就需要你用上 @RequestMapping 注解。 </p>
+</li>
+<li><p>@RequestMapping 注解可以在控制器类的级别和/或其中的方法的级别上使用。  在类的级别上的注解会将一个特定请求或者请求模式映射到一个控制器之上。之后你还可以另外添加方法级别的注解来进一步指定到处理方法的映射关系。 </p>
+</li>
+<li><p>你可以将多个请求映射到一个方法上去，只需要添加一个带有请求路径值列表的 @RequestMapping 注解就行了。 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123;  </span><br><span class="line">        <span class="string">""</span>,  </span><br><span class="line">        <span class="string">"/page"</span>,  </span><br><span class="line">        <span class="string">"page*"</span>,  </span><br><span class="line">        <span class="string">"view/*,**/msg"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">indexMultipleMapping</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from index multiple mapping."</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@RequestMapping 支持统配符以及ANT风格的路径。前面这段代码中，如下的这些 URL 都会由 indexMultipleMapping() 来处理： </p>
+<p>localhost:8080/home<br>localhost:8080/home/<br>localhost:8080/home/page<br>localhost:8080/home/pageabc<br>localhost:8080/home/view/<br>localhost:8080/home/view/view</p>
+</li>
+</ul>
+<h4 id="带有-RequestParam-的-RequestMapping"><a href="#带有-RequestParam-的-RequestMapping" class="headerlink" title="带有 @RequestParam 的 @RequestMapping"></a><strong>带有 @RequestParam 的 @RequestMapping</strong></h4><ul>
+<li><p>@RequestParam 注解配合 @RequestMapping 一起使用，可以将请求的参数同处理方法的参数绑定在一起。 </p>
+</li>
+<li><p>@RequestParam 注解使用的时候可以有一个值，也可以没有值。这个值指定了需要被映射到处理方法参数的请求参数, 代码如下所示： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/id"</span>)  </span><br><span class="line">    <span class="comment">//id 这个请求参数被映射到了 thegetIdByValue() 这个处理方法的参数 personId 上</span></span><br><span class="line">    <span class="function">String <span class="title">getIdByValue</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span> String personId) </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"ID is "</span> + personId);  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Get ID from query string of URL with value element"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/personId"</span>)  </span><br><span class="line">    <span class="comment">//如果请求参数和处理方法参数的名称一样的话，@RequestParam 注解的 value 这个参数就可省掉了</span></span><br><span class="line">    <span class="function">String <span class="title">getId</span><span class="params">(@RequestParam String personId)</span> </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"ID is "</span> + personId);  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Get ID from query string of URL without value element"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>@RequestParam 注解的 required 这个参数定义了参数值是否是必须要传的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/name"</span>)  </span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">(@RequestParam(value = <span class="string">"person"</span>, required = <span class="keyword">false</span>)</span> String personName) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Required element of request param"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，因为 required 被指定为 false，所以 getName() 处理方法对于如下两个 URL 都会进行处理： </p>
+<ul>
+<li>/home/name?person=xyz</li>
+<li>/home/name</li>
+</ul>
+</li>
+<li><p>@RequestParam 的 defaultValue 取值就是用来给取值为空的请求参数提供一个默认值的。 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/name"</span>)  </span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">(@RequestParam(value = <span class="string">"person"</span>, defaultValue = <span class="string">"John"</span>)</span> String personName) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Required element of request param"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，如果 person 这个请求参数为空，那么 getName() 处理方法就会接收 John 这个默认值作为其参数。 </p>
+</li>
+</ul>
+<h4 id="用-RequestMapping-处理-HTTP-的各种方法"><a href="#用-RequestMapping-处理-HTTP-的各种方法" class="headerlink" title="用 @RequestMapping 处理 HTTP 的各种方法"></a><strong>用 @RequestMapping 处理 HTTP 的各种方法</strong></h4><ul>
+<li><p>Spring MVC 的 @RequestMapping 注解能够处理 HTTP 请求的方法, 比如 GET, PUT, POST, DELETE 以及 PATCH。 </p>
+</li>
+<li><p>所有的请求默认都会是 HTTP GET 类型的。 </p>
+</li>
+<li><p>为了能将一个请求映射到一个特定的 HTTP 方法，你需要在 @RequestMapping 中使用 method 来声明 HTTP 请求所使用的方法类型。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.GET)  </span><br><span class="line">    <span class="function">String <span class="title">get</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from get"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.DELETE)  </span><br><span class="line">    <span class="function">String <span class="title">delete</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from delete"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.POST)  </span><br><span class="line">    <span class="function">String <span class="title">post</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from post"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.PUT)  </span><br><span class="line">    <span class="function">String <span class="title">put</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from put"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.PATCH)  </span><br><span class="line">    <span class="function">String <span class="title">patch</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from patch"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述这段代码中， @RequestMapping 注解中的 method 元素声明了 HTTP 请求的 HTTP 方法的类型。 </p>
+<p>所有的处理处理方法会处理从这同一个 URL( /home)进来的请求, 但要看指定的 HTTP 方法是什么来决定用哪个方法来处理。</p>
+</li>
+</ul>
+<h4 id="用-RequestMapping-来处理生产和消费对象"><a href="#用-RequestMapping-来处理生产和消费对象" class="headerlink" title="用 @RequestMapping 来处理生产和消费对象"></a><strong>用 @RequestMapping 来处理生产和消费对象</strong></h4><ul>
+<li><p>可以使用 @RequestMapping 注解的 produces 和 consumes 这两个元素来<strong>缩小请求映射类型的范围</strong>。 为了能用请求的媒体类型来产生对象, 你要用到 @RequestMapping 的 produces 元素再结合着 @ResponseBody 注解。 你也可以利用 @RequestMapping 的 comsumes 元素再结合着 @RequestBody 注解用请求的媒体类型来消费对象。 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/prod"</span>, produces = &#123;  </span><br><span class="line">        <span class="string">"application/JSON"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="meta">@ResponseBody</span>  </span><br><span class="line">    <span class="function">String <span class="title">getProduces</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Produces attribute"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/cons"</span>, consumes = &#123;  </span><br><span class="line">        <span class="string">"application/JSON"</span>,  </span><br><span class="line">        <span class="string">"application/XML"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">getConsumes</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Consumes attribute"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中， getProduces() 处理方法会产生一个 JSON 响应， getConsumes() 处理方法可以同时处理请求中的 JSON 和 XML 内容。 </p>
+</li>
+<li><p><strong>使用 @RequestMapping 来处理消息头。</strong> @RequestMapping 注解提供了一个 header 元素来根据请求中的消息头内容缩小请求映射的范围。 在可以指定 header 元素的值，用 myHeader = myValue 这样的格式： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/head"</span>, headers = &#123;  </span><br><span class="line">        <span class="string">"content-type=text/plain"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">post</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Mapping applied along with headers"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上面这段代码中， @RequestMapping 注解的 headers 属性将映射范围缩小到了 post() 方法。有了这个，post() 方法就只会处理到 /home/head 并且 content-typeheader 被指定为 text/plain 这个值的请求。</p>
+</li>
+<li><p>你也可以像下面这样指定多个消息头： </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/head"</span>, headers = &#123;  </span><br><span class="line">        <span class="string">"content-type=text/plain"</span>,  </span><br><span class="line">        <span class="string">"content-type=text/html"</span>  </span><br><span class="line">    &#125;) <span class="function">String <span class="title">post</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Mapping applied along with headers"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样， post() 方法就能同时接受 text/plain 还有 text/html 的请求了。 </p>
+</li>
+</ul>
+<h4 id="使用-RequestMapping-来处理请求参数"><a href="#使用-RequestMapping-来处理请求参数" class="headerlink" title="使用 @RequestMapping 来处理请求参数"></a><strong>使用 @RequestMapping 来处理请求参数</strong></h4><ul>
+<li><p>@RequestMapping 直接的 params 元素可以进一步帮助我们缩小请求映射的定位范围。使用 params 元素，你可以让多个处理方法处理到同一个URL 的请求, 而这些请求的参数是不一样的。 你可以用 myParams = myValue 这种格式来定义参数，也可以使用通配符来指定特定的参数值在请求中是不受支持的。 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/fetch"</span>, params = &#123;  </span><br><span class="line">        <span class="string">"personId=10"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">getParams</span><span class="params">(@RequestParam(<span class="string">"personId"</span>)</span> String id) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Fetched parameter using params attribute = "</span> + id;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/fetch"</span>, params = &#123;  </span><br><span class="line">        <span class="string">"personId=20"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">getParamsDifferent</span><span class="params">(@RequestParam(<span class="string">"personId"</span>)</span> String id) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Fetched parameter using params attribute = "</span> + id;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，getParams() 和 getParamsDifferent() 两个方法都能处理相同的一个 URL (/home/fetch) ，但是会根据 params 元素的配置不同而决定具体来执行哪一个方法。 </p>
+<p>例如，当 URL 是 /home/fetch?id=10 的时候, getParams() 会执行，因为 id 的值是10,。对于 localhost:8080/home/fetch?personId=20 这个URL, getParamsDifferent() 处理方法会得到执行，因为 id 值是 20。 </p>
+</li>
+</ul>
+<h4 id="使用-RequestMapping-处理动态-URI"><a href="#使用-RequestMapping-处理动态-URI" class="headerlink" title="使用 @RequestMapping 处理动态 URI"></a><strong>使用 @RequestMapping 处理动态 URI</strong></h4><ul>
+<li><p>@RequestMapping 注解可以同 @PathVaraible 注解一起使用，用来处理动态的 URI，URI 的值可以作为控制器中处理方法的参数。你也可以使用正则表达式来只处理可以匹配到正则表达式的动态 URI。 </p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/fetch/&#123;id&#125;"</span>, method = RequestMethod.GET)  </span><br><span class="line">    <span class="function">String <span class="title">getDynamicUriValue</span><span class="params">(@PathVariable String id)</span> </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"ID is "</span> + id);  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Dynamic URI parameter fetched"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/fetch/&#123;id:[a-z]+&#125;/&#123;name&#125;"</span>, method = RequestMethod.GET)  </span><br><span class="line">    <span class="function">String <span class="title">getDynamicUriValueRegex</span><span class="params">(@PathVariable(<span class="string">"name"</span>)</span> String name) </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"Name is "</span> + name);  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Dynamic URI parameter fetched using regex"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，方法 getDynamicUriValue() 会在发起到 localhost:8080/home/fetch/10 的请求时执行。这里 getDynamicUriValue() 方法 id 参数也会动态地被填充为 10 这个值。 方法 getDynamicUriValueRegex() 会在发起到 localhost:8080/home/fetch/category/shirt 的请求时执行。不过，如果发起的请求是 /home/fetch/10/shirt 的话，会抛出异常，因为这个URI并不能匹配正则表达式。 </p>
+</li>
+<li><p>@PathVariable 同 @RequestParam的运行方式不同。你使用 @PathVariable 是为了从 URI 里取到查询参数值。换言之，你使用 @RequestParam 是为了从 URI 模板中获取参数值。 </p>
+</li>
+</ul>
+<h4 id="RequestMapping-默认的处理方法"><a href="#RequestMapping-默认的处理方法" class="headerlink" title="@RequestMapping 默认的处理方法"></a><strong>@RequestMapping 默认的处理方法</strong></h4><ul>
+<li><p>在控制器类中，你可以有一个默认的处理方法，它可以在有一个向默认 URI 发起的请求时被执行。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>()  </span><br><span class="line">    String  </span><br><span class="line">    <span class="keyword">default</span> () &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"This is a default method for the class"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，向 /home 发起的一个请求将会由 default() 来处理，因为注解并没有指定任何值。</p>
+</li>
+</ul>
+<h4 id="RequestMapping-快捷方式"><a href="#RequestMapping-快捷方式" class="headerlink" title="@RequestMapping 快捷方式"></a><strong>@RequestMapping 快捷方式</strong></h4><ul>
+<li><p>Spring 4.3 引入了方法级注解的变体，也被叫做 @RequestMapping 的组合注解。组合注解可以更好的表达被注解方法的语义。它们所扮演的角色就是针对 @RequestMapping 的封装，而且成了定义端点的标准方法。 </p>
+<p>例如，@GetMapping 是一个组合注解，它所扮演的是 @RequestMapping(method =RequestMethod.GET) 的一个快捷方式。<br>方法级别的注解变体有如下几个： </p>
+<ul>
+<li>@GetMapping</li>
+<li>@PostMapping</li>
+<li>@PutMapping</li>
+<li>@DeleteMapping</li>
+<li>@PatchMapping</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; getPerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from GET"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/person/&#123;id&#125;"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; getPersonById(<span class="meta">@PathVariable</span> String id) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from GET with id "</span> + id, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; postPerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from POST method"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@PutMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; putPerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from PUT method"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@DeleteMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; deletePerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from DELETE method"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@PatchMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; patchPerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from PATCH method"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码中，每一个处理方法都使用 @RequestMapping 的组合变体进行了注解。尽管每个变体都可以使用带有方法属性的 @RequestMapping 注解来互换实现, 但组合变体仍然是一种最佳的实践 — 这主要是因为组合注解减少了在应用程序上要配置的元数据，并且代码也更易读。 </p>
+<h2 id="springMVC中的-ModelAndView"><a href="#springMVC中的-ModelAndView" class="headerlink" title="springMVC中的 ModelAndView"></a>springMVC中的 ModelAndView</h2><ul>
+<li><strong>ModelAndView构造方法可以指定返回的页面名称，也可以通过setViewName()方法跳转到指定的页面 ,</strong></li>
+<li>构造ModelAndView对象当控制器处理完请求时，通常会将包含视图名称或视图对象以及一些模型属性的ModelAndView对象返回到DispatcherServlet。因此，经常需要在控制器中构造ModelAndView对象。</li>
+<li>ModelAndView类提供了几个重载的构造器和一些方便的方法，让你可以根据自己的喜好来构造ModelAndView对象。这些构造器和方法以类似的方式支持视图名称和视图对象。</li>
+<li><strong>通过ModelAndView构造方法可以指定返回的页面名称，也可以通过setViewName()方法跳转到指定的页面 , 使用addObject()设置需要返回的值，addObject()有几个不同参数的方法，可以默认和指定返回对象的名字</strong>。</li>
+</ul>
+<h3 id="ModelAndView的构造方法"><a href="#ModelAndView的构造方法" class="headerlink" title="ModelAndView的构造方法"></a>ModelAndView的构造方法</h3><ul>
+<li><p>ModelAndView的第一种用法，先创建ModelAndView对象，再通过它的方法去设置数据与转发的视图名</p>
+<ul>
+<li>setViewName(String viewName)：‎设置此 ModelAndView 的视图名称, 由 DispatcherServlet 通过 ViewResolver 解析‎</li>
+<li>addObject(String attributeName, Object attributeValue)：通过key/value的方式绑定数据</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 利用ModelAndView来转发数据,给前端视图</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/m06"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m06</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        modelAndView.setViewName(<span class="string">"m06"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"message"</span>, <span class="string">"Hello World, Hello Kitty"</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>ModelAndView的第二种方法，可以直接通过带有参数的构造方法 ModelAndView(String viewName, String attributeName, Object attributeValue) 来返回数据与转发的视图名</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// 利用ModelAndView来转发数据,给前端视图</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/m07"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m07</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"m07"</span>, <span class="string">"message"</span>, <span class="string">"Hello World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>ModelAndView的第三种用法，设置重定向</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ModelAndView默认转发</span></span><br><span class="line">    <span class="comment">// ModelAndView还是可以设置重定向</span></span><br><span class="line">    <span class="comment">// 1. 重定向另一个控制器</span></span><br><span class="line">    <span class="comment">// 2. 重定向具体的jsp页面</span></span><br><span class="line">    <span class="comment">// @param name</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/&#123;name&#125;/m07"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m07</span><span class="params">(@PathVariable String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="string">"admin"</span>.equals(name)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:/m07.jsp"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"m07"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ModelAndView使用实例"><a href="#ModelAndView使用实例" class="headerlink" title="ModelAndView使用实例"></a>ModelAndView使用实例</h3></li>
+<li><p>要点：</p>
+</li>
+</ul>
+<ol>
+<li><p>@RequestMapping 注解的使用</p>
+</li>
+<li><p>modelandview 的使用</p>
+</li>
+<li><p>jsp页面request作用域的取值</p>
+</li>
+<li><p>视图解析器配置</p>
+</li>
+</ol>
+ <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ModelAndView 使用代码</span></span><br><span class="line"><span class="keyword">package</span> com.dgr.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"mvc"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRequestMMapping</span> </span>&#123;</span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/testModelAndView"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">testModelAndView</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ModelAndView mav = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mav.setViewName(<span class="string">"hello"</span>);<span class="comment">//跳转新的页面名称</span></span><br><span class="line">        mav.addObject(<span class="string">"address"</span>, <span class="string">"中国广东省广州市"</span>);<span class="comment">//传入request作用域参数</span></span><br><span class="line">        <span class="keyword">return</span> mav;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p> 跳转前jsp页面链接设置</p>
+ <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;a href="mvc/testModelAndView"&gt;Test ModelAndView&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p> 跳转后jsp页面以及request作用于取值</p>
+ <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;h1&gt;ModelAndView 跳转&lt;/h1&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    $&#123;requestScope.address&#125;   </span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    $&#123;address &#125;    </span><br><span class="line">    &lt;br&gt;	</span><br><span class="line">    </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>视图解析器配置</p>
+<p><img src="/2020/06/22/Spring/SpringMVC/20180817135644542" alt="img"></p>
+<p><img src="/2020/06/22/Spring/SpringMVC/20180817135701102" alt="img"></p>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>技术文档</tag>
+        <tag>Spring</tag>
       </tags>
   </entry>
   <entry>
@@ -1405,179 +1876,9 @@ Class[] is = s.getInterfaces();
         <category>JavaWeb</category>
       </categories>
       <tags>
+        <tag>技术文档</tag>
         <tag>java</tag>
-        <tag>技术文档</tag>
         <tag>后端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>SpringMVC</title>
-    <url>/2020/06/22/Spring/SpringMVC/</url>
-    <content><![CDATA[<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><p>本文是我学习SpringMVC是的笔记，资源来自互联网。</p>
-<a id="more"></a>
-
-<h3 id="RequestMapping和-RequestParam"><a href="#RequestMapping和-RequestParam" class="headerlink" title="@RequestMapping和@RequestParam"></a>@RequestMapping和@RequestParam</h3><h4 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h4><ul>
-<li><p><strong>@RequestMapping</strong> 是 Spring Web 应用程序中最常被用到的注解之一。这个注解会将 HTTP 请求映射到 MVC 和 REST 控制器的处理方法上。</p>
-</li>
-<li><p>要配置 Web 请求的映射，就需要你用上 @RequestMapping 注解。 </p>
-</li>
-<li><p>@RequestMapping 注解可以在控制器类的级别和/或其中的方法的级别上使用。  在类的级别上的注解会将一个特定请求或者请求模式映射到一个控制器之上。之后你还可以另外添加方法级别的注解来进一步指定到处理方法的映射关系。 </p>
-</li>
-<li><p>你可以将多个请求映射到一个方法上去，只需要添加一个带有请求路径值列表的 @RequestMapping 注解就行了。 </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = &#123;  </span><br><span class="line">        <span class="string">""</span>,  </span><br><span class="line">        <span class="string">"/page"</span>,  </span><br><span class="line">        <span class="string">"page*"</span>,  </span><br><span class="line">        <span class="string">"view/*,**/msg"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">indexMultipleMapping</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from index multiple mapping."</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>@RequestMapping 支持统配符以及ANT风格的路径。前面这段代码中，如下的这些 URL 都会由 indexMultipleMapping() 来处理： </p>
-<p>localhost:8080/home<br>localhost:8080/home/<br>localhost:8080/home/page<br>localhost:8080/home/pageabc<br>localhost:8080/home/view/<br>localhost:8080/home/view/view</p>
-</li>
-</ul>
-<h4 id="带有-RequestParam-的-RequestMapping"><a href="#带有-RequestParam-的-RequestMapping" class="headerlink" title="带有 @RequestParam 的 @RequestMapping"></a><strong>带有 @RequestParam 的 @RequestMapping</strong></h4><ul>
-<li><p>@RequestParam 注解配合 @RequestMapping 一起使用，可以将请求的参数同处理方法的参数绑定在一起。 </p>
-</li>
-<li><p>@RequestParam 注解使用的时候可以有一个值，也可以没有值。这个值指定了需要被映射到处理方法参数的请求参数, 代码如下所示： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/id"</span>)  </span><br><span class="line">    <span class="comment">//id 这个请求参数被映射到了 thegetIdByValue() 这个处理方法的参数 personId 上</span></span><br><span class="line">    <span class="function">String <span class="title">getIdByValue</span><span class="params">(@RequestParam(<span class="string">"id"</span>)</span> String personId) </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"ID is "</span> + personId);  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Get ID from query string of URL with value element"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/personId"</span>)  </span><br><span class="line">    <span class="comment">//如果请求参数和处理方法参数的名称一样的话，@RequestParam 注解的 value 这个参数就可省掉了</span></span><br><span class="line">    <span class="function">String <span class="title">getId</span><span class="params">(@RequestParam String personId)</span> </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"ID is "</span> + personId);  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Get ID from query string of URL without value element"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>@RequestParam 注解的 required 这个参数定义了参数值是否是必须要传的。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/name"</span>)  </span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">(@RequestParam(value = <span class="string">"person"</span>, required = <span class="keyword">false</span>)</span> String personName) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Required element of request param"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这段代码中，因为 required 被指定为 false，所以 getName() 处理方法对于如下两个 URL 都会进行处理： </p>
-<ul>
-<li>/home/name?person=xyz</li>
-<li>/home/name</li>
-</ul>
-</li>
-<li><p>@RequestParam 的 defaultValue 取值就是用来给取值为空的请求参数提供一个默认值的。 </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/name"</span>)  </span><br><span class="line">    <span class="function">String <span class="title">getName</span><span class="params">(@RequestParam(value = <span class="string">"person"</span>, defaultValue = <span class="string">"John"</span>)</span> String personName) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Required element of request param"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这段代码中，如果 person 这个请求参数为空，那么 getName() 处理方法就会接收 John 这个默认值作为其参数。 </p>
-</li>
-</ul>
-<h4 id="用-RequestMapping-处理-HTTP-的各种方法"><a href="#用-RequestMapping-处理-HTTP-的各种方法" class="headerlink" title="用 @RequestMapping 处理 HTTP 的各种方法"></a><strong>用 @RequestMapping 处理 HTTP 的各种方法</strong></h4><ul>
-<li><p>Spring MVC 的 @RequestMapping 注解能够处理 HTTP 请求的方法, 比如 GET, PUT, POST, DELETE 以及 PATCH。 </p>
-</li>
-<li><p>所有的请求默认都会是 HTTP GET 类型的。 </p>
-</li>
-<li><p>为了能将一个请求映射到一个特定的 HTTP 方法，你需要在 @RequestMapping 中使用 method 来声明 HTTP 请求所使用的方法类型。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.GET)  </span><br><span class="line">    <span class="function">String <span class="title">get</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from get"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.DELETE)  </span><br><span class="line">    <span class="function">String <span class="title">delete</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from delete"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.POST)  </span><br><span class="line">    <span class="function">String <span class="title">post</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from post"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.PUT)  </span><br><span class="line">    <span class="function">String <span class="title">put</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from put"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.PATCH)  </span><br><span class="line">    <span class="function">String <span class="title">patch</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello from patch"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上述这段代码中， @RequestMapping 注解中的 method 元素声明了 HTTP 请求的 HTTP 方法的类型。 </p>
-<p>所有的处理处理方法会处理从这同一个 URL( /home)进来的请求, 但要看指定的 HTTP 方法是什么来决定用哪个方法来处理。</p>
-</li>
-</ul>
-<h4 id="用-RequestMapping-来处理生产和消费对象"><a href="#用-RequestMapping-来处理生产和消费对象" class="headerlink" title="用 @RequestMapping 来处理生产和消费对象"></a><strong>用 @RequestMapping 来处理生产和消费对象</strong></h4><ul>
-<li><p>可以使用 @RequestMapping 注解的 produces 和 consumes 这两个元素来<strong>缩小请求映射类型的范围</strong>。 为了能用请求的媒体类型来产生对象, 你要用到 @RequestMapping 的 produces 元素再结合着 @ResponseBody 注解。 你也可以利用 @RequestMapping 的 comsumes 元素再结合着 @RequestBody 注解用请求的媒体类型来消费对象。 </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/prod"</span>, produces = &#123;  </span><br><span class="line">        <span class="string">"application/JSON"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="meta">@ResponseBody</span>  </span><br><span class="line">    <span class="function">String <span class="title">getProduces</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Produces attribute"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/cons"</span>, consumes = &#123;  </span><br><span class="line">        <span class="string">"application/JSON"</span>,  </span><br><span class="line">        <span class="string">"application/XML"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">getConsumes</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Consumes attribute"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这段代码中， getProduces() 处理方法会产生一个 JSON 响应， getConsumes() 处理方法可以同时处理请求中的 JSON 和 XML 内容。 </p>
-</li>
-<li><p><strong>使用 @RequestMapping 来处理消息头。</strong> @RequestMapping 注解提供了一个 header 元素来根据请求中的消息头内容缩小请求映射的范围。 在可以指定 header 元素的值，用 myHeader = myValue 这样的格式： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/head"</span>, headers = &#123;  </span><br><span class="line">        <span class="string">"content-type=text/plain"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">post</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Mapping applied along with headers"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在上面这段代码中， @RequestMapping 注解的 headers 属性将映射范围缩小到了 post() 方法。有了这个，post() 方法就只会处理到 /home/head 并且 content-typeheader 被指定为 text/plain 这个值的请求。</p>
-</li>
-<li><p>你也可以像下面这样指定多个消息头： </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/head"</span>, headers = &#123;  </span><br><span class="line">        <span class="string">"content-type=text/plain"</span>,  </span><br><span class="line">        <span class="string">"content-type=text/html"</span>  </span><br><span class="line">    &#125;) <span class="function">String <span class="title">post</span><span class="params">()</span> </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Mapping applied along with headers"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这样， post() 方法就能同时接受 text/plain 还有 text/html 的请求了。 </p>
-</li>
-</ul>
-<h4 id="使用-RequestMapping-来处理请求参数"><a href="#使用-RequestMapping-来处理请求参数" class="headerlink" title="使用 @RequestMapping 来处理请求参数"></a><strong>使用 @RequestMapping 来处理请求参数</strong></h4><ul>
-<li><p>@RequestMapping 直接的 params 元素可以进一步帮助我们缩小请求映射的定位范围。使用 params 元素，你可以让多个处理方法处理到同一个URL 的请求, 而这些请求的参数是不一样的。 你可以用 myParams = myValue 这种格式来定义参数，也可以使用通配符来指定特定的参数值在请求中是不受支持的。 </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/fetch"</span>, params = &#123;  </span><br><span class="line">        <span class="string">"personId=10"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">getParams</span><span class="params">(@RequestParam(<span class="string">"personId"</span>)</span> String id) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Fetched parameter using params attribute = "</span> + id;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/fetch"</span>, params = &#123;  </span><br><span class="line">        <span class="string">"personId=20"</span>  </span><br><span class="line">    &#125;)  </span><br><span class="line">    <span class="function">String <span class="title">getParamsDifferent</span><span class="params">(@RequestParam(<span class="string">"personId"</span>)</span> String id) </span>&#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Fetched parameter using params attribute = "</span> + id;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这段代码中，getParams() 和 getParamsDifferent() 两个方法都能处理相同的一个 URL (/home/fetch) ，但是会根据 params 元素的配置不同而决定具体来执行哪一个方法。 </p>
-<p>例如，当 URL 是 /home/fetch?id=10 的时候, getParams() 会执行，因为 id 的值是10,。对于 localhost:8080/home/fetch?personId=20 这个URL, getParamsDifferent() 处理方法会得到执行，因为 id 值是 20。 </p>
-</li>
-</ul>
-<h4 id="使用-RequestMapping-处理动态-URI"><a href="#使用-RequestMapping-处理动态-URI" class="headerlink" title="使用 @RequestMapping 处理动态 URI"></a><strong>使用 @RequestMapping 处理动态 URI</strong></h4><ul>
-<li><p>@RequestMapping 注解可以同 @PathVaraible 注解一起使用，用来处理动态的 URI，URI 的值可以作为控制器中处理方法的参数。你也可以使用正则表达式来只处理可以匹配到正则表达式的动态 URI。 </p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/fetch/&#123;id&#125;"</span>, method = RequestMethod.GET)  </span><br><span class="line">    <span class="function">String <span class="title">getDynamicUriValue</span><span class="params">(@PathVariable String id)</span> </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"ID is "</span> + id);  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Dynamic URI parameter fetched"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/fetch/&#123;id:[a-z]+&#125;/&#123;name&#125;"</span>, method = RequestMethod.GET)  </span><br><span class="line">    <span class="function">String <span class="title">getDynamicUriValueRegex</span><span class="params">(@PathVariable(<span class="string">"name"</span>)</span> String name) </span>&#123;  </span><br><span class="line">        System.out.println(<span class="string">"Name is "</span> + name);  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Dynamic URI parameter fetched using regex"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这段代码中，方法 getDynamicUriValue() 会在发起到 localhost:8080/home/fetch/10 的请求时执行。这里 getDynamicUriValue() 方法 id 参数也会动态地被填充为 10 这个值。 方法 getDynamicUriValueRegex() 会在发起到 localhost:8080/home/fetch/category/shirt 的请求时执行。不过，如果发起的请求是 /home/fetch/10/shirt 的话，会抛出异常，因为这个URI并不能匹配正则表达式。 </p>
-</li>
-<li><p>@PathVariable 同 @RequestParam的运行方式不同。你使用 @PathVariable 是为了从 URI 里取到查询参数值。换言之，你使用 @RequestParam 是为了从 URI 模板中获取参数值。 </p>
-</li>
-</ul>
-<h4 id="RequestMapping-默认的处理方法"><a href="#RequestMapping-默认的处理方法" class="headerlink" title="@RequestMapping 默认的处理方法"></a><strong>@RequestMapping 默认的处理方法</strong></h4><ul>
-<li><p>在控制器类中，你可以有一个默认的处理方法，它可以在有一个向默认 URI 发起的请求时被执行。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@RequestMapping</span>()  </span><br><span class="line">    String  </span><br><span class="line">    <span class="keyword">default</span> () &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="string">"This is a default method for the class"</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这段代码中，向 /home 发起的一个请求将会由 default() 来处理，因为注解并没有指定任何值。</p>
-</li>
-</ul>
-<h4 id="RequestMapping-快捷方式"><a href="#RequestMapping-快捷方式" class="headerlink" title="@RequestMapping 快捷方式"></a><strong>@RequestMapping 快捷方式</strong></h4><ul>
-<li><p>Spring 4.3 引入了方法级注解的变体，也被叫做 @RequestMapping 的组合注解。组合注解可以更好的表达被注解方法的语义。它们所扮演的角色就是针对 @RequestMapping 的封装，而且成了定义端点的标准方法。 </p>
-<p>例如，@GetMapping 是一个组合注解，它所扮演的是 @RequestMapping(method =RequestMethod.GET) 的一个快捷方式。<br>方法级别的注解变体有如下几个： </p>
-<ul>
-<li>@GetMapping</li>
-<li>@PostMapping</li>
-<li>@PutMapping</li>
-<li>@DeleteMapping</li>
-<li>@PatchMapping</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span>  </span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/home"</span>)  </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IndexController</span> </span>&#123;  </span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; getPerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from GET"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/person/&#123;id&#125;"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; getPersonById(<span class="meta">@PathVariable</span> String id) &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from GET with id "</span> + id, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@PostMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; postPerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from POST method"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@PutMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; putPerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from PUT method"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@DeleteMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; deletePerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from DELETE method"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="meta">@PatchMapping</span>(<span class="string">"/person"</span>)  </span><br><span class="line">    <span class="keyword">public</span> <span class="meta">@ResponseBody</span> ResponseEntity &lt; String &gt; patchPerson() &#123;  </span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity &lt; String &gt; (<span class="string">"Response from PATCH method"</span>, HttpStatus.OK);  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>在这段代码中，每一个处理方法都使用 @RequestMapping 的组合变体进行了注解。尽管每个变体都可以使用带有方法属性的 @RequestMapping 注解来互换实现, 但组合变体仍然是一种最佳的实践 — 这主要是因为组合注解减少了在应用程序上要配置的元数据，并且代码也更易读。 </p>
-<h2 id="springMVC中的-ModelAndView"><a href="#springMVC中的-ModelAndView" class="headerlink" title="springMVC中的 ModelAndView"></a>springMVC中的 ModelAndView</h2><ul>
-<li><strong>ModelAndView构造方法可以指定返回的页面名称，也可以通过setViewName()方法跳转到指定的页面 ,</strong></li>
-<li>构造ModelAndView对象当控制器处理完请求时，通常会将包含视图名称或视图对象以及一些模型属性的ModelAndView对象返回到DispatcherServlet。因此，经常需要在控制器中构造ModelAndView对象。</li>
-<li>ModelAndView类提供了几个重载的构造器和一些方便的方法，让你可以根据自己的喜好来构造ModelAndView对象。这些构造器和方法以类似的方式支持视图名称和视图对象。</li>
-<li><strong>通过ModelAndView构造方法可以指定返回的页面名称，也可以通过setViewName()方法跳转到指定的页面 , 使用addObject()设置需要返回的值，addObject()有几个不同参数的方法，可以默认和指定返回对象的名字</strong>。</li>
-</ul>
-<h3 id="ModelAndView的构造方法"><a href="#ModelAndView的构造方法" class="headerlink" title="ModelAndView的构造方法"></a>ModelAndView的构造方法</h3><ul>
-<li><p>ModelAndView的第一种用法，先创建ModelAndView对象，再通过它的方法去设置数据与转发的视图名</p>
-<ul>
-<li>setViewName(String viewName)：‎设置此 ModelAndView 的视图名称, 由 DispatcherServlet 通过 ViewResolver 解析‎</li>
-<li>addObject(String attributeName, Object attributeValue)：通过key/value的方式绑定数据</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 利用ModelAndView来转发数据,给前端视图</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/m06"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m06</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        modelAndView.setViewName(<span class="string">"m06"</span>);</span><br><span class="line">        modelAndView.addObject(<span class="string">"message"</span>, <span class="string">"Hello World, Hello Kitty"</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ModelAndView的第二种方法，可以直接通过带有参数的构造方法 ModelAndView(String viewName, String attributeName, Object attributeValue) 来返回数据与转发的视图名</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// 利用ModelAndView来转发数据,给前端视图</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/m07"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m07</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"m07"</span>, <span class="string">"message"</span>, <span class="string">"Hello World"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>ModelAndView的第三种用法，设置重定向</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// SpringMVC的控制器(业务控制器)</span></span><br><span class="line"><span class="comment">// 定义的方法就是一个请求处理的方法</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/user"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ModelAndView默认转发</span></span><br><span class="line">    <span class="comment">// ModelAndView还是可以设置重定向</span></span><br><span class="line">    <span class="comment">// 1. 重定向另一个控制器</span></span><br><span class="line">    <span class="comment">// 2. 重定向具体的jsp页面</span></span><br><span class="line">    <span class="comment">// @param name</span></span><br><span class="line">    <span class="comment">// @return</span></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/&#123;name&#125;/m07"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">m07</span><span class="params">(@PathVariable String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="string">"admin"</span>.equals(name)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"redirect:/m07.jsp"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ModelAndView(<span class="string">"m07"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="ModelAndView使用实例"><a href="#ModelAndView使用实例" class="headerlink" title="ModelAndView使用实例"></a>ModelAndView使用实例</h3></li>
-<li><p>要点：</p>
-</li>
-</ul>
-<ol>
-<li><p>@RequestMapping 注解的使用</p>
-</li>
-<li><p>modelandview 的使用</p>
-</li>
-<li><p>jsp页面request作用域的取值</p>
-</li>
-<li><p>视图解析器配置</p>
-</li>
-</ol>
- <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// ModelAndView 使用代码</span></span><br><span class="line"><span class="keyword">package</span> com.dgr.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.ModelAndView;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"mvc"</span>)</span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestRequestMMapping</span> </span>&#123;</span><br><span class="line"><span class="meta">@RequestMapping</span>(value=<span class="string">"/testModelAndView"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">testModelAndView</span><span class="params">()</span></span>&#123;</span><br><span class="line">        ModelAndView mav = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        mav.setViewName(<span class="string">"hello"</span>);<span class="comment">//跳转新的页面名称</span></span><br><span class="line">        mav.addObject(<span class="string">"address"</span>, <span class="string">"中国广东省广州市"</span>);<span class="comment">//传入request作用域参数</span></span><br><span class="line">        <span class="keyword">return</span> mav;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p> 跳转前jsp页面链接设置</p>
- <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;a href="mvc/testModelAndView"&gt;Test ModelAndView&lt;/a&gt;</span><br></pre></td></tr></table></figure>
-
-<p> 跳转后jsp页面以及request作用于取值</p>
- <figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;h1&gt;ModelAndView 跳转&lt;/h1&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    $&#123;requestScope.address&#125;   </span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    $&#123;address &#125;    </span><br><span class="line">    &lt;br&gt;	</span><br><span class="line">    </span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
-
-<p>视图解析器配置</p>
-<p><img src="/2020/06/22/Spring/SpringMVC/20180817135644542" alt="img"></p>
-<p><img src="/2020/06/22/Spring/SpringMVC/20180817135701102" alt="img"></p>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>技术文档</tag>
-        <tag>Spring</tag>
       </tags>
   </entry>
 </search>
