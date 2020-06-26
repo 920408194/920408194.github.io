@@ -8,10 +8,10 @@ tags:
 - 技术文档
 ---
 
-# SpringMVC
-
 本文是我学习SpringMVC是的笔记，资源来自互联网。
 <!-- more -->
+
+# SpringMVC 
 
 ### @RequestMapping和@RequestParam
 
