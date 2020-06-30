@@ -87,7 +87,7 @@
 <meta property="og:description" content="本文是我学习Java泛型时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-29T11:54:00.000Z">
-<meta property="article:modified_time" content="2020-06-30T03:11:49.771Z">
+<meta property="article:modified_time" content="2020-06-30T03:34:06.737Z">
 <meta property="article:author" content="panda">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="技术文档">
@@ -426,7 +426,10 @@
 <li><p>如果我们确实需要编写一个泛型类，可以按照以下步骤来编写一个泛型类。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 首先，按照某种类型，例如：String，来编写类：</span></span><br><span class="line"><span class="comment">//2. 然后，标记所有的特定类型，这里是String：</span></span><br><span class="line"><span class="comment">//3. 最后，把特定类型String替换为T，并申明&lt;T&gt;：</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T first;</span><br><span class="line">    <span class="keyword">private</span> T last;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">(T first, T last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first = first;</span><br><span class="line">        <span class="keyword">this</span>.last = last;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> last;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>编写泛型类时，要特别注意，泛型类型<code>&lt;T&gt;</code>不能用于静态方法。</p>
+<li><p>编写泛型类时，要特别注意，泛型类型<code>&lt;T&gt;</code>不能用于静态方法。对于静态方法，我们可以单独改写为“泛型”方法，只需要使用另一个类型即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K&gt; <span class="function">Pair&lt;K&gt; <span class="title">create</span><span class="params">(K first, K last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Pair&lt;K&gt;(first, last);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java语言的泛型实现方式是擦拭法（Type Erasure）。Java语言的泛型实现方式是擦拭法（Type Erasure）。</p>
 </li>
 </ul>
 
