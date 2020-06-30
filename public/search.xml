@@ -358,6 +358,95 @@
       </tags>
   </entry>
   <entry>
+    <title>JVM</title>
+    <url>/2020/06/21/Java/JVM/</url>
+    <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaGenerics</title>
+    <url>/2020/06/29/Java/JavaGenerics/</url>
+    <content><![CDATA[<p>本文是我学习Java泛型时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="java泛型"><a href="#java泛型" class="headerlink" title="java泛型"></a>java泛型</h1><h2 id="1、什么是泛型"><a href="#1、什么是泛型" class="headerlink" title="1、什么是泛型"></a>1、什么是泛型</h2><ul>
+<li><p>在了解什么是泛型之前，我们先观察Java标准库提供的<code>ArrayList</code>，它可以看作“可变长度”的数组，因为用起来比数组更方便。实际上<code>ArrayList</code>内部就是一个<code>Object[]</code>数组，配合存储一个当前分配的长度，就可以充当“可变数组”：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Object e)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果用上述<code>ArrayList</code>存储<code>String</code>类型，会有这么几个缺点：</p>
+<ul>
+<li><p>需要强制转型；</p>
+</li>
+<li><p>不方便，易出错。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">list.add(<span class="keyword">new</span> Integer(<span class="number">123</span>));</span><br><span class="line"><span class="comment">// ERROR: ClassCastException:</span></span><br><span class="line">String second = (String) list.get(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>为了解决上述问题，我们可以把<code>ArrayList</code>变成一种模板：<code>ArrayList&lt;T&gt;</code>，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T e)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>T</code>可以是任何class。这样一来，我们就实现了：编写一次模版，可以创建任意类型的<code>ArrayList</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建可以存储String的ArrayList:</span></span><br><span class="line">ArrayList&lt;String&gt; strList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="comment">// 创建可以存储Float的ArrayList:</span></span><br><span class="line">ArrayList&lt;Float&gt; floatList = <span class="keyword">new</span> ArrayList&lt;Float&gt;();</span><br><span class="line"><span class="comment">// 创建可以存储Person的ArrayList:</span></span><br><span class="line">ArrayList&lt;Person&gt; personList = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>这就是泛型。</p>
+</li>
+<li><p>在Java标准库中的<code>ArrayList&lt;T&gt;</code>实现了<code>List&lt;T&gt;</code>接口，它可以向上转型为<code>List&lt;T&gt;</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>即类型<code>ArrayList&lt;T&gt;</code>可以向上转型为<code>List&lt;T&gt;</code>。</p>
+<ul>
+<li><p>要<em>特别注意</em>：不能把<code>ArrayList&lt;Integer&gt;</code>向上转型为<code>ArrayList&lt;Number&gt;</code>或<code>List&lt;Number&gt;</code>。这是为什么呢？假设<code>ArrayList&lt;Integer&gt;</code>可以向上转型为<code>ArrayList&lt;Number&gt;</code>，观察一下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建ArrayList&lt;Integer&gt;类型：</span></span><br><span class="line">ArrayList&lt;Integer&gt; integerList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"><span class="comment">// 添加一个Integer：</span></span><br><span class="line">integerList.add(<span class="keyword">new</span> Integer(<span class="number">123</span>));</span><br><span class="line"><span class="comment">// “向上转型”为ArrayList&lt;Number&gt;：</span></span><br><span class="line">ArrayList&lt;Number&gt; numberList = integerList;</span><br><span class="line"><span class="comment">// 添加一个Float，因为Float也是Number：</span></span><br><span class="line">numberList.add(<span class="keyword">new</span> Float(<span class="number">12.34</span>));</span><br><span class="line"><span class="comment">// 从ArrayList&lt;Integer&gt;获取索引为1的元素（即添加的Float）：</span></span><br><span class="line">Integer n = integerList.get(<span class="number">1</span>); <span class="comment">// ClassCastException!</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们把一个<code>ArrayList&lt;Integer&gt;</code>转型为<code>ArrayList&lt;Number&gt;</code>类型后，这个<code>ArrayList&lt;Number&gt;</code>就可以接受<code>Float</code>类型，因为<code>Float</code>是<code>Number</code>的子类。但是，<code>ArrayList&lt;Number&gt;</code>实际上和<code>ArrayList&lt;Integer&gt;</code>是同一个对象，也就是<code>ArrayList&lt;Integer&gt;</code>类型，它不可能接受<code>Float</code>类型， 所以在获取<code>Integer</code>的时候将产生<code>ClassCastException</code>。</p>
+</li>
+<li><p>实际上，编译器为了避免这种错误，根本就不允许把<code>ArrayList&lt;Integer&gt;</code>转型为<code>ArrayList&lt;Number&gt;</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、使用泛型"><a href="#2、使用泛型" class="headerlink" title="2、使用泛型"></a>2、使用泛型</h2><ul>
+<li><p>使用<code>ArrayList</code>时，如果不定义泛型类型时，泛型类型实际上就是<code>Object</code>。此时，只能把<code>&lt;T&gt;</code>当作<code>Object</code>使用，没有发挥泛型的优势。</p>
+</li>
+<li><p>除了<code>ArrayList&lt;T&gt;</code>使用了泛型，还可以在接口中使用泛型。例如，<code>Arrays.sort(Object[])</code>可以对任意数组进行排序，但待排序的元素必须实现<code>Comparable&lt;T&gt;</code>这个泛型接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回-1: 当前实例比参数o小</span></span><br><span class="line"><span class="comment">     * 返回0: 当前实例与参数o相等</span></span><br><span class="line"><span class="comment">     * 返回1: 当前实例比参数o大</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(T o)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sort</span></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String[] ss = <span class="keyword">new</span> String[] &#123; <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Pear"</span> &#125;;</span><br><span class="line">        Arrays.sort(ss);</span><br><span class="line">        System.out.println(Arrays.toString(ss));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是因为<code>String</code>本身已经实现了<code>Comparable&lt;String&gt;</code>接口。如果换成我们自定义的<code>Person</code>类型试试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// sort</span></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person[] ps = <span class="keyword">new</span> Person[] &#123;</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Bob"</span>, <span class="number">61</span>),</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Alice"</span>, <span class="number">88</span>),</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Lily"</span>, <span class="number">75</span>),</span><br><span class="line">        &#125;;</span><br><span class="line">        Arrays.sort(ps);</span><br><span class="line">        System.out.println(Arrays.toString(ps));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    Person(String name, <span class="keyword">int</span> score) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name.compareTo(other.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">","</span> + <span class="keyword">this</span>.score;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就需要先实现<code>Comparable&lt;T&gt;</code>接口。</p>
+</li>
+<li><p><strong>注意：</strong> compareTo方法 参数可以是一个 Byte, Double, Integer, Float, Long 或 Short 类型的参数。</p>
+</li>
+</ul>
+<h2 id="3、编写泛型"><a href="#3、编写泛型" class="headerlink" title="3、编写泛型"></a>3、编写泛型</h2><ul>
+<li><p>一般来说，我们很少需要编写泛型类。</p>
+</li>
+<li><p>如果我们确实需要编写一个泛型类，可以按照以下步骤来编写一个泛型类。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1. 首先，按照某种类型，例如：String，来编写类：</span></span><br><span class="line"><span class="comment">//2. 然后，标记所有的特定类型，这里是String：</span></span><br><span class="line"><span class="comment">//3. 最后，把特定类型String替换为T，并申明&lt;T&gt;：</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T first;</span><br><span class="line">    <span class="keyword">private</span> T last;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">(T first, T last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first = first;</span><br><span class="line">        <span class="keyword">this</span>.last = last;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> last;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写泛型类时，要特别注意，泛型类型<code>&lt;T&gt;</code>不能用于静态方法。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaException</title>
     <url>/2020/06/21/Java/JavaException/</url>
     <content><![CDATA[<p>本文是我学习Java异常处理时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
@@ -456,21 +545,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JVM</title>
-    <url>/2020/06/21/Java/JVM/</url>
-    <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-<a id="more"></a>
-
-<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaMaven</title>
     <url>/2020/06/21/Java/JavaMaven/</url>
     <content><![CDATA[<p>本文是我学习Java面向对象编程时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
@@ -515,6 +589,381 @@
         <tag>java</tag>
         <tag>技术文档</tag>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaR&amp;amp;A</title>
+    <url>/2020/06/21/Java/JavaR&amp;A/</url>
+    <content><![CDATA[<p>本文是我学习Java反射和注解时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h2 id="1、反射"><a href="#1、反射" class="headerlink" title="1、反射"></a>1、反射</h2><ul>
+<li><p>动态语言和讲台语言</p>
+<ul>
+<li>动态语言是一类在运行时可以改变其结构的语言:例如新的函数、对象、甚至代码可以被引进，已有的 函数可以被删除或是其他结构上的变化。通俗点说就是在运行时代码可以根据某些条件改变自 身结构。主要动态语言:Object-C、C#、JavaScript、PHP、Python等。</li>
+<li>静态语言与动态语言相对应的，运行时结构不可变的语言就是静态语言。如Java、C、C++。 Java不是动态语言，但Java可以称之为“准动态语言”。即Java有一定的动态性，我们可以利用 反射机制获得类似动态语言的特性。Java的动态性让编程的时候更加灵活!</li>
+</ul>
+</li>
+<li><p>Reflection(反射)是Java被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取</p>
+<p>得任何类的内部信息，并能直接操作任意对象的内部属性及方法。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class c=Class.forName(<span class="string">"java.lang.String"</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Java<strong>反射机制提供的功能</strong></p>
+<ul>
+<li>在运行时构造任意一个类的对象 </li>
+<li>在运行时判断任意一个类所具有的成员变量和方法 </li>
+<li>在运行时获取泛型信息 </li>
+<li>在运行时调用任意一个对象的成员变量和方法 </li>
+<li>在运行时处理注解</li>
+<li>生成动态代理</li>
+</ul>
+</li>
+<li><p>Java<strong>反射优点和缺点</strong></p>
+<ul>
+<li><p>优点:可以实现动态创建对象和编译，体现出很大的灵活性 !</p>
+</li>
+<li><p>缺点:对性能有影响。使用反射基本上是一种解释操作，我们可以告诉JVM，我们希望做什么并且它满 足我们的要求。这类操作总是慢于 直接执行相同的操作。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、Class实例"><a href="#2、Class实例" class="headerlink" title="2、Class实例"></a>2、Class实例</h2><ul>
+<li><p><code>class</code>是由<strong>JVM</strong>在执行过程中动态加载的。<strong>JVM</strong>在第一次读取到一种<code>class</code>类型时，将其加载进内存。每加载一种<code>class</code>，<strong>JVM</strong>就为其创建一个<code>Class</code>类型的实例，并关联起来。这个<code>Class</code>实例是<strong>JVM</strong>内部创建的，如果我们查看<strong>JDK</strong>源码，可以发现<code>Class</code>类的构造方法是<code>private</code>，只有<strong>JVM</strong>能创建<code>Class</code>实例，我们自己的<strong>Java</strong>程序是无法创建<code>Class</code>实例的。</p>
+</li>
+<li><p>由于JVM为每个加载的<code>class</code>创建了对应的<code>Class</code>实例，并在实例中保存了该<code>class</code>的所有信息，包括类名、包名、父类、实现的接口、所有方法、字段等，因此，如果获取了某个<code>Class</code>实例，我们就可以通过这个<code>Class</code>实例获取到该实例对应的<code>class</code>的所有信息。这种通过<code>Class</code>实例获取<code>class</code>信息的方法称为反射（<code>Reflection</code>）</p>
+<ul>
+<li>Class 本身也是一个类</li>
+<li>Class 对象只能由系统建立对象</li>
+<li>一个加载的类在 JVM 中只会有一个Class实例 </li>
+<li>一个Class对象对应的是一个加载到JVM中的一个.class文件 </li>
+<li>每个类的实例都会记得自己是由哪个 Class 实例所生成 </li>
+<li>通过Class可以完整地得到一个类中的所有被加载的结构 </li>
+<li>Class类是Reflection的根源，针对任何你想动态加载、运行的类，唯有先获得相应的Class对象</li>
+</ul>
+</li>
+<li><p><strong>哪些类型可以有**</strong>Class<strong>**对象?</strong></p>
+<ul>
+<li>class:外部类，成员(成员内部类，静态内部类)，局部内部类，匿名内部类。 </li>
+<li>interface:接口</li>
+<li>[]:数组</li>
+<li>enum:枚举</li>
+<li>annotation:注解@interface </li>
+<li>primitive type:基本数据类型 </li>
+<li>void</li>
+</ul>
+</li>
+<li><p>在Object类中定义了以下的方法，此方法将被所有子类继承</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Class <span class="title">getClass</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>以上的方法返回值的类型是一个Class类，此类是Java反射的源头，实际上所谓反射从程序的运行结果来 看也很好理解，即:可以通过对象反射求出类的名称。</p>
+</li>
+<li><p>如何获取一个<code>class</code>的<code>Class</code>实例？有三个方法：</p>
+<ul>
+<li><p>直接通过一个<code>class</code>的静态变量<code>class</code>获取：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class cls = String<span class="class">.<span class="keyword">class</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果我们有一个实例变量，可以通过该实例变量提供的<code>getClass()</code>方法获取：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = <span class="string">"Hello"</span>; </span><br><span class="line">Class cls = s.getClass();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果知道一个<code>class</code>的完整类名，可以通过静态方法<code>Class.forName()</code>获取：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class cls = Class.forName(<span class="string">"java.lang.String"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>只针对内置的基本数据类型:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class cls = Integer.TYPE;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>获取父类的class:<code>getSuperclass()</code>;</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class cls = cls2.getSuperclass();</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>如果是两个<code>Class</code>实例，要判断一个向上转型是否成立，可以调用<code>isAssignableFrom()</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer<span class="class">.<span class="keyword">class</span>.<span class="title">isAssignableFrom</span>(<span class="title">Integer</span>.<span class="title">class</span>)</span>; <span class="comment">// true，因为Integer可以赋值给Integer</span></span><br><span class="line">Number<span class="class">.<span class="keyword">class</span>.<span class="title">isAssignableFrom</span>(<span class="title">Integer</span>.<span class="title">class</span>)</span>; <span class="comment">// true，因为Integer可以赋值给Number</span></span><br><span class="line">Object<span class="class">.<span class="keyword">class</span>.<span class="title">isAssignableFrom</span>(<span class="title">Integer</span>.<span class="title">class</span>)</span>; <span class="comment">// true，因为Integer可以赋值给Object</span></span><br><span class="line">Integer<span class="class">.<span class="keyword">class</span>.<span class="title">isAssignableFrom</span>(<span class="title">Number</span>.<span class="title">class</span>)</span>; <span class="comment">// false，因为Number不能赋值给Integer</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3、Class实例方法"><a href="#3、Class实例方法" class="headerlink" title="3、Class实例方法"></a>3、Class实例方法</h3><ul>
+<li><p>对任意的一个<code>Object</code>实例，只要我们获取了它的<code>Class</code>，就可以获取它的一切信息。一个类只对应一个Class对象。</p>
+<table>
+<thead>
+<tr>
+<th><strong>方法名</strong></th>
+<th><strong>功能说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>static ClassforName(String name)</td>
+<td>返回指定类名name的Class对象</td>
+</tr>
+<tr>
+<td>Object newInstance()</td>
+<td>调用缺省构造函数，返回Class对象的一个实例</td>
+</tr>
+<tr>
+<td>getName()</td>
+<td>返回此Class对象所表示的实体(类，接口，数组类或 void)的名称。</td>
+</tr>
+<tr>
+<td>Class getSuperClass()</td>
+<td>返回当前Class对象的父类的Class对象</td>
+</tr>
+<tr>
+<td>Class[] getinterfaces()</td>
+<td>获取当前Class对象的接口</td>
+</tr>
+<tr>
+<td>ClassLoader getClassLoader()</td>
+<td>返回该类的类加载器</td>
+</tr>
+<tr>
+<td>Constructor[] getConstructors()</td>
+<td>返回一个包含某些Constructor对象的数组</td>
+</tr>
+<tr>
+<td>Method getMothed(String name,Class.. T)</td>
+<td>返回一个Method对象，此对象的形参类型为paramType</td>
+</tr>
+<tr>
+<td>Field[] getDeclaredFields()</td>
+<td>返回Field对象的一个数组</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>我们先看看如何通过<code>Class</code>实例获取字段信息。<code>Class</code>类提供了以下几个方法来获取字段：</p>
+<ul>
+<li><code>Field getField(name)</code>：根据字段名获取某个<code>public</code>的<code>field</code>（包括父类）</li>
+<li><code>Field getDeclaredField(name)</code>：根据字段名获取当前类的某个<code>field</code>（不包括父类）</li>
+<li><code>Field[] getFields()</code>：获取所有<code>public</code>的<code>field</code>（包括父类）</li>
+<li><code>Field[] getDeclaredFields()</code>：获取当前类的所有<code>field</code>（不包括父类）</li>
+</ul>
+</li>
+<li><pre><code class="java">Class stdClass = Student<span class="class">.<span class="keyword">class</span></span>;
+<span class="comment">// 获取public字段"score":</span>
+System.out.println(stdClass.getField(<span class="string">"score"</span>));<span class="comment">//public int Student.score</span>
+<span class="comment">// 获取继承的public字段"name":</span>
+System.out.println(stdClass.getField(<span class="string">"name"</span>));<span class="comment">//public java.lang.String Person.name</span>
+<span class="comment">// 获取private字段"grade":</span>
+System.out.println(stdClass.getDeclaredField(<span class="string">"grade"</span>));<span class="comment">//private int Student.grade</span>
+
+&lt;!--￼<span class="number">8</span>--&gt;</code></pre>
+</li>
+<li><p>一个<code>Field</code>对象包含了一个字段的所有信息：</p>
+<ul>
+<li><code>getName()</code>：返回字段名称，例如，<code>&quot;name&quot;</code>；</li>
+<li><code>getType()</code>：返回字段类型，也是一个<code>Class</code>实例，例如，<code>String.class</code>；</li>
+<li><code>getModifiers()</code>：返回字段的修饰符，它是一个<code>int</code>，不同的bit表示不同的含义。</li>
+</ul>
+</li>
+<li><pre><code class="java"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span> </span>{
+    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] value;
+}
+
+Field f = String.class.getDeclaredField("value");
+f.getName(); <span class="comment">// "value"</span>
+f.getType(); <span class="comment">// class [B 表示byte[]类型</span>
+<span class="keyword">int</span> m = f.getModifiers();
+Modifier.isFinal(m); <span class="comment">// true</span>
+Modifier.isPublic(m); <span class="comment">// false</span>
+Modifier.isProtected(m); <span class="comment">// false</span>
+Modifier.isPrivate(m); <span class="comment">// true</span>
+Modifier.isStatic(m); <span class="comment">// false</span>
+&lt;!--￼<span class="number">9</span>--&gt;</code></pre>
+</li>
+<li><p>用<code>getInterfaces</code>获取接口实例</p>
+</li>
+<li><pre><code class="java">Class s = Integer<span class="class">.<span class="keyword">class</span></span>;
+Class[] is = s.getInterfaces();
+&lt;!--￼<span class="number">10</span>--&gt;
+</code></pre>
+</li>
+</ul>
+<h2 id="3、class实例构造方法"><a href="#3、class实例构造方法" class="headerlink" title="3、class实例构造方法"></a>3、class实例构造方法</h2><ul>
+<li><p>我们通常使用<code>new</code>操作符创建新的实例</p>
+</li>
+<li><pre><code class="java">Person p = <span class="keyword">new</span> Person();
+&lt;!--￼<span class="number">11</span>--&gt;
+
+调用`Class.newInstance()`的局限是，它只能调用该类的`<span class="keyword">public</span>`无参数构造方法。如果构造方法带有参数，或者不是`<span class="keyword">public</span>`，就无法直接通过`Class.newInstance()`来调用。</code></pre>
+</li>
+<li><p>为了调用任意的构造方法，Java的反射API提供了<code>Constructor</code>对象，它包含一个构造方法的所有信息，可以创建一个实例。</p>
+</li>
+<li><p>通过Class实例获取Constructor的方法如下：</p>
+<ul>
+<li><code>getConstructor(Class...)</code>：获取某个<code>public</code>的<code>Constructor</code>；</li>
+<li><code>getDeclaredConstructor(Class...)</code>：获取某个<code>Constructor</code>；</li>
+<li><code>getConstructors()</code>：获取所有<code>public</code>的<code>Constructor</code>；</li>
+<li><code>getDeclaredConstructors()</code>：获取所有<code>Constructor</code>。</li>
+</ul>
+</li>
+<li><p>调用非<code>public</code>的<code>Constructor</code>时，必须首先通过<code>setAccessible(true)</code>设置允许访问。<code>setAccessible(true)</code>可能会失败。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"无参构造器"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"int 有参构造器"</span>+a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">A</span><span class="params">(String b,String a)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"私有String 有参构造器"</span>+b+a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception, SecurityException </span>&#123;</span><br><span class="line">		Class clz = A<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">		<span class="comment">//获得所有构造器：getDeclaredConstructors()返回所有权限的构造器、getConstructors()返回public权限的构造器</span></span><br><span class="line">		Constructor[] c = clz.getDeclaredConstructors();</span><br><span class="line">		<span class="keyword">for</span> (Constructor constructor : c) &#123;</span><br><span class="line">			System.out.println(constructor);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//或得某一个 构造器</span></span><br><span class="line">		Constructor&lt;A&gt; c1 = clz.getDeclaredConstructor(String<span class="class">.<span class="keyword">class</span>,<span class="title">String</span>.<span class="title">class</span>)</span>;<span class="comment">//私有</span></span><br><span class="line">		System.out.println(c1);</span><br><span class="line">		Constructor&lt;A&gt; c2 = clz.getConstructor();<span class="comment">//公共</span></span><br><span class="line">		System.out.println(c2);</span><br><span class="line">    Constructor&lt;A&gt; c3 = clz.getConstructor(<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>)</span>;<span class="comment">//公共有参</span></span><br><span class="line">		System.out.println(c2);</span><br><span class="line">		<span class="comment">//通过public构造器 创建对象</span></span><br><span class="line">		A a = c2.newInstance(<span class="keyword">new</span> Object[]&#123;&#125;);<span class="comment">//创建对象时调用无参构造器 打印输出："无参构造器"</span></span><br><span class="line">		<span class="comment">// 通过private构造器 创建对象</span></span><br><span class="line">		c1.setAccessible(<span class="keyword">true</span>);<span class="comment">//设置成可以通过私有构造器 创建对象</span></span><br><span class="line">		A b = c1.newInstance(<span class="keyword">new</span> Object[]&#123;<span class="string">"1111"</span>,<span class="string">"2222"</span>&#125;);<span class="comment">//打印输出：  私有String 有参构造器11112222</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h2 id="4、动态代理"><a href="#4、动态代理" class="headerlink" title="4、动态代理"></a>4、动态代理</h2><ul>
+<li><p>Java的<code>class</code>和<code>interface</code>的区别：</p>
+<ul>
+<li>可以实例化<code>class</code>（非<code>abstract</code>）</li>
+<li>不能实例化<code>interface</code></li>
+</ul>
+</li>
+<li><p><code>代理(Proxy)</code>是一种设计模式,提供了间接对目标对象进行访问的方式;即通过代理对象访问目标对象。</p>
+<p>这样做的好处是:可以在目标对象实现的功能上,增加额外的功能补充,即扩展目标对象的功能。这就符合了设计模式的开闭原则，即在对既有代码不改动的情况下进行功能的扩展。</p>
+</li>
+<li><p>静态代理：在使用静态代理时,被代理对象与代理对象需要一起实现相同的接口或者是继承相同父类，因此要定义一个接口或抽象类。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="comment">// 接口</span></span><br><span class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">IStar</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">sing</span><span class="params">()</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 真实对象</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">LDHStar</span> <span class="keyword">implements</span> <span class="title">IStar</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"刘德华唱歌"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 代理类需要有真实对象的控制权 (引用)</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ProxyManger</span> <span class="keyword">implements</span> <span class="title">IStar</span> </span>&#123;   </span><br><span class="line">   			<span class="comment">// 真实对象的引用</span></span><br><span class="line">        <span class="keyword">private</span> IStar star;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ProxyManger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ProxyManger</span><span class="params">(IStar star)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>();</span><br><span class="line">            <span class="keyword">this</span>.star = star;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">　　　　　　System.out.println(<span class="string">"唱歌前准备"</span>);</span><br><span class="line">    　　　 star.sing();</span><br><span class="line">   　　　　System.out.println(<span class="string">"善后工作"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 创建明星对象</span></span><br><span class="line">            IStar ldh = <span class="keyword">new</span> LDHStar();</span><br><span class="line">            ProxyManger proxy = <span class="keyword">new</span> ProxyManger(ldh);</span><br><span class="line">            proxy.sing();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>优点：可以做到在不修改目标对象的功能前提下,对目标功能扩展.</li>
+<li>因为代理对象需要与目标对象实现一样的接口,所以会有很多代理类,类太多.同时,一旦接口增加方法,目标对象与代理对象都要维护.</li>
+</ul>
+</li>
+<li><p>Java标准库提供了一种动态代理（Dynamic Proxy）的机制：可以在运行期动态创建某个<code>interface</code>的实例。</p>
+<ul>
+<li>还有一种方式是动态代码，我们仍然先定义了接口<code>Hello</code>，但是我们并不去编写实现类，而是直接通过JDK提供的一个<code>Proxy.newProxyInstance()</code>创建了一个Hello接口对象。这种没有实现类但是在运行期动态创建了一个接口对象的方式，我们称为动态代码。JDK提供的动态创建接口对象的方式，就叫<code>动态代理</code>。</li>
+<li>在运行期动态创建一个<code>interface</code>实例的方法如下：    </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">     	<span class="comment">//定义一个InvocationHandler实例，它负责实现接口的方法调用；</span></span><br><span class="line">       InvocationHandler handler = <span class="keyword">new</span> InvocationHandler () &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">               System.out.println(method);</span><br><span class="line">               <span class="keyword">if</span> (method.getName().equals(<span class="string">"morning"</span>)) &#123;</span><br><span class="line">                   System.out.println(<span class="string">"Good morning, "</span> + args[<span class="number">0</span>]);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">     	<span class="comment">//通过Proxy.newProxyInstance()创建interface实例，它需要3个参数：</span></span><br><span class="line">       Hello hello = (Hello) Proxy.newProxyInstance(</span><br><span class="line">           Hello<span class="class">.<span class="keyword">class</span>.<span class="title">getClassLoader</span>(), // <span class="title">ClassLoader</span>，通常就是接口类的<span class="title">ClassLoader</span></span></span><br><span class="line">           new Class[] &#123; Hello.class &#125;, // 传入要实现的接口，至少需要传入一个接口进去</span><br><span class="line">           handler); <span class="comment">// 传入处理调用方法的InvocationHandler实例</span></span><br><span class="line">       hello.morning(<span class="string">"Bob"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//将返回的Object强制转型为接口</span></span><br><span class="line"> <span class="class"><span class="keyword">interface</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">morning</span><span class="params">(String name)</span></span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="1、什么是注解"><a href="#1、什么是注解" class="headerlink" title="1、什么是注解"></a>1、什么是注解</h2><ul>
+<li><p>注解(Annotation)是JDK5.0开始引入的新技术，它其实就是<strong>代码中的特殊标记</strong>，这些标记可以<strong>在编译、类加载、运行时被读取，并执行相对应的处理</strong>。</p>
+</li>
+<li><p>注解不是程序本身，但是可以对程序作出解释，可以被其他程序（编译器）读取。注解是以<code>@注释名</code>的形式存在，可以添加一些参数。</p>
+</li>
+<li><p>传统的方式，我们是通过<strong>配置文件(xml文件)来告诉类是如何运行的</strong>。有了注解技术以后，注解可以附加在packages，class，method，field上，我们就可以<strong>通过注解告诉他们该 如何运行</strong>。<strong>注解可以给类、方法上注入信息，相当于为他们添加了附加信息。</strong></p>
+</li>
+<li><p>Java的注解可以分为三类：</p>
+<ol>
+<li><p>第一类是由编译器使用的注解，例如：</p>
+<ul>
+<li><code>@Override</code>：让编译器检查该方法是否正确地实现了覆写；</li>
+<li><code>@SuppressWarnings</code>：告诉编译器忽略此处代码产生的警告。</li>
+</ul>
+<p>这类注解不会被编译进入<code>.class</code>文件，它们在编译后就被编译器扔掉了。</p>
+</li>
+<li><p>第二类是由工具处理<code>.class</code>文件使用的注解，比如有些工具会在加载class的时候，对class做动态修改，实现一些特殊的功能。这类注解会被编译进入<code>.class</code>文件，但加载结束后并不会存在于内存中。这类注解只被一些底层库使用，一般我们不必自己处理。</p>
+</li>
+<li><p>第三类是在程序运行期能够读取的注解，它们在加载后一直存在于JVM中，这也是最常用的注解。例如，一个配置了<code>@PostConstruct</code>的方法会在调用构造方法后自动被调用（这是Java代码读取该注解实现的功能，JVM并不会识别该注解）。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="2、注解的使用"><a href="#2、注解的使用" class="headerlink" title="2、注解的使用"></a>2、注解的使用</h2><ul>
+<li><p>Java语言使用<code>@interface</code>语法来定义注解（<code>Annotation</code>），它的格式如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Report &#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">    <span class="function">String <span class="title">level</span><span class="params">()</span> <span class="keyword">default</span> "info"</span>;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>使用 @interface自定义注解时 , 自动继承了java.lang.annotation.Annotation接口</p>
+</li>
+<li><p>注解的参数类似无参数方法，方法的名称就是参数的名称。可以用<code>default</code>设定一个默认值（强烈推荐）。最常用的参数应当命名为<code>value</code>。</p>
+</li>
+<li><p>如果参数名称为value，可以不写<code>value=</code>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//只有一个参数, 默认名字一般是value.使用可省略不写 </span></span><br><span class="line"><span class="meta">@MyAnnotation</span>3(<span class="string">"aaa"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>在注解上<strong>定义的成员变量只能是String、数组、Class、枚举类、注解</strong></p>
+</li>
+<li><p>怎么把注解上的信息注入到方法上呢？？？我们<strong>利用的是反射技术</strong></p>
+<p>步骤可分为三部：</p>
+<ul>
+<li><strong>反射出该类的方法</strong></li>
+<li><strong>通过方法得到注解上具体的信息</strong></li>
+<li><strong>将注解上的信息注入到方法上</strong></li>
+</ul>
+</li>
+<li><p>我们<strong>通过注解来让该方法拥有这两个变量</strong>！</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//注解拥有什么属性，在修饰的时候就要给出相对应的值</span></span><br><span class="line"><span class="meta">@MyAnnotation</span>(username = <span class="string">"zhongfucheng"</span>, age = <span class="number">20</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>我们可以在<strong>注解声明属性的时候，给出默认值</strong>。那么在修饰的时候，就可以不用具体指定了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义了两个成员变量</span></span><br><span class="line">    <span class="function">String <span class="title">username</span><span class="params">()</span> <span class="keyword">default</span> "zicheng"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 23</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@MyAnnotation</span>()</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>还有一种特殊的情况，如果<strong>注解上只有一个属性，并且属性的名称为value</strong>，那么在使用的时候，我们可以不写value，直接赋值给它就行</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation2 &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@MyAnnotation</span>2(<span class="string">"zhongfucheng"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h2 id="3、元注解"><a href="#3、元注解" class="headerlink" title="3、元注解"></a>3、元注解</h2><p>有一些注解可以修饰其他注解，这些注解就称为元注解（meta annotation）。Java标准库已经定义了一些元注解，我们只需要使用元注解，通常不需要自己去编写元注解。</p>
+<ol>
+<li><p>@Retention<strong>用于指定被修饰的Annotation被保留多长时间。</strong>需要在什么级别保存该注释信息，即在哪个阶段还有效。</p>
+</li>
+<li><p>@Target用于描述注解的使用范围(即:被描述的注解可以用在什么地方)。</p>
+</li>
+<li><p>@Documented说明该注解将被包含在javadoc中。</p>
+</li>
+<li><p><img src="/2020/06/21/Java/JavaR&A/Documented.png" alt="Documented">@Inherited说明子类可以继承父类中的该注解。</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//注解可以用在什么地方：方法，类型</span></span><br><span class="line"><span class="meta">@Target</span>(value = &#123;ElementType.METHOD,ElementType.TYPE&#125;)</span><br><span class="line"><span class="comment">//表示需要在什么级别保存该注释信息，即在哪个阶段还有效</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="comment">//说明该注解将被包含在javadoc中</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="comment">//说明子类可以继承父类中的该注解</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4、基本注解"><a href="#4、基本注解" class="headerlink" title="4、基本注解"></a>4、基本注解</h2><ul>
+<li>在java.lang包下存在着5个基本的Annotation，其中有3个Annotation我们是非常常见的了。</li>
+</ul>
+<ol>
+<li><p>@override<strong>重写注解</strong></p>
+<ul>
+<li><p>@Overried只用于修饰方法，表示一个方法声明打算重写超类中的另一个方法声明。</p>
+</li>
+<li><p>@Overried是告诉编译器要检查<strong>该方法是实现父类的</strong>…可以帮我们避免一些低级的错误…比如，我们在实现equals()方法的时候，把euqals()打错了，那么<strong>编译器就会发现该方法并不是实现父类的，与注解@Override冲突，于是就会给予错误</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p>@Deprecated<strong>过时注解</strong></p>
+<ul>
+<li><p>@Deprecated可以用于修辞方法,属性,类,表示不鼓励程序员使用这样的元素,通常是因为它很危险或者存在更好的选择。但是只是过时了, 并不是不能使用!</p>
+</li>
+<li><p>Java在设计的时候，可能觉得某些方法设计得不好，<strong>为了兼容以前的程序，是不能直接把它抛弃的，于是就设置它为过时</strong>。当我们在程序中调用它的时候，在IDE上会出现一条横杠，说明该方法是过时的。</p>
+</li>
+</ul>
+</li>
+<li><p>@SuppressWarnings<strong>抑制编译器警告注解</strong></p>
+<ul>
+<li>该注解在我们写程序的时候并不是很常见，我们可以用它来<strong>让编译器不给予我们警告</strong>。在类上添加了@SuppressWarnings这个注解，那么编译器就不会给予我们警告了</li>
+<li>你需要添加一-个参数才能正确使用，这些参数都是已经定义好了的,我们选择性的使用就好了.<ol>
+<li>@SuppressWarnings(“all”)</li>
+<li>@SuppressWarnings(“unchecked”)</li>
+<li>@SuppressWarnings(value={“unchecked”,“deprecation”})</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>@SafeVarargs <strong>Java 7“堆污染”警告</strong></p>
+<ul>
+<li>什么是堆污染呢？？<strong>当把一个不是泛型的集合赋值给一个带泛型的集合的时候</strong>，这种情况就很容易发生堆污染….</li>
+</ul>
+</li>
+<li><p>@FunctionalInterface<strong>用来指定该接口是函数式接口</strong></p>
+<ul>
+<li>用该注解<strong>显示指定</strong>该接口是一个函数式接口。</li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
       </tags>
   </entry>
   <entry>
@@ -898,381 +1347,6 @@ System.out.println(sr.nextInt(<span class="number">100</span>));</code></pre>
 <li>我们只需要调用<strong>JDK</strong>提供的<code>Arrays.sort()</code>就可以排序</li>
 <li><code>Arrays.deepToString()</code>二维数组变字符串</li>
 </ul>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaR&amp;amp;A</title>
-    <url>/2020/06/21/Java/JavaR&amp;A/</url>
-    <content><![CDATA[<p>本文是我学习Java反射和注解时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-<a id="more"></a>
-
-<h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><h2 id="1、反射"><a href="#1、反射" class="headerlink" title="1、反射"></a>1、反射</h2><ul>
-<li><p>动态语言和讲台语言</p>
-<ul>
-<li>动态语言是一类在运行时可以改变其结构的语言:例如新的函数、对象、甚至代码可以被引进，已有的 函数可以被删除或是其他结构上的变化。通俗点说就是在运行时代码可以根据某些条件改变自 身结构。主要动态语言:Object-C、C#、JavaScript、PHP、Python等。</li>
-<li>静态语言与动态语言相对应的，运行时结构不可变的语言就是静态语言。如Java、C、C++。 Java不是动态语言，但Java可以称之为“准动态语言”。即Java有一定的动态性，我们可以利用 反射机制获得类似动态语言的特性。Java的动态性让编程的时候更加灵活!</li>
-</ul>
-</li>
-<li><p>Reflection(反射)是Java被视为动态语言的关键，反射机制允许程序在执行期借助于Reflection API取</p>
-<p>得任何类的内部信息，并能直接操作任意对象的内部属性及方法。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class c=Class.forName(<span class="string">"java.lang.String"</span>)</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Java<strong>反射机制提供的功能</strong></p>
-<ul>
-<li>在运行时构造任意一个类的对象 </li>
-<li>在运行时判断任意一个类所具有的成员变量和方法 </li>
-<li>在运行时获取泛型信息 </li>
-<li>在运行时调用任意一个对象的成员变量和方法 </li>
-<li>在运行时处理注解</li>
-<li>生成动态代理</li>
-</ul>
-</li>
-<li><p>Java<strong>反射优点和缺点</strong></p>
-<ul>
-<li><p>优点:可以实现动态创建对象和编译，体现出很大的灵活性 !</p>
-</li>
-<li><p>缺点:对性能有影响。使用反射基本上是一种解释操作，我们可以告诉JVM，我们希望做什么并且它满 足我们的要求。这类操作总是慢于 直接执行相同的操作。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2、Class实例"><a href="#2、Class实例" class="headerlink" title="2、Class实例"></a>2、Class实例</h2><ul>
-<li><p><code>class</code>是由<strong>JVM</strong>在执行过程中动态加载的。<strong>JVM</strong>在第一次读取到一种<code>class</code>类型时，将其加载进内存。每加载一种<code>class</code>，<strong>JVM</strong>就为其创建一个<code>Class</code>类型的实例，并关联起来。这个<code>Class</code>实例是<strong>JVM</strong>内部创建的，如果我们查看<strong>JDK</strong>源码，可以发现<code>Class</code>类的构造方法是<code>private</code>，只有<strong>JVM</strong>能创建<code>Class</code>实例，我们自己的<strong>Java</strong>程序是无法创建<code>Class</code>实例的。</p>
-</li>
-<li><p>由于JVM为每个加载的<code>class</code>创建了对应的<code>Class</code>实例，并在实例中保存了该<code>class</code>的所有信息，包括类名、包名、父类、实现的接口、所有方法、字段等，因此，如果获取了某个<code>Class</code>实例，我们就可以通过这个<code>Class</code>实例获取到该实例对应的<code>class</code>的所有信息。这种通过<code>Class</code>实例获取<code>class</code>信息的方法称为反射（<code>Reflection</code>）</p>
-<ul>
-<li>Class 本身也是一个类</li>
-<li>Class 对象只能由系统建立对象</li>
-<li>一个加载的类在 JVM 中只会有一个Class实例 </li>
-<li>一个Class对象对应的是一个加载到JVM中的一个.class文件 </li>
-<li>每个类的实例都会记得自己是由哪个 Class 实例所生成 </li>
-<li>通过Class可以完整地得到一个类中的所有被加载的结构 </li>
-<li>Class类是Reflection的根源，针对任何你想动态加载、运行的类，唯有先获得相应的Class对象</li>
-</ul>
-</li>
-<li><p><strong>哪些类型可以有**</strong>Class<strong>**对象?</strong></p>
-<ul>
-<li>class:外部类，成员(成员内部类，静态内部类)，局部内部类，匿名内部类。 </li>
-<li>interface:接口</li>
-<li>[]:数组</li>
-<li>enum:枚举</li>
-<li>annotation:注解@interface </li>
-<li>primitive type:基本数据类型 </li>
-<li>void</li>
-</ul>
-</li>
-<li><p>在Object类中定义了以下的方法，此方法将被所有子类继承</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Class <span class="title">getClass</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
-
-<p>以上的方法返回值的类型是一个Class类，此类是Java反射的源头，实际上所谓反射从程序的运行结果来 看也很好理解，即:可以通过对象反射求出类的名称。</p>
-</li>
-<li><p>如何获取一个<code>class</code>的<code>Class</code>实例？有三个方法：</p>
-<ul>
-<li><p>直接通过一个<code>class</code>的静态变量<code>class</code>获取：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class cls = String<span class="class">.<span class="keyword">class</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果我们有一个实例变量，可以通过该实例变量提供的<code>getClass()</code>方法获取：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = <span class="string">"Hello"</span>; </span><br><span class="line">Class cls = s.getClass();</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>如果知道一个<code>class</code>的完整类名，可以通过静态方法<code>Class.forName()</code>获取：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class cls = Class.forName(<span class="string">"java.lang.String"</span>);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>只针对内置的基本数据类型:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class cls = Integer.TYPE;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>获取父类的class:<code>getSuperclass()</code>;</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Class cls = cls2.getSuperclass();</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>如果是两个<code>Class</code>实例，要判断一个向上转型是否成立，可以调用<code>isAssignableFrom()</code>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Integer<span class="class">.<span class="keyword">class</span>.<span class="title">isAssignableFrom</span>(<span class="title">Integer</span>.<span class="title">class</span>)</span>; <span class="comment">// true，因为Integer可以赋值给Integer</span></span><br><span class="line">Number<span class="class">.<span class="keyword">class</span>.<span class="title">isAssignableFrom</span>(<span class="title">Integer</span>.<span class="title">class</span>)</span>; <span class="comment">// true，因为Integer可以赋值给Number</span></span><br><span class="line">Object<span class="class">.<span class="keyword">class</span>.<span class="title">isAssignableFrom</span>(<span class="title">Integer</span>.<span class="title">class</span>)</span>; <span class="comment">// true，因为Integer可以赋值给Object</span></span><br><span class="line">Integer<span class="class">.<span class="keyword">class</span>.<span class="title">isAssignableFrom</span>(<span class="title">Number</span>.<span class="title">class</span>)</span>; <span class="comment">// false，因为Number不能赋值给Integer</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-</li>
-</ul>
-<h3 id="3、Class实例方法"><a href="#3、Class实例方法" class="headerlink" title="3、Class实例方法"></a>3、Class实例方法</h3><ul>
-<li><p>对任意的一个<code>Object</code>实例，只要我们获取了它的<code>Class</code>，就可以获取它的一切信息。一个类只对应一个Class对象。</p>
-<table>
-<thead>
-<tr>
-<th><strong>方法名</strong></th>
-<th><strong>功能说明</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>static ClassforName(String name)</td>
-<td>返回指定类名name的Class对象</td>
-</tr>
-<tr>
-<td>Object newInstance()</td>
-<td>调用缺省构造函数，返回Class对象的一个实例</td>
-</tr>
-<tr>
-<td>getName()</td>
-<td>返回此Class对象所表示的实体(类，接口，数组类或 void)的名称。</td>
-</tr>
-<tr>
-<td>Class getSuperClass()</td>
-<td>返回当前Class对象的父类的Class对象</td>
-</tr>
-<tr>
-<td>Class[] getinterfaces()</td>
-<td>获取当前Class对象的接口</td>
-</tr>
-<tr>
-<td>ClassLoader getClassLoader()</td>
-<td>返回该类的类加载器</td>
-</tr>
-<tr>
-<td>Constructor[] getConstructors()</td>
-<td>返回一个包含某些Constructor对象的数组</td>
-</tr>
-<tr>
-<td>Method getMothed(String name,Class.. T)</td>
-<td>返回一个Method对象，此对象的形参类型为paramType</td>
-</tr>
-<tr>
-<td>Field[] getDeclaredFields()</td>
-<td>返回Field对象的一个数组</td>
-</tr>
-</tbody></table>
-</li>
-<li><p>我们先看看如何通过<code>Class</code>实例获取字段信息。<code>Class</code>类提供了以下几个方法来获取字段：</p>
-<ul>
-<li><code>Field getField(name)</code>：根据字段名获取某个<code>public</code>的<code>field</code>（包括父类）</li>
-<li><code>Field getDeclaredField(name)</code>：根据字段名获取当前类的某个<code>field</code>（不包括父类）</li>
-<li><code>Field[] getFields()</code>：获取所有<code>public</code>的<code>field</code>（包括父类）</li>
-<li><code>Field[] getDeclaredFields()</code>：获取当前类的所有<code>field</code>（不包括父类）</li>
-</ul>
-</li>
-<li><pre><code class="java">Class stdClass = Student<span class="class">.<span class="keyword">class</span></span>;
-<span class="comment">// 获取public字段"score":</span>
-System.out.println(stdClass.getField(<span class="string">"score"</span>));<span class="comment">//public int Student.score</span>
-<span class="comment">// 获取继承的public字段"name":</span>
-System.out.println(stdClass.getField(<span class="string">"name"</span>));<span class="comment">//public java.lang.String Person.name</span>
-<span class="comment">// 获取private字段"grade":</span>
-System.out.println(stdClass.getDeclaredField(<span class="string">"grade"</span>));<span class="comment">//private int Student.grade</span>
-
-&lt;!--￼<span class="number">8</span>--&gt;</code></pre>
-</li>
-<li><p>一个<code>Field</code>对象包含了一个字段的所有信息：</p>
-<ul>
-<li><code>getName()</code>：返回字段名称，例如，<code>&quot;name&quot;</code>；</li>
-<li><code>getType()</code>：返回字段类型，也是一个<code>Class</code>实例，例如，<code>String.class</code>；</li>
-<li><code>getModifiers()</code>：返回字段的修饰符，它是一个<code>int</code>，不同的bit表示不同的含义。</li>
-</ul>
-</li>
-<li><pre><code class="java"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">String</span> </span>{
-    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">byte</span>[] value;
-}
-
-Field f = String.class.getDeclaredField("value");
-f.getName(); <span class="comment">// "value"</span>
-f.getType(); <span class="comment">// class [B 表示byte[]类型</span>
-<span class="keyword">int</span> m = f.getModifiers();
-Modifier.isFinal(m); <span class="comment">// true</span>
-Modifier.isPublic(m); <span class="comment">// false</span>
-Modifier.isProtected(m); <span class="comment">// false</span>
-Modifier.isPrivate(m); <span class="comment">// true</span>
-Modifier.isStatic(m); <span class="comment">// false</span>
-&lt;!--￼<span class="number">9</span>--&gt;</code></pre>
-</li>
-<li><p>用<code>getInterfaces</code>获取接口实例</p>
-</li>
-<li><pre><code class="java">Class s = Integer<span class="class">.<span class="keyword">class</span></span>;
-Class[] is = s.getInterfaces();
-&lt;!--￼<span class="number">10</span>--&gt;
-</code></pre>
-</li>
-</ul>
-<h2 id="3、class实例构造方法"><a href="#3、class实例构造方法" class="headerlink" title="3、class实例构造方法"></a>3、class实例构造方法</h2><ul>
-<li><p>我们通常使用<code>new</code>操作符创建新的实例</p>
-</li>
-<li><pre><code class="java">Person p = <span class="keyword">new</span> Person();
-&lt;!--￼<span class="number">11</span>--&gt;
-
-调用`Class.newInstance()`的局限是，它只能调用该类的`<span class="keyword">public</span>`无参数构造方法。如果构造方法带有参数，或者不是`<span class="keyword">public</span>`，就无法直接通过`Class.newInstance()`来调用。</code></pre>
-</li>
-<li><p>为了调用任意的构造方法，Java的反射API提供了<code>Constructor</code>对象，它包含一个构造方法的所有信息，可以创建一个实例。</p>
-</li>
-<li><p>通过Class实例获取Constructor的方法如下：</p>
-<ul>
-<li><code>getConstructor(Class...)</code>：获取某个<code>public</code>的<code>Constructor</code>；</li>
-<li><code>getDeclaredConstructor(Class...)</code>：获取某个<code>Constructor</code>；</li>
-<li><code>getConstructors()</code>：获取所有<code>public</code>的<code>Constructor</code>；</li>
-<li><code>getDeclaredConstructors()</code>：获取所有<code>Constructor</code>。</li>
-</ul>
-</li>
-<li><p>调用非<code>public</code>的<code>Constructor</code>时，必须首先通过<code>setAccessible(true)</code>设置允许访问。<code>setAccessible(true)</code>可能会失败。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"无参构造器"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(<span class="keyword">int</span> a)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"int 有参构造器"</span>+a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">A</span><span class="params">(String b,String a)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"私有String 有参构造器"</span>+b+a);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception, SecurityException </span>&#123;</span><br><span class="line">		Class clz = A<span class="class">.<span class="keyword">class</span></span>;</span><br><span class="line">		<span class="comment">//获得所有构造器：getDeclaredConstructors()返回所有权限的构造器、getConstructors()返回public权限的构造器</span></span><br><span class="line">		Constructor[] c = clz.getDeclaredConstructors();</span><br><span class="line">		<span class="keyword">for</span> (Constructor constructor : c) &#123;</span><br><span class="line">			System.out.println(constructor);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//或得某一个 构造器</span></span><br><span class="line">		Constructor&lt;A&gt; c1 = clz.getDeclaredConstructor(String<span class="class">.<span class="keyword">class</span>,<span class="title">String</span>.<span class="title">class</span>)</span>;<span class="comment">//私有</span></span><br><span class="line">		System.out.println(c1);</span><br><span class="line">		Constructor&lt;A&gt; c2 = clz.getConstructor();<span class="comment">//公共</span></span><br><span class="line">		System.out.println(c2);</span><br><span class="line">    Constructor&lt;A&gt; c3 = clz.getConstructor(<span class="keyword">int</span><span class="class">.<span class="keyword">class</span>)</span>;<span class="comment">//公共有参</span></span><br><span class="line">		System.out.println(c2);</span><br><span class="line">		<span class="comment">//通过public构造器 创建对象</span></span><br><span class="line">		A a = c2.newInstance(<span class="keyword">new</span> Object[]&#123;&#125;);<span class="comment">//创建对象时调用无参构造器 打印输出："无参构造器"</span></span><br><span class="line">		<span class="comment">// 通过private构造器 创建对象</span></span><br><span class="line">		c1.setAccessible(<span class="keyword">true</span>);<span class="comment">//设置成可以通过私有构造器 创建对象</span></span><br><span class="line">		A b = c1.newInstance(<span class="keyword">new</span> Object[]&#123;<span class="string">"1111"</span>,<span class="string">"2222"</span>&#125;);<span class="comment">//打印输出：  私有String 有参构造器11112222</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<h2 id="4、动态代理"><a href="#4、动态代理" class="headerlink" title="4、动态代理"></a>4、动态代理</h2><ul>
-<li><p>Java的<code>class</code>和<code>interface</code>的区别：</p>
-<ul>
-<li>可以实例化<code>class</code>（非<code>abstract</code>）</li>
-<li>不能实例化<code>interface</code></li>
-</ul>
-</li>
-<li><p><code>代理(Proxy)</code>是一种设计模式,提供了间接对目标对象进行访问的方式;即通过代理对象访问目标对象。</p>
-<p>这样做的好处是:可以在目标对象实现的功能上,增加额外的功能补充,即扩展目标对象的功能。这就符合了设计模式的开闭原则，即在对既有代码不改动的情况下进行功能的扩展。</p>
-</li>
-<li><p>静态代理：在使用静态代理时,被代理对象与代理对象需要一起实现相同的接口或者是继承相同父类，因此要定义一个接口或抽象类。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">	<span class="comment">// 接口</span></span><br><span class="line">    <span class="class"><span class="keyword">interface</span> <span class="title">IStar</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">sing</span><span class="params">()</span></span>;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 真实对象</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">LDHStar</span> <span class="keyword">implements</span> <span class="title">IStar</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"刘德华唱歌"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">	<span class="comment">// 代理类需要有真实对象的控制权 (引用)</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ProxyManger</span> <span class="keyword">implements</span> <span class="title">IStar</span> </span>&#123;   </span><br><span class="line">   			<span class="comment">// 真实对象的引用</span></span><br><span class="line">        <span class="keyword">private</span> IStar star;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ProxyManger</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ProxyManger</span><span class="params">(IStar star)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>();</span><br><span class="line">            <span class="keyword">this</span>.star = star;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">　　　　　　System.out.println(<span class="string">"唱歌前准备"</span>);</span><br><span class="line">    　　　 star.sing();</span><br><span class="line">   　　　　System.out.println(<span class="string">"善后工作"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">			<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 创建明星对象</span></span><br><span class="line">            IStar ldh = <span class="keyword">new</span> LDHStar();</span><br><span class="line">            ProxyManger proxy = <span class="keyword">new</span> ProxyManger(ldh);</span><br><span class="line">            proxy.sing();</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>优点：可以做到在不修改目标对象的功能前提下,对目标功能扩展.</li>
-<li>因为代理对象需要与目标对象实现一样的接口,所以会有很多代理类,类太多.同时,一旦接口增加方法,目标对象与代理对象都要维护.</li>
-</ul>
-</li>
-<li><p>Java标准库提供了一种动态代理（Dynamic Proxy）的机制：可以在运行期动态创建某个<code>interface</code>的实例。</p>
-<ul>
-<li>还有一种方式是动态代码，我们仍然先定义了接口<code>Hello</code>，但是我们并不去编写实现类，而是直接通过JDK提供的一个<code>Proxy.newProxyInstance()</code>创建了一个Hello接口对象。这种没有实现类但是在运行期动态创建了一个接口对象的方式，我们称为动态代码。JDK提供的动态创建接口对象的方式，就叫<code>动态代理</code>。</li>
-<li>在运行期动态创建一个<code>interface</code>实例的方法如下：    </li>
-</ul>
-</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">     	<span class="comment">//定义一个InvocationHandler实例，它负责实现接口的方法调用；</span></span><br><span class="line">       InvocationHandler handler = <span class="keyword">new</span> InvocationHandler () &#123;</span><br><span class="line">           <span class="meta">@Override</span></span><br><span class="line">           <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">               System.out.println(method);</span><br><span class="line">               <span class="keyword">if</span> (method.getName().equals(<span class="string">"morning"</span>)) &#123;</span><br><span class="line">                   System.out.println(<span class="string">"Good morning, "</span> + args[<span class="number">0</span>]);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;;</span><br><span class="line">     	<span class="comment">//通过Proxy.newProxyInstance()创建interface实例，它需要3个参数：</span></span><br><span class="line">       Hello hello = (Hello) Proxy.newProxyInstance(</span><br><span class="line">           Hello<span class="class">.<span class="keyword">class</span>.<span class="title">getClassLoader</span>(), // <span class="title">ClassLoader</span>，通常就是接口类的<span class="title">ClassLoader</span></span></span><br><span class="line">           new Class[] &#123; Hello.class &#125;, // 传入要实现的接口，至少需要传入一个接口进去</span><br><span class="line">           handler); <span class="comment">// 传入处理调用方法的InvocationHandler实例</span></span><br><span class="line">       hello.morning(<span class="string">"Bob"</span>);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"><span class="comment">//将返回的Object强制转型为接口</span></span><br><span class="line"> <span class="class"><span class="keyword">interface</span> <span class="title">Hello</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">morning</span><span class="params">(String name)</span></span>;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="1、什么是注解"><a href="#1、什么是注解" class="headerlink" title="1、什么是注解"></a>1、什么是注解</h2><ul>
-<li><p>注解(Annotation)是JDK5.0开始引入的新技术，它其实就是<strong>代码中的特殊标记</strong>，这些标记可以<strong>在编译、类加载、运行时被读取，并执行相对应的处理</strong>。</p>
-</li>
-<li><p>注解不是程序本身，但是可以对程序作出解释，可以被其他程序（编译器）读取。注解是以<code>@注释名</code>的形式存在，可以添加一些参数。</p>
-</li>
-<li><p>传统的方式，我们是通过<strong>配置文件(xml文件)来告诉类是如何运行的</strong>。有了注解技术以后，注解可以附加在packages，class，method，field上，我们就可以<strong>通过注解告诉他们该 如何运行</strong>。<strong>注解可以给类、方法上注入信息，相当于为他们添加了附加信息。</strong></p>
-</li>
-<li><p>Java的注解可以分为三类：</p>
-<ol>
-<li><p>第一类是由编译器使用的注解，例如：</p>
-<ul>
-<li><code>@Override</code>：让编译器检查该方法是否正确地实现了覆写；</li>
-<li><code>@SuppressWarnings</code>：告诉编译器忽略此处代码产生的警告。</li>
-</ul>
-<p>这类注解不会被编译进入<code>.class</code>文件，它们在编译后就被编译器扔掉了。</p>
-</li>
-<li><p>第二类是由工具处理<code>.class</code>文件使用的注解，比如有些工具会在加载class的时候，对class做动态修改，实现一些特殊的功能。这类注解会被编译进入<code>.class</code>文件，但加载结束后并不会存在于内存中。这类注解只被一些底层库使用，一般我们不必自己处理。</p>
-</li>
-<li><p>第三类是在程序运行期能够读取的注解，它们在加载后一直存在于JVM中，这也是最常用的注解。例如，一个配置了<code>@PostConstruct</code>的方法会在调用构造方法后自动被调用（这是Java代码读取该注解实现的功能，JVM并不会识别该注解）。</p>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="2、注解的使用"><a href="#2、注解的使用" class="headerlink" title="2、注解的使用"></a>2、注解的使用</h2><ul>
-<li><p>Java语言使用<code>@interface</code>语法来定义注解（<code>Annotation</code>），它的格式如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Report &#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">type</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">    <span class="function">String <span class="title">level</span><span class="params">()</span> <span class="keyword">default</span> "info"</span>;</span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> ""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>使用 @interface自定义注解时 , 自动继承了java.lang.annotation.Annotation接口</p>
-</li>
-<li><p>注解的参数类似无参数方法，方法的名称就是参数的名称。可以用<code>default</code>设定一个默认值（强烈推荐）。最常用的参数应当命名为<code>value</code>。</p>
-</li>
-<li><p>如果参数名称为value，可以不写<code>value=</code>。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//只有一个参数, 默认名字一般是value.使用可省略不写 </span></span><br><span class="line"><span class="meta">@MyAnnotation</span>3(<span class="string">"aaa"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span></span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>在注解上<strong>定义的成员变量只能是String、数组、Class、枚举类、注解</strong></p>
-</li>
-<li><p>怎么把注解上的信息注入到方法上呢？？？我们<strong>利用的是反射技术</strong></p>
-<p>步骤可分为三部：</p>
-<ul>
-<li><strong>反射出该类的方法</strong></li>
-<li><strong>通过方法得到注解上具体的信息</strong></li>
-<li><strong>将注解上的信息注入到方法上</strong></li>
-</ul>
-</li>
-<li><p>我们<strong>通过注解来让该方法拥有这两个变量</strong>！</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//注解拥有什么属性，在修饰的时候就要给出相对应的值</span></span><br><span class="line"><span class="meta">@MyAnnotation</span>(username = <span class="string">"zhongfucheng"</span>, age = <span class="number">20</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>我们可以在<strong>注解声明属性的时候，给出默认值</strong>。那么在修饰的时候，就可以不用具体指定了。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义了两个成员变量</span></span><br><span class="line">    <span class="function">String <span class="title">username</span><span class="params">()</span> <span class="keyword">default</span> "zicheng"</span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span> <span class="keyword">default</span> 23</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@MyAnnotation</span>()</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(String username, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>还有一种特殊的情况，如果<strong>注解上只有一个属性，并且属性的名称为value</strong>，那么在使用的时候，我们可以不写value，直接赋值给它就行</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyAnnotation2 &#123;</span><br><span class="line"></span><br><span class="line">    <span class="function">String <span class="title">value</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@MyAnnotation</span>2(<span class="string">"zhongfucheng"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">find</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h2 id="3、元注解"><a href="#3、元注解" class="headerlink" title="3、元注解"></a>3、元注解</h2><p>有一些注解可以修饰其他注解，这些注解就称为元注解（meta annotation）。Java标准库已经定义了一些元注解，我们只需要使用元注解，通常不需要自己去编写元注解。</p>
-<ol>
-<li><p>@Retention<strong>用于指定被修饰的Annotation被保留多长时间。</strong>需要在什么级别保存该注释信息，即在哪个阶段还有效。</p>
-</li>
-<li><p>@Target用于描述注解的使用范围(即:被描述的注解可以用在什么地方)。</p>
-</li>
-<li><p>@Documented说明该注解将被包含在javadoc中。</p>
-</li>
-<li><p><img src="/2020/06/21/Java/JavaR&A/Documented.png" alt="Documented">@Inherited说明子类可以继承父类中的该注解。</p>
-</li>
-</ol>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//注解可以用在什么地方：方法，类型</span></span><br><span class="line"><span class="meta">@Target</span>(value = &#123;ElementType.METHOD,ElementType.TYPE&#125;)</span><br><span class="line"><span class="comment">//表示需要在什么级别保存该注释信息，即在哪个阶段还有效</span></span><br><span class="line"><span class="meta">@Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="comment">//说明该注解将被包含在javadoc中</span></span><br><span class="line"><span class="meta">@Documented</span></span><br><span class="line"><span class="comment">//说明子类可以继承父类中的该注解</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="meta">@interface</span> MyAnnotation&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4、基本注解"><a href="#4、基本注解" class="headerlink" title="4、基本注解"></a>4、基本注解</h2><ul>
-<li>在java.lang包下存在着5个基本的Annotation，其中有3个Annotation我们是非常常见的了。</li>
-</ul>
-<ol>
-<li><p>@override<strong>重写注解</strong></p>
-<ul>
-<li><p>@Overried只用于修饰方法，表示一个方法声明打算重写超类中的另一个方法声明。</p>
-</li>
-<li><p>@Overried是告诉编译器要检查<strong>该方法是实现父类的</strong>…可以帮我们避免一些低级的错误…比如，我们在实现equals()方法的时候，把euqals()打错了，那么<strong>编译器就会发现该方法并不是实现父类的，与注解@Override冲突，于是就会给予错误</strong>。</p>
-</li>
-</ul>
-</li>
-<li><p>@Deprecated<strong>过时注解</strong></p>
-<ul>
-<li><p>@Deprecated可以用于修辞方法,属性,类,表示不鼓励程序员使用这样的元素,通常是因为它很危险或者存在更好的选择。但是只是过时了, 并不是不能使用!</p>
-</li>
-<li><p>Java在设计的时候，可能觉得某些方法设计得不好，<strong>为了兼容以前的程序，是不能直接把它抛弃的，于是就设置它为过时</strong>。当我们在程序中调用它的时候，在IDE上会出现一条横杠，说明该方法是过时的。</p>
-</li>
-</ul>
-</li>
-<li><p>@SuppressWarnings<strong>抑制编译器警告注解</strong></p>
-<ul>
-<li>该注解在我们写程序的时候并不是很常见，我们可以用它来<strong>让编译器不给予我们警告</strong>。在类上添加了@SuppressWarnings这个注解，那么编译器就不会给予我们警告了</li>
-<li>你需要添加一-个参数才能正确使用，这些参数都是已经定义好了的,我们选择性的使用就好了.<ol>
-<li>@SuppressWarnings(“all”)</li>
-<li>@SuppressWarnings(“unchecked”)</li>
-<li>@SuppressWarnings(value={“unchecked”,“deprecation”})</li>
-</ol>
-</li>
-</ul>
-</li>
-<li><p>@SafeVarargs <strong>Java 7“堆污染”警告</strong></p>
-<ul>
-<li>什么是堆污染呢？？<strong>当把一个不是泛型的集合赋值给一个带泛型的集合的时候</strong>，这种情况就很容易发生堆污染….</li>
-</ul>
-</li>
-<li><p>@FunctionalInterface<strong>用来指定该接口是函数式接口</strong></p>
-<ul>
-<li>用该注解<strong>显示指定</strong>该接口是一个函数式接口。</li>
-</ul>
-</li>
-</ol>
 ]]></content>
       <categories>
         <category>java</category>
@@ -1714,10 +1788,136 @@ Class[] is = s.getInterfaces();
   <entry>
     <title>SpringMVC</title>
     <url>/2020/06/22/Spring/SpringMVC/</url>
-    <content><![CDATA[<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><p>本文是我学习SpringMVC是的笔记，资源来自互联网。</p>
+    <content><![CDATA[<p>本文是我学习SpringMVC是的笔记，资源来自互联网。</p>
 <a id="more"></a>
 
-<h3 id="RequestMapping和-RequestParam"><a href="#RequestMapping和-RequestParam" class="headerlink" title="@RequestMapping和@RequestParam"></a>@RequestMapping和@RequestParam</h3><h4 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h4><ul>
+<h1 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h1><h2 id="什么是SpringMVC"><a href="#什么是SpringMVC" class="headerlink" title="什么是SpringMVC?"></a>什么是SpringMVC?</h2><ul>
+<li><p>SpringMVC是Spring家族的⼀员，Spring是将现在开发中流⾏的组件进⾏组合⽽成的⼀个框架！它⽤在<br>基于MVC的表现层开发，类似于struts2框架</p>
+<p><img src="/2020/06/22/Spring/SpringMVC/image-20200628153811009.png" alt="image-20200628153811009"></p>
+</li>
+</ul>
+<h2 id="SpringMVC快速⼊⻔"><a href="#SpringMVC快速⼊⻔" class="headerlink" title="SpringMVC快速⼊⻔"></a>SpringMVC快速⼊⻔</h2><h3 id="1、导⼊开发包"><a href="#1、导⼊开发包" class="headerlink" title="1、导⼊开发包"></a>1、导⼊开发包</h3><ul>
+<li>如果⽤Maven的，那导⼊Maven依赖即可</li>
+<li>前6个是Spring的核⼼功能包【IOC】，第7个是关于web的包，第8个是SpringMVC包<ul>
+<li>org.springframework.context-3.0.5.RELEASE.jar</li>
+<li>org.springframework.expression-3.0.5.RELEASE.jar</li>
+<li>org.springframework.core-3.0.5.RELEASE.jar</li>
+<li>org.springframework.beans-3.0.5.RELEASE.jar</li>
+<li>org.springframework.asm-3.0.5.RELEASE.jar</li>
+<li>commons-logging.jar</li>
+<li>org.springframework.web-3.0.5.RELEASE.jar</li>
+<li>org.springframework.web.servlet-3.0.5.RELEASE.jar</li>
+</ul>
+</li>
+</ul>
+<h3 id="2、编写Action"><a href="#2、编写Action" class="headerlink" title="2、编写Action"></a>2、编写Action</h3><ul>
+<li><p>Action实现Controller接⼝</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们只要实现<code>handleRequest⽅法</code>即可，该⽅法已经有了request和response对象给我们⽤了。这是我们⾮常熟悉的request和response对象。然⽽该⽅法返回的是ModelAndView这么⼀个对象，这是和Struts2不同的。Struts2返回的是字符串，⽽SpringMVC返回的是ModelAndView</p>
+</li>
+<li><p>ModelAndView其实他就是将我们的视图路径和数据封装起来⽽已【我们想要跳转到哪，把什么数据存到request域中，设置这个对象的属性就⾏了】。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> <span class="keyword">implements</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//跳转到hello.jsp⻚⾯。</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">"/hello.jsp"</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3、注册核⼼控制器"><a href="#3、注册核⼼控制器" class="headerlink" title="3、注册核⼼控制器"></a>3、注册核⼼控制器</h3><ul>
+<li><p>我们使⽤SpringMVC的话，我们是在web.xml中配置核⼼控制器</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册springmvc框架核⼼控制器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servletclass</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment">&lt;!--到类⽬录下寻找我们的配置⽂件--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:hello.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--映射的路径为.action--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>*.action<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="4、创建SpringMVC控制器"><a href="#4、创建SpringMVC控制器" class="headerlink" title="4、创建SpringMVC控制器"></a>4、创建SpringMVC控制器</h3><ul>
+<li><p>我们在hello.xml配置⽂件中把SpringMVC的控制器创建出来</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">注册控制器</span></span><br><span class="line"><span class="comment">name属性的值表示的是请求的路径【也就是说，当⽤户请求到/helloAction时，就交由</span></span><br><span class="line"><span class="comment">HelloAction类进⾏处理】</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"HelloAction"</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="5、访问"><a href="#5、访问" class="headerlink" title="5、访问"></a>5、访问</h3><ul>
+<li>当我们在浏览器访问<a href="http://localhost:8080/hello.action" target="_blank" rel="noopener">http://localhost:8080/hello.action</a> 的时候，Spring会读取到我们的访问路径，然后对⽐⼀下我们的配置⽂件中是否有配置/hello.action ，如果有。那么就交由对应的Action类来进⾏处理。Action类的业务⽅法将其请求输出到hello.jsp⻚⾯上。</li>
+</ul>
+<h2 id="SpringMVC⼯作流程"><a href="#SpringMVC⼯作流程" class="headerlink" title="SpringMVC⼯作流程"></a>SpringMVC⼯作流程</h2><p><img src="/2020/06/22/Spring/SpringMVC/image-20200628165138942.png" alt="image-20200628165138942"></p>
+<ul>
+<li>⽤户发送请求</li>
+<li>请求交由核⼼控制器处理</li>
+<li>核⼼控制器找到映射器，映射器看看请求路径是什么</li>
+<li>核⼼控制器再找到适配器，看看有哪些类实现了Controller接⼝或者对应的bean对象</li>
+<li>将带过来的数据进⾏转换，格式化等等操作</li>
+<li>找到我们的控制器Action，处理完业务之后返回⼀个ModelAndView对象</li>
+<li>最后通过视图解析器来对ModelAndView进⾏解析</li>
+<li>跳转到对应的JSP/html⻚⾯</li>
+</ul>
+<h3 id="1、映射器"><a href="#1、映射器" class="headerlink" title="1、映射器"></a>1、映射器</h3><ul>
+<li><p>我们在web.xml中配置规定<strong>只要是.action为后缀的请求都是会经过SpringMVC的核⼼Servlet。</strong></p>
+</li>
+<li><p>当我们接收到请求的时候，我们发现是hello.action，是会经过我们的核⼼Servlet的，那么<strong>核⼼Servlet就会去找有没有专⻔的Action类来处理hello.action请求的。</strong></p>
+</li>
+<li><p>也就是说：<strong>映射器就是⽤于处理“什么样的请求提交给Action”处理。【默认可省略的】…..</strong></p>
+</li>
+<li><p>其实我们在快速⼊⻔的例⼦已经配置了：<strong>name属性就是规定了hello.action到HelloAction控制器中处理！</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">注册控制器</span></span><br><span class="line"><span class="comment">name属性的值表示的是请求的路径【也就是说，当⽤户请求到/helloAction时，就交由HelloAction类进⾏处理】</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"HelloAction"</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>映射器默认的值是这样的：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 注册映射器(handler包)(框架)【可省略】 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当然了，上⾯我们在创建控制器的时候【也就是HelloAction】可以不使⽤name属性来指定路径，可以使⽤我们的映射器来配置。如以下的代码：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"HelloAction"</span> <span class="attr">id</span>=<span class="string">"helloAction"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 注册映射器(handler包)(框架) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello.action"</span>&gt;</span>helloAction<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当我们需要多个请求路径都交由helloAction控制器来处理的话，我们只要添加prop标签就⾏了！</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello.action"</span>&gt;</span>helloAction<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/bye.action"</span>&gt;</span>helloAction<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="2、适配器"><a href="#2、适配器" class="headerlink" title="2、适配器"></a>2、适配器</h3><ul>
+<li><p>当我们映射器找到对应的Action来处理请求的时候，核⼼控制器会<strong>让适配器去找该类是否实现了Controller接⼝。【默认可省略的】</strong></p>
+</li>
+<li><p>也就是说：<strong>适配器就是去找实现了Controller接⼝的类</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 适配器【可省略】 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="3、视图解析器"><a href="#3、视图解析器" class="headerlink" title="3、视图解析器"></a>3、视图解析器</h3><ul>
+<li><p>我们把结果封装到ModelAndView以后，SpringMVC会使⽤视图解析器来对ModelAndView进⾏解析。【默认可省略的】</p>
+</li>
+<li><p>也有⼀种情况是不能省略的。<strong>我们在快速⼊⻔的例⼦中，将结果封装到ModelAndView中，⽤的是绝对真实路径</strong>！如果我们⽤的是逻辑路径，那么就必须对其配置，否则SpringMVC是找不到对应的路径的。</p>
+</li>
+<li><p>在Action中返回hello，<strong>hello是⼀个逻辑路径。需要我们使⽤视图解析器把逻辑路基补全</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">handleRequest</span><span class="params">(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">    <span class="comment">//跳转到hello.jsp⻚⾯。</span></span><br><span class="line">    modelAndView.setViewName(<span class="string">"hello"</span>);</span><br><span class="line">    <span class="keyword">return</span> modelAndView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果不使⽤视图解析器的话，那么就会找不到⻚⾯。因此，我们需要配置视图解析器</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">如果Action中书写的是视图逻辑名称，那么视图解析器就必须配置</span></span><br><span class="line"><span class="comment">如果Action中书写的是视图真实名称，那么视图解析器就可选配置</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 路径前缀 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 路径后缀 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 前缀+视图逻辑名+后缀=真实路径 --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="AbstractCommandController"><a href="#AbstractCommandController" class="headerlink" title="AbstractCommandController"></a>AbstractCommandController</h2><ul>
+<li><p>到⽬前为⽌，我们都没有讲SpringMVC是怎么接收web端传递过来的参数的。</p>
+</li>
+<li><p>那么我们在SpringMVC中是怎么获取参数的呢？？？？我们是<strong>将Action继承AbstractCommandController这么⼀个类的。</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> <span class="keyword">extends</span> <span class="title">AbstractCommandController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> ModelAndView <span class="title">handle</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, BindException e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在讲解该控制器之前，⾸先我们要明⽩<strong>SpringMVC的控制器是单例的。</strong></p>
+</li>
+<li><p>也就是说：SpringMVC作为单例的，是<strong>不可能使⽤成员变量来进⾏接收的【因为会有多个⽤户访问，就会出现数据不合理性】！</strong></p>
+</li>
+<li><p>那么SpringMVC作为单例的，他<strong>只能通过⽅法的参数来进⾏接收对应的参数！只有⽅法才能保证不同的⽤户对应不同的数据！</strong></p>
+<p><img src="/2020/06/22/Spring/SpringMVC/image-20200628172559764.png" alt></p>
+<p><img src="/2020/06/22/Spring/SpringMVC/image-20200628173209389.png" alt="image-20200628173209389"></p>
+</li>
+</ul>
+<h3 id="1、实体"><a href="#1、实体" class="headerlink" title="1、实体"></a>1、实体</h3><p>实体的属性要和web⻚⾯上的name提交过来的名称是⼀致的。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line">    <span class="keyword">private</span> String username;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String id, String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUsername</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUsername</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User&#123;"</span> + <span class="string">"id='"</span> + id + <span class="string">'\''</span> + <span class="string">", username='"</span> + username + <span class="string">'\''</span> + <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、提交参数的JSP"><a href="#2、提交参数的JSP" class="headerlink" title="2、提交参数的JSP"></a>2、提交参数的JSP</h3><figure class="highlight"><table><tr><td class="code"><pre><span class="line">&lt;form action=<span class="string">"$&#123;pageContext.request.contextPath&#125;/hello.action"</span> method=<span class="string">"post"</span>&gt;</span><br><span class="line">    &lt;table align=<span class="string">"center"</span>&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;⽤户名：&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type="text" name="username"&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;编号&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type="text" name="id"&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td colspan=<span class="string">"2"</span>&gt;</span><br><span class="line">            &lt;input type=<span class="string">"submit"</span> value=<span class="string">"提交"</span>&gt;</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/table&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3、-配置Action处理请求"><a href="#3、-配置Action处理请求" class="headerlink" title="3、 配置Action处理请求"></a>3、 配置Action处理请求</h3><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"HelloAction"</span> <span class="attr">id</span>=<span class="string">"helloAction"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 注册映射器(handler包)(框架) --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello.action"</span>&gt;</span>helloAction<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、-Action接收参数"><a href="#4、-Action接收参数" class="headerlink" title="4、 Action接收参数"></a>4、 Action接收参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloAction</span> <span class="keyword">extends</span> <span class="title">AbstractCommandController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*设置⽆参构造器，⾥边调⽤setCommandClass⽅法，传⼊要封装的对象*/</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HelloAction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setCommandClass(User<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">    *</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> httpServletRequest</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> httpServletResponse</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> o 这⾥的对象就表示已经封装好的了User对象了。！</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@param</span> e</span></span><br><span class="line"><span class="comment">    * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">    * <span class="doctag">@throws</span> Exception</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> ModelAndView <span class="title">handle</span><span class="params">(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, BindException e)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        User user = (User) o;</span><br><span class="line">        System.out.println(user);</span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView();</span><br><span class="line">        <span class="comment">//跳转到ok.jsp</span></span><br><span class="line">        modelAndView.setViewName(<span class="string">"/WEB-INF/ok.jsp"</span>);</span><br><span class="line">        <span class="comment">//将数据封装到ModelAndView中</span></span><br><span class="line">        modelAndView.addObject(<span class="string">"USER"</span>, user);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="RequestMapping和-RequestParam"><a href="#RequestMapping和-RequestParam" class="headerlink" title="@RequestMapping和@RequestParam"></a>@RequestMapping和@RequestParam</h2><h4 id="RequestMapping"><a href="#RequestMapping" class="headerlink" title="@RequestMapping"></a>@RequestMapping</h4><ul>
 <li><p><strong>@RequestMapping</strong> 是 Spring Web 应用程序中最常被用到的注解之一。这个注解会将 HTTP 请求映射到 MVC 和 REST 控制器的处理方法上。</p>
 </li>
 <li><p>要配置 Web 请求的映射，就需要你用上 @RequestMapping 注解。 </p>
