@@ -87,7 +87,7 @@
 <meta property="og:description" content="本文是我学习Java泛型时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-29T11:54:00.000Z">
-<meta property="article:modified_time" content="2020-06-30T03:34:06.737Z">
+<meta property="article:modified_time" content="2020-07-03T02:03:39.760Z">
 <meta property="article:author" content="panda">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="技术文档">
@@ -428,8 +428,43 @@
 </li>
 <li><p>编写泛型类时，要特别注意，泛型类型<code>&lt;T&gt;</code>不能用于静态方法。对于静态方法，我们可以单独改写为“泛型”方法，只需要使用另一个类型即可。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K&gt; <span class="function">Pair&lt;K&gt; <span class="title">create</span><span class="params">(K first, K last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Pair&lt;K&gt;(first, last);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
-<li><p>Java语言的泛型实现方式是擦拭法（Type Erasure）。Java语言的泛型实现方式是擦拭法（Type Erasure）。</p>
+</ul>
+<h2 id="4、擦拭法"><a href="#4、擦拭法" class="headerlink" title="4、擦拭法"></a>4、擦拭法</h2><ul>
+<li><p>Java语言的泛型实现方式是擦拭法（Type Erasure）。Java语言的泛型实现方式是擦拭法（Type Erasure）。谓擦拭法是指，虚拟机对泛型其实一无所知，所有的工作都是编译器做的。</p>
+</li>
+<li><p>Java使用擦拭法实现泛型，导致了：</p>
+<ul>
+<li>编译器把类型<code>&lt;T&gt;</code>视为<code>Object</code>；</li>
+<li>编译器根据<code>&lt;T&gt;</code>实现安全的强制转型。</li>
+</ul>
+<p>所以，Java的泛型是由编译器在编译时实行的，编译器内部永远把所有类型<code>T</code>视为<code>Object</code>处理，但是，在需要转型的时候，编译器会根据<code>T</code>的类型自动为我们实行安全地强制转型。</p>
+</li>
+<li><p>Java泛型的局限：</p>
+<ul>
+<li><p><code>&lt;T&gt;</code>不能是基本类型，例如<code>int</code>，因为实际类型是<code>Object</code>，<code>Object</code>类型无法持有基本类型.</p>
+</li>
+<li><p>无法取得带泛型的<code>Class</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;String&gt; p1 = <span class="keyword">new</span> Pair&lt;&gt;(<span class="string">"Hello"</span>, <span class="string">"world"</span>);</span><br><span class="line">Pair&lt;Integer&gt; p2 = <span class="keyword">new</span> Pair&lt;&gt;(<span class="number">123</span>, <span class="number">456</span>);</span><br><span class="line">Class c1 = p1.getClass();</span><br><span class="line">Class c2 = p2.getClass();</span><br><span class="line">System.out.println(c1); <span class="comment">// true</span></span><br><span class="line">System.out.println(c1==Pair<span class="class">.<span class="keyword">class</span>)</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>因为<code>T</code>是<code>Object</code>，我们对<code>Pair&lt;String&gt;</code>和<code>Pair&lt;Integer&gt;</code>类型获取<code>Class</code>时，获取到的是同一个<code>Class</code>，也就是<code>Pair</code>类的<code>Class</code>。换句话说，所有泛型实例，无论<code>T</code>的类型是什么，<code>getClass()</code>返回同一个<code>Class</code>实例，因为编译后它们全部都是<code>Pair&lt;Object&gt;</code>。</p>
+</li>
+<li><p>无法判断带泛型的类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Pair&lt;Integer&gt; p = <span class="keyword">new</span> Pair&lt;&gt;(<span class="number">123</span>, <span class="number">456</span>);</span><br><span class="line"><span class="comment">// Compile error:</span></span><br><span class="line"><span class="keyword">if</span> (p <span class="keyword">instanceof</span> Pair&lt;String&gt;) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不能实例化<code>T</code>类型</p>
+</li>
+</ul>
+</li>
+<li><p>一个类可以继承自一个泛型类。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntPair</span> <span class="keyword">extends</span> <span class="title">Pair</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用的时候，因为子类<code>IntPair</code>并没有泛型类型，所以，正常使用即可。</p>
+</li>
+<li><p>我们无法获取<code>Pair&lt;T&gt;</code>的<code>T</code>类型，即给定一个变量<code>Pair&lt;Integer&gt; p</code>，无法从<code>p</code>中获取到<code>Integer</code>类型。</p>
+</li>
+<li><p><code>Pair&lt;Integer&gt;</code>不是<code>Pair&lt;Number&gt;</code>的子类。</p>
 </li>
 </ul>
 
@@ -473,6 +508,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/29/Java/JavaCollection/" rel="prev" title="JavaCollection">
+                JavaCollection <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -549,7 +588,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -560,7 +599,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -571,7 +610,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -604,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java泛型"><span class="nav-text">java泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、什么是泛型"><span class="nav-text">1、什么是泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、使用泛型"><span class="nav-text">2、使用泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、编写泛型"><span class="nav-text">3、编写泛型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#java泛型"><span class="nav-text">java泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、什么是泛型"><span class="nav-text">1、什么是泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、使用泛型"><span class="nav-text">2、使用泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、编写泛型"><span class="nav-text">3、编写泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、擦拭法"><span class="nav-text">4、擦拭法</span></a></li></ol></li></ol></div>
             
 
           </div>

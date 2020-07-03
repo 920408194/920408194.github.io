@@ -358,6 +358,24 @@
       </tags>
   </entry>
   <entry>
+    <title>JavaCollection</title>
+    <url>/2020/06/29/Java/JavaCollection/</url>
+    <content><![CDATA[<p>本文是我学习Java集合时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h1><ul>
+<li>在Java中，如果一个Java对象可以在内部持有若干其他Java对象，并对外提供访问接口，我们把这种Java对象称为集合。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JVM</title>
     <url>/2020/06/21/Java/JVM/</url>
     <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
@@ -459,83 +477,6 @@
 <li><p>使用<code>Commons Logging</code>只需要和两个类打交道，并且只有两步：第一步，通过<code>LogFactory</code>获取<code>Log</code>类的实例； 第二步，使用<code>Log</code>实例的方法打日志。（需要apache的第三方包）</p>
 </li>
 <li><p><code>Log4j</code>是一种非常流行的日志框架，最新版本是2.x。当我们使用<code>Log4j</code>输出一条日志时，<code>Log4j</code>自动通过不同的<code>Appender</code>把同一条日志输出到不同的目的地。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaGenerics</title>
-    <url>/2020/06/29/Java/JavaGenerics/</url>
-    <content><![CDATA[<p>本文是我学习Java泛型时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-<a id="more"></a>
-
-<h1 id="java泛型"><a href="#java泛型" class="headerlink" title="java泛型"></a>java泛型</h1><h2 id="1、什么是泛型"><a href="#1、什么是泛型" class="headerlink" title="1、什么是泛型"></a>1、什么是泛型</h2><ul>
-<li><p>在了解什么是泛型之前，我们先观察Java标准库提供的<code>ArrayList</code>，它可以看作“可变长度”的数组，因为用起来比数组更方便。实际上<code>ArrayList</code>内部就是一个<code>Object[]</code>数组，配合存储一个当前分配的长度，就可以充当“可变数组”：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Object e)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>如果用上述<code>ArrayList</code>存储<code>String</code>类型，会有这么几个缺点：</p>
-<ul>
-<li><p>需要强制转型；</p>
-</li>
-<li><p>不方便，易出错。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">list.add(<span class="keyword">new</span> Integer(<span class="number">123</span>));</span><br><span class="line"><span class="comment">// ERROR: ClassCastException:</span></span><br><span class="line">String second = (String) list.get(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><p>为了解决上述问题，我们可以把<code>ArrayList</code>变成一种模板：<code>ArrayList&lt;T&gt;</code>，代码如下：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T e)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>T</code>可以是任何class。这样一来，我们就实现了：编写一次模版，可以创建任意类型的<code>ArrayList</code>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建可以存储String的ArrayList:</span></span><br><span class="line">ArrayList&lt;String&gt; strList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="comment">// 创建可以存储Float的ArrayList:</span></span><br><span class="line">ArrayList&lt;Float&gt; floatList = <span class="keyword">new</span> ArrayList&lt;Float&gt;();</span><br><span class="line"><span class="comment">// 创建可以存储Person的ArrayList:</span></span><br><span class="line">ArrayList&lt;Person&gt; personList = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br></pre></td></tr></table></figure>
-
-<p>这就是泛型。</p>
-</li>
-<li><p>在Java标准库中的<code>ArrayList&lt;T&gt;</code>实现了<code>List&lt;T&gt;</code>接口，它可以向上转型为<code>List&lt;T&gt;</code>：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br></pre></td></tr></table></figure>
-
-<p>即类型<code>ArrayList&lt;T&gt;</code>可以向上转型为<code>List&lt;T&gt;</code>。</p>
-<ul>
-<li><p>要<em>特别注意</em>：不能把<code>ArrayList&lt;Integer&gt;</code>向上转型为<code>ArrayList&lt;Number&gt;</code>或<code>List&lt;Number&gt;</code>。这是为什么呢？假设<code>ArrayList&lt;Integer&gt;</code>可以向上转型为<code>ArrayList&lt;Number&gt;</code>，观察一下代码：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建ArrayList&lt;Integer&gt;类型：</span></span><br><span class="line">ArrayList&lt;Integer&gt; integerList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"><span class="comment">// 添加一个Integer：</span></span><br><span class="line">integerList.add(<span class="keyword">new</span> Integer(<span class="number">123</span>));</span><br><span class="line"><span class="comment">// “向上转型”为ArrayList&lt;Number&gt;：</span></span><br><span class="line">ArrayList&lt;Number&gt; numberList = integerList;</span><br><span class="line"><span class="comment">// 添加一个Float，因为Float也是Number：</span></span><br><span class="line">numberList.add(<span class="keyword">new</span> Float(<span class="number">12.34</span>));</span><br><span class="line"><span class="comment">// 从ArrayList&lt;Integer&gt;获取索引为1的元素（即添加的Float）：</span></span><br><span class="line">Integer n = integerList.get(<span class="number">1</span>); <span class="comment">// ClassCastException!</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>我们把一个<code>ArrayList&lt;Integer&gt;</code>转型为<code>ArrayList&lt;Number&gt;</code>类型后，这个<code>ArrayList&lt;Number&gt;</code>就可以接受<code>Float</code>类型，因为<code>Float</code>是<code>Number</code>的子类。但是，<code>ArrayList&lt;Number&gt;</code>实际上和<code>ArrayList&lt;Integer&gt;</code>是同一个对象，也就是<code>ArrayList&lt;Integer&gt;</code>类型，它不可能接受<code>Float</code>类型， 所以在获取<code>Integer</code>的时候将产生<code>ClassCastException</code>。</p>
-</li>
-<li><p>实际上，编译器为了避免这种错误，根本就不允许把<code>ArrayList&lt;Integer&gt;</code>转型为<code>ArrayList&lt;Number&gt;</code>。</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2、使用泛型"><a href="#2、使用泛型" class="headerlink" title="2、使用泛型"></a>2、使用泛型</h2><ul>
-<li><p>使用<code>ArrayList</code>时，如果不定义泛型类型时，泛型类型实际上就是<code>Object</code>。此时，只能把<code>&lt;T&gt;</code>当作<code>Object</code>使用，没有发挥泛型的优势。</p>
-</li>
-<li><p>除了<code>ArrayList&lt;T&gt;</code>使用了泛型，还可以在接口中使用泛型。例如，<code>Arrays.sort(Object[])</code>可以对任意数组进行排序，但待排序的元素必须实现<code>Comparable&lt;T&gt;</code>这个泛型接口：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回-1: 当前实例比参数o小</span></span><br><span class="line"><span class="comment">     * 返回0: 当前实例与参数o相等</span></span><br><span class="line"><span class="comment">     * 返回1: 当前实例比参数o大</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(T o)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sort</span></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String[] ss = <span class="keyword">new</span> String[] &#123; <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Pear"</span> &#125;;</span><br><span class="line">        Arrays.sort(ss);</span><br><span class="line">        System.out.println(Arrays.toString(ss));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这是因为<code>String</code>本身已经实现了<code>Comparable&lt;String&gt;</code>接口。如果换成我们自定义的<code>Person</code>类型试试：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// sort</span></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person[] ps = <span class="keyword">new</span> Person[] &#123;</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Bob"</span>, <span class="number">61</span>),</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Alice"</span>, <span class="number">88</span>),</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Lily"</span>, <span class="number">75</span>),</span><br><span class="line">        &#125;;</span><br><span class="line">        Arrays.sort(ps);</span><br><span class="line">        System.out.println(Arrays.toString(ps));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    Person(String name, <span class="keyword">int</span> score) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name.compareTo(other.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">","</span> + <span class="keyword">this</span>.score;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>就需要先实现<code>Comparable&lt;T&gt;</code>接口。</p>
-</li>
-<li><p><strong>注意：</strong> compareTo方法 参数可以是一个 Byte, Double, Integer, Float, Long 或 Short 类型的参数。</p>
-</li>
-</ul>
-<h2 id="3、编写泛型"><a href="#3、编写泛型" class="headerlink" title="3、编写泛型"></a>3、编写泛型</h2><ul>
-<li><p>一般来说，我们很少需要编写泛型类。</p>
-</li>
-<li><p>如果我们确实需要编写一个泛型类，可以按照以下步骤来编写一个泛型类。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1. 首先，按照某种类型，例如：String，来编写类：</span></span><br><span class="line"><span class="comment">//2. 然后，标记所有的特定类型，这里是String：</span></span><br><span class="line"><span class="comment">//3. 最后，把特定类型String替换为T，并申明&lt;T&gt;：</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T first;</span><br><span class="line">    <span class="keyword">private</span> T last;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">(T first, T last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first = first;</span><br><span class="line">        <span class="keyword">this</span>.last = last;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> last;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写泛型类时，要特别注意，泛型类型<code>&lt;T&gt;</code>不能用于静态方法。对于静态方法，我们可以单独改写为“泛型”方法，只需要使用另一个类型即可。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K&gt; <span class="function">Pair&lt;K&gt; <span class="title">create</span><span class="params">(K first, K last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Pair&lt;K&gt;(first, last);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Java语言的泛型实现方式是擦拭法（Type Erasure）。Java语言的泛型实现方式是擦拭法（Type Erasure）。</p>
 </li>
 </ul>
 ]]></content>
@@ -1261,6 +1202,118 @@ Class[] is = s.getInterfaces();
       </tags>
   </entry>
   <entry>
+    <title>JavaGenerics</title>
+    <url>/2020/06/29/Java/JavaGenerics/</url>
+    <content><![CDATA[<p>本文是我学习Java泛型时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="java泛型"><a href="#java泛型" class="headerlink" title="java泛型"></a>java泛型</h1><h2 id="1、什么是泛型"><a href="#1、什么是泛型" class="headerlink" title="1、什么是泛型"></a>1、什么是泛型</h2><ul>
+<li><p>在了解什么是泛型之前，我们先观察Java标准库提供的<code>ArrayList</code>，它可以看作“可变长度”的数组，因为用起来比数组更方便。实际上<code>ArrayList</code>内部就是一个<code>Object[]</code>数组，配合存储一个当前分配的长度，就可以充当“可变数组”：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Object e)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果用上述<code>ArrayList</code>存储<code>String</code>类型，会有这么几个缺点：</p>
+<ul>
+<li><p>需要强制转型；</p>
+</li>
+<li><p>不方便，易出错。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">list.add(<span class="keyword">new</span> Integer(<span class="number">123</span>));</span><br><span class="line"><span class="comment">// ERROR: ClassCastException:</span></span><br><span class="line">String second = (String) list.get(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>为了解决上述问题，我们可以把<code>ArrayList</code>变成一种模板：<code>ArrayList&lt;T&gt;</code>，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T[] array;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> size;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(T e)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>T</code>可以是任何class。这样一来，我们就实现了：编写一次模版，可以创建任意类型的<code>ArrayList</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建可以存储String的ArrayList:</span></span><br><span class="line">ArrayList&lt;String&gt; strList = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line"><span class="comment">// 创建可以存储Float的ArrayList:</span></span><br><span class="line">ArrayList&lt;Float&gt; floatList = <span class="keyword">new</span> ArrayList&lt;Float&gt;();</span><br><span class="line"><span class="comment">// 创建可以存储Person的ArrayList:</span></span><br><span class="line">ArrayList&lt;Person&gt; personList = <span class="keyword">new</span> ArrayList&lt;Person&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>这就是泛型。</p>
+</li>
+<li><p>在Java标准库中的<code>ArrayList&lt;T&gt;</code>实现了<code>List&lt;T&gt;</code>接口，它可以向上转型为<code>List&lt;T&gt;</code>：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">List</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+
+<p>即类型<code>ArrayList&lt;T&gt;</code>可以向上转型为<code>List&lt;T&gt;</code>。</p>
+<ul>
+<li><p>要<em>特别注意</em>：不能把<code>ArrayList&lt;Integer&gt;</code>向上转型为<code>ArrayList&lt;Number&gt;</code>或<code>List&lt;Number&gt;</code>。这是为什么呢？假设<code>ArrayList&lt;Integer&gt;</code>可以向上转型为<code>ArrayList&lt;Number&gt;</code>，观察一下代码：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 创建ArrayList&lt;Integer&gt;类型：</span></span><br><span class="line">ArrayList&lt;Integer&gt; integerList = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line"><span class="comment">// 添加一个Integer：</span></span><br><span class="line">integerList.add(<span class="keyword">new</span> Integer(<span class="number">123</span>));</span><br><span class="line"><span class="comment">// “向上转型”为ArrayList&lt;Number&gt;：</span></span><br><span class="line">ArrayList&lt;Number&gt; numberList = integerList;</span><br><span class="line"><span class="comment">// 添加一个Float，因为Float也是Number：</span></span><br><span class="line">numberList.add(<span class="keyword">new</span> Float(<span class="number">12.34</span>));</span><br><span class="line"><span class="comment">// 从ArrayList&lt;Integer&gt;获取索引为1的元素（即添加的Float）：</span></span><br><span class="line">Integer n = integerList.get(<span class="number">1</span>); <span class="comment">// ClassCastException!</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>我们把一个<code>ArrayList&lt;Integer&gt;</code>转型为<code>ArrayList&lt;Number&gt;</code>类型后，这个<code>ArrayList&lt;Number&gt;</code>就可以接受<code>Float</code>类型，因为<code>Float</code>是<code>Number</code>的子类。但是，<code>ArrayList&lt;Number&gt;</code>实际上和<code>ArrayList&lt;Integer&gt;</code>是同一个对象，也就是<code>ArrayList&lt;Integer&gt;</code>类型，它不可能接受<code>Float</code>类型， 所以在获取<code>Integer</code>的时候将产生<code>ClassCastException</code>。</p>
+</li>
+<li><p>实际上，编译器为了避免这种错误，根本就不允许把<code>ArrayList&lt;Integer&gt;</code>转型为<code>ArrayList&lt;Number&gt;</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2、使用泛型"><a href="#2、使用泛型" class="headerlink" title="2、使用泛型"></a>2、使用泛型</h2><ul>
+<li><p>使用<code>ArrayList</code>时，如果不定义泛型类型时，泛型类型实际上就是<code>Object</code>。此时，只能把<code>&lt;T&gt;</code>当作<code>Object</code>使用，没有发挥泛型的优势。</p>
+</li>
+<li><p>除了<code>ArrayList&lt;T&gt;</code>使用了泛型，还可以在接口中使用泛型。例如，<code>Arrays.sort(Object[])</code>可以对任意数组进行排序，但待排序的元素必须实现<code>Comparable&lt;T&gt;</code>这个泛型接口：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Comparable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 返回-1: 当前实例比参数o小</span></span><br><span class="line"><span class="comment">     * 返回0: 当前实例与参数o相等</span></span><br><span class="line"><span class="comment">     * 返回1: 当前实例比参数o大</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(T o)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// sort</span></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String[] ss = <span class="keyword">new</span> String[] &#123; <span class="string">"Orange"</span>, <span class="string">"Apple"</span>, <span class="string">"Pear"</span> &#125;;</span><br><span class="line">        Arrays.sort(ss);</span><br><span class="line">        System.out.println(Arrays.toString(ss));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这是因为<code>String</code>本身已经实现了<code>Comparable&lt;String&gt;</code>接口。如果换成我们自定义的<code>Person</code>类型试试：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// sort</span></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person[] ps = <span class="keyword">new</span> Person[] &#123;</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Bob"</span>, <span class="number">61</span>),</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Alice"</span>, <span class="number">88</span>),</span><br><span class="line">            <span class="keyword">new</span> Person(<span class="string">"Lily"</span>, <span class="number">75</span>),</span><br><span class="line">        &#125;;</span><br><span class="line">        Arrays.sort(ps);</span><br><span class="line">        System.out.println(Arrays.toString(ps));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt; </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    <span class="keyword">int</span> score;</span><br><span class="line">    Person(String name, <span class="keyword">int</span> score) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.score = score;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person other)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name.compareTo(other.name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name + <span class="string">","</span> + <span class="keyword">this</span>.score;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就需要先实现<code>Comparable&lt;T&gt;</code>接口。</p>
+</li>
+<li><p><strong>注意：</strong> compareTo方法 参数可以是一个 Byte, Double, Integer, Float, Long 或 Short 类型的参数。</p>
+</li>
+</ul>
+<h2 id="3、编写泛型"><a href="#3、编写泛型" class="headerlink" title="3、编写泛型"></a>3、编写泛型</h2><ul>
+<li><p>一般来说，我们很少需要编写泛型类。</p>
+</li>
+<li><p>如果我们确实需要编写一个泛型类，可以按照以下步骤来编写一个泛型类。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//1. 首先，按照某种类型，例如：String，来编写类：</span></span><br><span class="line"><span class="comment">//2. 然后，标记所有的特定类型，这里是String：</span></span><br><span class="line"><span class="comment">//3. 最后，把特定类型String替换为T，并申明&lt;T&gt;：</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Pair</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> T first;</span><br><span class="line">    <span class="keyword">private</span> T last;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Pair</span><span class="params">(T first, T last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.first = first;</span><br><span class="line">        <span class="keyword">this</span>.last = last;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getFirst</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> T <span class="title">getLast</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> last;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写泛型类时，要特别注意，泛型类型<code>&lt;T&gt;</code>不能用于静态方法。对于静态方法，我们可以单独改写为“泛型”方法，只需要使用另一个类型即可。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;K&gt; <span class="function">Pair&lt;K&gt; <span class="title">create</span><span class="params">(K first, K last)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Pair&lt;K&gt;(first, last);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="4、擦拭法"><a href="#4、擦拭法" class="headerlink" title="4、擦拭法"></a>4、擦拭法</h2><ul>
+<li><p>Java语言的泛型实现方式是擦拭法（Type Erasure）。Java语言的泛型实现方式是擦拭法（Type Erasure）。谓擦拭法是指，虚拟机对泛型其实一无所知，所有的工作都是编译器做的。</p>
+</li>
+<li><p>Java使用擦拭法实现泛型，导致了：</p>
+<ul>
+<li>编译器把类型<code>&lt;T&gt;</code>视为<code>Object</code>；</li>
+<li>编译器根据<code>&lt;T&gt;</code>实现安全的强制转型。</li>
+</ul>
+<p>所以，Java的泛型是由编译器在编译时实行的，编译器内部永远把所有类型<code>T</code>视为<code>Object</code>处理，但是，在需要转型的时候，编译器会根据<code>T</code>的类型自动为我们实行安全地强制转型。</p>
+</li>
+<li><p>Java泛型的局限：</p>
+<ul>
+<li><p><code>&lt;T&gt;</code>不能是基本类型，例如<code>int</code>，因为实际类型是<code>Object</code>，<code>Object</code>类型无法持有基本类型.</p>
+</li>
+<li><p>无法取得带泛型的<code>Class</code>.</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pair&lt;String&gt; p1 = <span class="keyword">new</span> Pair&lt;&gt;(<span class="string">"Hello"</span>, <span class="string">"world"</span>);</span><br><span class="line">Pair&lt;Integer&gt; p2 = <span class="keyword">new</span> Pair&lt;&gt;(<span class="number">123</span>, <span class="number">456</span>);</span><br><span class="line">Class c1 = p1.getClass();</span><br><span class="line">Class c2 = p2.getClass();</span><br><span class="line">System.out.println(c1); <span class="comment">// true</span></span><br><span class="line">System.out.println(c1==Pair<span class="class">.<span class="keyword">class</span>)</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<p>因为<code>T</code>是<code>Object</code>，我们对<code>Pair&lt;String&gt;</code>和<code>Pair&lt;Integer&gt;</code>类型获取<code>Class</code>时，获取到的是同一个<code>Class</code>，也就是<code>Pair</code>类的<code>Class</code>。换句话说，所有泛型实例，无论<code>T</code>的类型是什么，<code>getClass()</code>返回同一个<code>Class</code>实例，因为编译后它们全部都是<code>Pair&lt;Object&gt;</code>。</p>
+</li>
+<li><p>无法判断带泛型的类型</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pair&lt;Integer&gt; p = <span class="keyword">new</span> Pair&lt;&gt;(<span class="number">123</span>, <span class="number">456</span>);</span><br><span class="line"><span class="comment">// Compile error:</span></span><br><span class="line"><span class="keyword">if</span> (p <span class="keyword">instanceof</span> Pair&lt;String&gt;) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不能实例化<code>T</code>类型</p>
+</li>
+</ul>
+</li>
+<li><p>一个类可以继承自一个泛型类。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">IntPair</span> <span class="keyword">extends</span> <span class="title">Pair</span>&lt;<span class="title">Integer</span>&gt; </span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用的时候，因为子类<code>IntPair</code>并没有泛型类型，所以，正常使用即可。</p>
+</li>
+<li><p>我们无法获取<code>Pair&lt;T&gt;</code>的<code>T</code>类型，即给定一个变量<code>Pair&lt;Integer&gt; p</code>，无法从<code>p</code>中获取到<code>Integer</code>类型。</p>
+</li>
+<li><p><code>Pair&lt;Integer&gt;</code>不是<code>Pair&lt;Number&gt;</code>的子类。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>JavaSE</title>
     <url>/2020/06/13/Java/JavaSE/</url>
     <content><![CDATA[<p>本文是我学习JavaSE时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。笔记内容主要是Java的基础语法部分。</p>
@@ -1353,6 +1406,80 @@ Class[] is = s.getInterfaces();
 ]]></content>
       <categories>
         <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IOC&amp;AOP</title>
+    <url>/2020/07/01/Spring/IOC&amp;AOP/</url>
+    <content><![CDATA[<p>本文是我学习spring时的笔记，内容主要来自Java3y公众号和廖雪峰的java教程。</p>
+<a id="more"></a>
+
+<h1 id="Spring之IOC-amp-AOP"><a href="#Spring之IOC-amp-AOP" class="headerlink" title="Spring之IOC&amp;AOP"></a>Spring之IOC&amp;AOP</h1><ul>
+<li><p>Spring IOC 解决的是 <strong>对象管理和对象依赖的问题</strong>。</p>
+</li>
+<li><p>Spring AOP 解决的是 <strong>非业务代码抽取的问题</strong>。</p>
+</li>
+</ul>
+<h2 id="IOC-Inversion-of-Control-控制反转"><a href="#IOC-Inversion-of-Control-控制反转" class="headerlink" title="IOC(Inversion of Control) 控制反转"></a>IOC(Inversion of Control) 控制反转</h2>]]></content>
+      <categories>
+        <category>Spring</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SpringBoot</title>
+    <url>/2020/07/02/Spring/SpringBoot/</url>
+    <content><![CDATA[<p>本文是我学习SpringBoot是的笔记，资源来自互联网。</p>
+<a id="more"></a>
+
+<h1 id="SpringBoot"><a href="#SpringBoot" class="headerlink" title="SpringBoot"></a>SpringBoot</h1><h2 id="一、什么是SpringBoot"><a href="#一、什么是SpringBoot" class="headerlink" title="一、什么是SpringBoot"></a>一、什么是SpringBoot</h2><h2 id="二、快速开始"><a href="#二、快速开始" class="headerlink" title="二、快速开始"></a>二、快速开始</h2><h3 id="1、从idea创建SpringBoot项目"><a href="#1、从idea创建SpringBoot项目" class="headerlink" title="1、从idea创建SpringBoot项目"></a>1、从idea创建SpringBoot项目</h3><ol>
+<li><p>新建idea maven项目，不勾选依赖。</p>
+</li>
+<li><p>在pom中加入以下依赖，作用见注释</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- SpringBoot启动器  --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">   </span><br><span class="line"><span class="comment">&lt;!--Web依赖--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写control类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(<span class="string">"/hello"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">Hello</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Hello"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/02/Spring/SpringBoot/image-20200702171450483.png" alt="image-20200702171450483"></p>
+</li>
+</ol>
+<ol start="4">
+<li><p>在application.yml中设置端口等信息</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment">#服务端容器的配置</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8887</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>点击application的run方法，启动服务。</p>
+</li>
+</ol>
+<h2 id="2、使用JPA访问数据库"><a href="#2、使用JPA访问数据库" class="headerlink" title="2、使用JPA访问数据库"></a>2、使用JPA访问数据库</h2><ol>
+<li><p>导入JPA依赖</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MySQL的java驅動 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--spring data jpa--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-jpa<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>跟据数据编写实体类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Entity</span> <span class="comment">// jpa的注解，需要加</span></span><br><span class="line"><span class="meta">@Data</span> <span class="comment">// lombok</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">    <span class="meta">@Id</span></span><br><span class="line">    <span class="keyword">private</span> String id;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String email;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写 Repository类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//参数为实体类类型和主键类型</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserRepository</span> <span class="keyword">extends</span> <span class="title">JpaRepository</span>&lt;<span class="title">User</span>, <span class="title">String</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写Service类（可省略）</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 接口</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">getAllUser</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 实现</span></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserRepository userRepository;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getAllUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userRepository.findAll();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写control类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 得到所有用户</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@GetMapping</span>(value = <span class="string">"/user"</span>, produces = &#123;<span class="string">"application/json;charset=UTF-8"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">getAllUser</span> <span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        List&lt;User&gt; allUser = userService.getAllUser();</span><br><span class="line">		<span class="comment">//早命令行输出</span></span><br><span class="line">        <span class="keyword">for</span> (User user : allUser) &#123;</span><br><span class="line">            System.out.println(user);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="comment">//在页面输出</span></span><br><span class="line">        <span class="keyword">return</span>  allUser;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2020/07/02/Spring/SpringBoot/image-20200702173941632.png" alt="image-20200702173941632"></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Spring</category>
       </categories>
       <tags>
         <tag>java</tag>
@@ -2077,11 +2204,11 @@ Class[] is = s.getInterfaces();
 <p><img src="/2020/06/22/Spring/SpringMVC/20180817135701102" alt="img"></p>
 ]]></content>
       <categories>
-        <category>java</category>
+        <category>Spring</category>
       </categories>
       <tags>
+        <tag>java</tag>
         <tag>技术文档</tag>
-        <tag>Spring</tag>
       </tags>
   </entry>
 </search>
