@@ -2,9 +2,9 @@
 title: SpringMVC
 date: 2020-06-22T18:44:54+08:00
 categories:
-- java
-tags:
 - Spring
+tags:
+- java
 - 技术文档
 ---
 
