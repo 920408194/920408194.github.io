@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="前端,技术文档," />
+  <meta name="keywords" content="技术文档,前端," />
 
 
 
@@ -87,10 +87,10 @@
 <meta property="og:description" content="本文是我学习VUE时的笔记，大部分内容来自VUE官网。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-06-10T12:08:36.000Z">
-<meta property="article:modified_time" content="2020-06-16T10:59:01.569Z">
+<meta property="article:modified_time" content="2020-07-06T09:55:44.856Z">
 <meta property="article:author" content="panda">
-<meta property="article:tag" content="前端">
 <meta property="article:tag" content="技术文档">
+<meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
 
 
@@ -370,11 +370,11 @@
         <p>本文是我学习VUE时的笔记，大部分内容来自VUE官网。</p>
 <a id="more"></a>
 
-<h1 id="vue-js"><a href="#vue-js" class="headerlink" title="vue.js"></a>vue.js</h1><h2 id="1、-why-vue"><a href="#1、-why-vue" class="headerlink" title="1、 why vue"></a>1、 why vue</h2><h3 id="1、what‘s-vue"><a href="#1、what‘s-vue" class="headerlink" title="1、what‘s vue"></a>1、what‘s vue</h3><ul>
+<h1 id="vue-js"><a href="#vue-js" class="headerlink" title="vue.js"></a>vue.js</h1><h2 id="一、-why-vue"><a href="#一、-why-vue" class="headerlink" title="一、 why vue"></a>一、 why vue</h2><h3 id="1、what‘s-vue"><a href="#1、what‘s-vue" class="headerlink" title="1、what‘s vue"></a>1、what‘s vue</h3><ul>
 <li>Vue是一套用于构建用户界面的<strong>渐进式框架</strong>，Vue 被设计为可以自底向上逐层应用。Vue 的核心库只关注视图层，不仅易于上手，还便于与第三方库或既有项目整合。另一方面，当与<a href="https://cn.vuejs.org/v2/guide/single-file-components.html" target="_blank" rel="noopener">现代化的工具链</a>以及各种<a href="https://github.com/vuejs/awesome-vue#libraries--plugins" target="_blank" rel="noopener">支持类库</a>结合使用时，Vue 也完全能够为复杂的单页应用提供驱动。</li>
 <li>虚拟DOM</li>
 </ul>
-<h3 id><a href="#" class="headerlink" title></a></h3><h2 id="2、起步-从html开始"><a href="#2、起步-从html开始" class="headerlink" title="2、起步-从html开始"></a>2、起步-从html开始</h2><h3 id="1、一个简单的vue-js网站"><a href="#1、一个简单的vue-js网站" class="headerlink" title="1、一个简单的vue.js网站"></a>1、一个简单的vue.js网站</h3><p><a href="../../../../../vue_test.html">页面</a></p>
+<h3 id><a href="#" class="headerlink" title></a></h3><h2 id="二、起步-从html开始"><a href="#二、起步-从html开始" class="headerlink" title="二、起步-从html开始"></a>二、起步-从html开始</h2><h3 id="1、一个简单的vue-js网站"><a href="#1、一个简单的vue-js网站" class="headerlink" title="1、一个简单的vue.js网站"></a>1、一个简单的vue.js网站</h3><p><a href="../../../../../vue_test.html">页面</a></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- vue.html --&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开发环境版本，包含了有帮助的命令行警告 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.jsdelivr.net/npm/vue/dist/vue.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>VUE<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- html --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- js代码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">        el: <span class="string">'#app'</span>,</span></span><br><span class="line">        data: &#123;</span><br><span class="line"><span class="actionscript">            message: <span class="string">'Hello Vue!'</span></span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -385,6 +385,15 @@
 
 <ul>
 <li><code>v-bind</code> attribute 被称为<strong>指令</strong>，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 <code>title</code> attribute 和 Vue 实例的 <code>message</code> property 保持一致”。如果你再次打开浏览器的 JavaScript 控制台，输入 <code>app2.message = &#39;新消息&#39;</code>，就会再一次看到这个绑定了 <code>title</code> attribute 的 HTML 已经进行了更新。</li>
+</ul>
+<h2 id="三、创建vue项目"><a href="#三、创建vue项目" class="headerlink" title="三、创建vue项目"></a>三、创建vue项目</h2><h3 id="1、使用图形化界面"><a href="#1、使用图形化界面" class="headerlink" title="1、使用图形化界面"></a>1、使用图形化界面</h3><ul>
+<li>指令 <code>vue ui</code>，会在浏览器自动打开一个图形化窗口，在窗口上进行vue项目的创建。</li>
+<li>图形化界面好像有时候会卡</li>
+</ul>
+<h3 id="2、使用终端-vscode"><a href="#2、使用终端-vscode" class="headerlink" title="2、使用终端+vscode"></a>2、使用终端+vscode</h3><ul>
+<li>打开vscode对应文件夹，终端输入<code>vue create 项目名</code></li>
+<li>运行vue项目，终端输入<code>npm run dev</code> <code>npm run</code></li>
+<li>跟据终端输出访问localhost网址。</li>
 </ul>
 
       
@@ -403,9 +412,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
-          
             <a href="/tags/%E6%8A%80%E6%9C%AF%E6%96%87%E6%A1%A3/" rel="tag"># 技术文档</a>
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
           
         </div>
       
@@ -424,7 +433,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/06/11/Java/JavaWeb/" rel="prev" title="JavaWeb">
+              <a href="/2020/06/11/JavaWeb/JavaWeb/" rel="prev" title="JavaWeb">
                 JavaWeb <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -558,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-js"><span class="nav-text">vue.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、-why-vue"><span class="nav-text">1、 why vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、what‘s-vue"><span class="nav-text">1、what‘s vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、起步-从html开始"><span class="nav-text">2、起步-从html开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、一个简单的vue-js网站"><span class="nav-text">1、一个简单的vue.js网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、动态"><span class="nav-text">2、动态</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vue-js"><span class="nav-text">vue.js</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、-why-vue"><span class="nav-text">一、 why vue</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、what‘s-vue"><span class="nav-text">1、what‘s vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#"><span class="nav-text"></span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、起步-从html开始"><span class="nav-text">二、起步-从html开始</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、一个简单的vue-js网站"><span class="nav-text">1、一个简单的vue.js网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、动态"><span class="nav-text">2、动态</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、创建vue项目"><span class="nav-text">三、创建vue项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、使用图形化界面"><span class="nav-text">1、使用图形化界面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、使用终端-vscode"><span class="nav-text">2、使用终端+vscode</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
