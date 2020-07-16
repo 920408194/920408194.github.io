@@ -14,7 +14,7 @@ tags:
 
 # java泛型
 
-## 1、什么是泛型
+## 一、什么是泛型
 
 - 在了解什么是泛型之前，我们先观察Java标准库提供的`ArrayList`，它可以看作“可变长度”的数组，因为用起来比数组更方便。实际上`ArrayList`内部就是一个`Object[]`数组，配合存储一个当前分配的长度，就可以充当“可变数组”：
 
@@ -96,7 +96,7 @@ tags:
 
   - 实际上，编译器为了避免这种错误，根本就不允许把`ArrayList<Integer>`转型为`ArrayList<Number>`。
 
-## 2、使用泛型
+## 二、使用泛型
 
 - 使用`ArrayList`时，如果不定义泛型类型时，泛型类型实际上就是`Object`。此时，只能把`<T>`当作`Object`使用，没有发挥泛型的优势。
 
@@ -163,7 +163,7 @@ tags:
 
 - **注意：** compareTo方法 参数可以是一个 Byte, Double, Integer, Float, Long 或 Short 类型的参数。
 
-## 3、编写泛型
+## 三、编写泛型
 
 - 一般来说，我们很少需要编写泛型类。
 
@@ -197,7 +197,7 @@ tags:
   }
   ```
 
-## 4、擦拭法
+## 四、擦拭法
 
 - Java语言的泛型实现方式是擦拭法（Type Erasure）。Java语言的泛型实现方式是擦拭法（Type Erasure）。谓擦拭法是指，虚拟机对泛型其实一无所知，所有的工作都是编译器做的。
 
@@ -246,5 +246,165 @@ tags:
 
 - 我们无法获取`Pair<T>`的`T`类型，即给定一个变量`Pair<Integer> p`，无法从`p`中获取到`Integer`类型。
 
-- `Pair<Integer>`不是`Pair<Number>`的子类。
+- **注意**：`Pair<Integer>`不是`Pair<Number>`的子类。
 
+## 五、通配符
+
+### 1、extends
+
+- 使用`Pair<? extends Number>`使得方法接收所有泛型类型为`Number`或`Number`子类的`Pair`类型。
+
+  ```java
+  public class Main {
+      public static void main(String[] args) {
+          Pair<Integer> p = new Pair<>(123, 456);
+          int n = add(p);
+          System.out.println(n);
+      }
+  
+      static int add(Pair<? extends Number> p) {
+          Number first = p.getFirst();
+          Number last = p.getLast();
+          return first.intValue() + last.intValue();
+      }
+  
+  }
+  
+  class Pair<T> {
+      private T first;
+      private T last;
+      public Pair(T first, T last) {
+          this.first = first;
+          this.last = last;
+      }
+      public T getFirst() {
+          return first;
+      }
+      public T getLast() {
+          return last;
+      }
+  }
+  ```
+
+- 我们不可预测实际类型就是`Integer`，所以，下面的代码是无法通过编译的：
+
+  ```java
+  Integer x = p.getFirst();
+  ```
+
+- `<? extends Number>`通配符有一个重要限制：方法参数签名`setFirst(? extends Number)`无法传递任何`Number`类型给`setFirst(? extends Number)`。这个限制可以让方法只读。
+
+- 在定义泛型类型`Pair<T>`的时候，也可以使用`extends`通配符来限定`T`的类型：
+
+  ```java
+  public class Pair<T extends Number> { ... }
+  ```
+
+  非`Number`类型将无法通过编译。
+
+### 2、super通配符
+
+- 和`extends`通配符相反，这次，我们希望接受`Pair<Integer>`类型。我们使用`super`通配符来改写这个方法：
+
+  ```java
+  void set(Pair<? super Integer> p, Integer first, Integer last) {
+      p.setFirst(first);
+      p.setLast(last);
+  }
+  ```
+
+  注意到`Pair<? super Integer>`表示，方法参数接受所有泛型类型为`Integer`或`Integer`父类的`Pair`类型。
+
+- `Pair<? super Integer>`的`setFirst()`方法，它的方法签名实际上是：
+
+  ```java
+  void setFirst(? super Integer);
+  ```
+
+  因此，可以安全地传入`Integer`类型。
+  
+- 使用`<? super Integer>`通配符表示：
+
+  - 允许调用`set(? super Integer)`方法传入`Integer`的引用；
+  - 不允许调用`get()`方法获得`Integer`的引用。
+
+### 3、对比extends和super通配符
+
+- 作为方法参数，`<? extends T>`类型和`<? super T>`类型的区别在于：
+
+  - `<? extends T>`允许调用读方法`T get()`**获取**`T`的引用，但不允许调用写方法`set(T)`传入`T`的引用（传入`null`除外）；
+  - `<? super T>`允许调用写方法`set(T)`**传入**`T`的引用，但不允许调用读方法`T get()`获取`T`的引用（获取`Object`除外）。
+
+  一个是允许读不允许写，另一个是允许写不允许读。
+
+- 何时使用`extends`，何时使用`super`？为了便于记忆，我们可以用**PECS原则**：Producer Extends Consumer Super。即：如果需要返回`T`，它是生产者（Producer），要使用`extends`通配符；如果需要写入`T`，它是消费者（Consumer），要使用`super`通配符。
+
+### 4、无限定通配符
+
+- 实际上，Java的泛型还允许使用无限定通配符（Unbounded Wildcard Type），即只定义一个`?`：
+
+  ```java
+  void sample(Pair<?> p) {...}
+  ```
+
+- 因为`<?>`通配符既没有`extends`，也没有`super`，因此：
+
+  - 不允许调用`set(T)`方法并传入引用（`null`除外）；
+  - 不允许调用`T get()`方法并获取`T`引用（只能获取`Object`引用）。
+
+  换句话说，既不能读，也不能写，那只能做一些`null`判断：
+
+  ```java
+  static boolean isNull(Pair<?> p) {
+      return p.getFirst() == null || p.getLast() == null;
+  }
+  ```
+
+- 大多数情况下，可以引入泛型参数`<T>`消除`<?>`通配符：
+
+  ```java
+  static <T> boolean isNull(Pair<T> p) {
+      return p.getFirst() == null || p.getLast() == null;
+  }
+  ```
+
+- `<?>`通配符有一个独特的特点，就是：`Pair<?>`是所有`Pair<T>`的超类：
+
+## 六、泛型和反射
+
+- Java的部分反射API也是泛型。例如：`Class<T>`就是泛型。调用`Class`的`getSuperclass()`方法返回的`Class`类型是`Class<? super T>`：
+
+- 构造方法`Constructor<T>`也是泛型。
+
+- 我们可以声明带泛型的数组，但不能用`new`操作符创建带泛型的数组：编译器不会检查不是泛型的数组。
+
+- 带泛型的数组实际上是编译器的类型擦除，所以我们不能直接创建泛型数组`T[]`，因为擦拭后代码变为`Object[]`：
+
+  ```Java
+  // compile error:public class Abc<T> {
+      T[] createArray() {
+          return new T[5];
+      }
+  }
+  ```
+
+  必须借助`Class<T>`来创建泛型数组：
+
+    ```java
+    T[] createArray(Class<T> cls) {
+        return (T[]) Array.newInstance(cls, 5);
+    }
+    ```
+
+    我们还可以利用可变参数创建泛型数组`T[]`：
+
+    ```java
+    public class ArrayHelper {@SafeVarargs
+        static <T> T[] asArray(T... objs) {
+            return objs;
+        }
+    }
+
+    String[] ss = ArrayHelper.asArray("a", "b", "c");
+    Integer[] ns = ArrayHelper.asArray(1, 2, 3);
+    ```

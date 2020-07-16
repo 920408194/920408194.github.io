@@ -12,7 +12,7 @@ tags:
 <!-- more -->
 
 # vue.js
-## 1、 why vue
+## 一、 why vue
 
 ### 1、what‘s vue
 
@@ -21,7 +21,7 @@ tags:
 
 ### 
 
-## 2、起步-从html开始
+## 二、起步-从html开始
 
 ### 1、一个简单的vue.js网站
 [页面](../../../../../vue_test.html)
@@ -87,3 +87,18 @@ tags:
 ```
 
 - `v-bind` attribute 被称为**指令**，它们会在渲染的 DOM 上应用特殊的响应式行为。在这里，该指令的意思是：“将这个元素节点的 `title` attribute 和 Vue 实例的 `message` property 保持一致”。如果你再次打开浏览器的 JavaScript 控制台，输入 `app2.message = '新消息'`，就会再一次看到这个绑定了 `title` attribute 的 HTML 已经进行了更新。
+
+
+
+## 三、创建vue项目
+
+### 1、使用图形化界面
+
+- 指令 `vue ui`，会在浏览器自动打开一个图形化窗口，在窗口上进行vue项目的创建。
+- 图形化界面好像有时候会卡
+
+### 2、使用终端+vscode
+
+- 打开vscode对应文件夹，终端输入`vue create 项目名`
+- 运行vue项目，终端输入`npm run dev` `npm run `
+- 跟据终端输出访问localhost网址。

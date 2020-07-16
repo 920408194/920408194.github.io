@@ -67,7 +67,7 @@ tags:
 
 5. 点击application的run方法，启动服务。
 
-## 2、使用JPA访问数据库
+### 2、使用JPA访问数据库
 
 1. 导入JPA依赖
 
@@ -160,3 +160,121 @@ tags:
    ```
 
    ![image-20200702173941632](SpringBoot/image-20200702173941632.png)
+
+### 3、导入静态资源和使用thymeleaf
+
+1. 导入依赖包
+
+   ```xml
+   <!--静态资源依赖包 -->
+   <dependency>
+       <groupId>org.webjars</groupId>
+       <artifactId>jquery</artifactId>
+       <version>3.5.1</version>
+   </dependency>
+   ```
+
+2. 访问对应目录
+
+   ![image-20200703154307798](SpringBoot/image-20200703154307798.png)
+
+![image-20200703154408708](SpringBoot/image-20200703154408708.png)
+
+3. 静态资源放到正确的目录下
+
+   ![image-20200703155051599](SpringBoot/image-20200703155051599.png)
+
+   - 这三个目录都可以识别，优先级resources>static>public
+   - 这三个目录下的index.html文件会被识别为首页
+
+4. 使用thymeleaf
+
+   - thymeleaf的所有模板引擎写在templates文件夹下
+
+     ![image-20200703172643100](SpringBoot/image-20200703172643100.png)
+
+   - 是用controller映射地址
+
+     ```java
+     @Controller
+     public class testController {
+         @RequestMapping("/test")
+         public String test(){
+             return "test";
+         }
+     }
+     ```
+
+     ![image-20200703172739064](SpringBoot/image-20200703172739064.png)
+
+   - 在controller中引入model，绑定参数。导入thymeleaf头文件，使用语法。
+
+     ```java
+     @Controller
+     public class testController {
+         @RequestMapping("/test")
+         public String test(Model model){
+             model.addAttribute("msg","hello,springboot");
+             return "test";
+         }
+     }
+     ```
+
+     ```html
+     <!DOCTYPE html>
+     <!--导入thymeleaf头文件-->
+     <html lang="en" xmlns:th = "http://www.thymeleaf.org">
+     <head>
+         <meta charset="UTF-8">
+         <title>Data</title>
+     </head>
+     <body>
+         <!--th：后可以跟使用htnl元素，用法类似v- -->
+         <div th:text="${msg}"></div>
+     </body>
+     </html>
+     ```
+
+   5. thymeleaf示例
+
+      ```html
+      <!DOCTYPE html>
+      <html lang="en" xmlns:th = "http://www.thymeleaf.org">
+      <head>
+        <meta charset="UTF-8">
+        <title>Data</title>
+      </head>
+        <body>
+        
+        <!--
+            model.addAttribute("msg","<h1>hello,springboot</h1>");
+            model.addAttribute("users", Arrays.asList("panda","xiaohong","xiaoming"));
+        -->
+        
+        <div th:utext="${msg}"></div>
+        
+        <h3 th:each="user:${users}" th:text="${user}"></h3>
+        <h2>另一种方法</h2>
+        <h3 th:each="user:${users}">[[${user}]]</h3>
+        
+        </body>
+        </html>
+      ```
+      
+        ![ASD](SpringBoot/image-20200704110810846.png)
+
+  ### 4、使用SpringMVC
+
+1. 写一个配置类，添加@Configuration的注解，并实现WebMvcConfigurer接口。
+
+   ```java
+   //扩展springmvc
+   @Configuration
+   public class MyMVCConfig implements WebMvcConfigurer {...}
+   ```
+
+2. 接管视图解析器
+
+   
+
+
