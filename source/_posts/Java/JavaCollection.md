@@ -363,34 +363,135 @@ tags:
 
 - 通过上述代码可知：`Map<K, V>`是一种键-值映射表，当我们调用`put(K key, V value)`方法时，就把`key`和`value`做了映射并放入`Map`。当我们调用`V get(K key)`时，就可以通过`key`获取到对应的`value`。如果`key`不存在，则返回`null`。和`List`类似，`Map`也是一个接口，最常用的实现类是`HashMap`。
 
-如果只是想查询某个`key`是否存在，可以调用`boolean containsKey(K key)`方法。
+- 如果只是想查询某个`key`是否存在，可以调用`boolean containsKey(K key)`方法。
 
-如果我们在存储`Map`映射关系的时候，对同一个key调用两次`put()`方法，分别放入不同的`value`，会有什么问题呢？例如：
-
-import java.util.HashMap; import java.util.Map; Run
-
-重复放入`key-value`并不会有任何问题，但是一个`key`只能关联一个`value`。在上面的代码中，一开始我们把`key`对象`"apple"`映射到`Integer`对象`123`，然后再次调用`put()`方法把`"apple"`映射到`789`，这时，原来关联的`value`对象`123`就被“冲掉”了。实际上，`put()`方法的签名是`V put(K key, V value)`，如果放入的`key`已经存在，`put()`方法会返回被删除的旧的`value`，否则，返回`null`。
+- `put`方法会有一个返回值，如果放入的`key`已经存在，`put()`方法会返回被删除的旧的`value`，否则，返回`null`。
 
 始终牢记：Map中不存在重复的key，因为放入相同的key，只会把原有的key-value对应的value给替换掉。
 
-此外，在一个`Map`中，虽然`key`不能重复，但`value`是可以重复的：
+- 此外，在一个`Map`中，虽然`key`不能重复，但`value`是可以重复的：
 
-```
-Map<String, Integer> map = new HashMap<>();
-map.put("apple", 123);
-map.put("pear", 123); // ok
-```
+  ```java
+  Map<String, Integer> map = new HashMap<>();
+  map.put("apple", 123);
+  map.put("pear", 123); // ok
+  ```
+
 
 ### 2、遍历Map
 
-对`Map`来说，要遍历`key`可以使用`for each`循环遍历`Map`实例的`keySet()`方法返回的`Set`集合，它包含不重复的`key`的集合：
+- 对`Map`来说，要遍历`key`可以使用`for each`循环遍历`Map`实例的`keySet()`方法返回的`Set`集合，它包含不重复的`key`的集合：
 
-import java.util.HashMap; import java.util.Map; Run
+  ```Java
+   public static void main(String[] args) {
+          Map<String, Integer> map = new HashMap<>();
+          map.put("apple", 123);
+          map.put("pear", 456);
+          map.put("banana", 789);
+          for (String key : map.keySet()) {
+              Integer value = map.get(key);
+              System.out.println(key + " = " + value);
+          }
+      }
+  ```
 
-同时遍历`key`和`value`可以使用`for each`循环遍历`Map`对象的`entrySet()`集合，它包含每一个`key-value`映射：
 
-import java.util.HashMap; import java.util.Map; Run
+- 同时遍历`key`和`value`可以使用`for each`循环遍历`Map`对象的`entrySet()`集合，它包含每一个`key-value`映射：
 
-`Map`和`List`不同的是，`Map`存储的是`key-value`的映射关系，并且，它*不保证顺序*。在遍历的时候，遍历的顺序既不一定是`put()`时放入的`key`的顺序，也不一定是`key`的排序顺序。使用`Map`时，任何依赖顺序的逻辑都是不可靠的。以`HashMap`为例，假设我们放入`"A"`，`"B"`，`"C"`这3个`key`，遍历的时候，每个`key`会保证被遍历一次且仅遍历一次，但顺序完全没有保证，甚至对于不同的JDK版本，相同的代码遍历的输出顺序都是不同的！
+  ```java
+  public class Main {
+      public static void main(String[] args) {
+          Map<String, Integer> map = new HashMap<>();
+          map.put("apple", 123);
+          map.put("pear", 456);
+          map.put("banana", 789);
+          for (Map.Entry<String, Integer> entry : map.entrySet()) {
+              String key = entry.getKey();
+              Integer value = entry.getValue();
+              System.out.println(key + " = " + value);
+          }
+      }
+  }
+  ```
 
-遍历Map时，不可假设输出的key是有序的！
+- `map`不保证顺序。在遍历的时候，遍历的顺序既不一定是`put()`时放入的`key`的顺序，也不一定是`key`的排序顺序。使用`Map`时，任何依赖顺序的逻辑都是不可靠的。
+
+### 3、HashMap
+
+- `HashMap`之所以能根据`key`直接拿到`value`，原因是它内部通过空间换时间的方法，用一个大数组存储所有`value`，并根据key直接计算出`value`应该存储在哪个索引。
+
+- key值要求内容匹配，但是不一定是同一对象。在Map内部，对key的比较是通过equals来实现的。所以我们经常使用String作为key，因为他内部已经正确复写了equals方法。
+
+- 通过`key`计算索引的方式就是调用`key`对象的`hashCode()`方法，它返回一个`int`整数。`HashMap`正是通过这个方法直接定位`key`对应的`value`的索引，继而直接返回`value`。
+
+- 正确使用`Map`必须保证：
+
+  1. 作为`key`的对象必须正确覆写`equals()`方法，相等的两个`key`实例调用`equals()`必须返回`true`；
+
+  2. 作为`key`的对象还必须正确覆写`hashCode()`方法，且`hashCode()`方法要严格遵循以下规范：
+
+     - 如果两个对象相等，则两个对象的`hashCode()`必须相等；
+
+     - 如果两个对象不相等，则两个对象的`hashCode()`尽量不要相等。
+
+     - 为使hashCode不相等，一般使用31*h的方法
+
+       ```java
+       @Override
+       int hashCode() {
+           int h = 0;
+           h = 31 * h + A.hashCode();//String
+           h = 31 * h + B.hashCode();//String
+           h = 31 * h + C;			  //int
+           return h;
+       }
+       ```
+
+- 实际上`HashMap`初始化时默认的数组大小只有16，任何`key`，无论它的`hashCode()`有多大，都可以简单地通过：
+
+  ```java
+  int index = key.hashCode() & 0xf; // 0xf = 15
+  ```
+
+  把索引确定在0～15，即永远不会超出数组范围，上述算法只是一种最简单的实现。添加超过一定数量的`key-value`时，`HashMap`会在内部自动扩容，每次扩容一倍，即长度为16的数组扩展为长度32。
+
+  频繁扩容对`HashMap`的性能影响很大。如果我们确定要使用一个容量为`10000`个`key-value`的`HashMap`，更好的方式是创建`HashMap`时就指定容量：
+
+  ```java
+  Map<String, Integer> map = new HashMap<>(10000);
+  ```
+
+- 如果不同的两个`key`，例如`"a"`和`"b"`，它们的`hashCode()`恰好是相同的。在`HashMap`的数组中，实际存储的不是一个实例，而是一个`List`，它包含两个`Entry`，HashMap内部查找到的实际上是一个List，它还需要遍历这个List，并找到一个`Entry`。
+
+### 4、EnumMap
+
+- Java集合库提供的一种`EnumMap`，它在内部以一个非常紧凑的数组存储value，并且根据`enum`类型的key直接定位到内部数组的索引，并不需要计算`hashCode()`，不但效率最高，而且没有额外的空间浪费。
+
+- 以`DayOfWeek`这个枚举类型为例，为它做一个“翻译”功能：
+
+  ```java
+  public class Main {
+      public static void main(String[] args) {
+          Map<DayOfWeek, String> map = new EnumMap<>(DayOfWeek.class);
+          map.put(DayOfWeek.MONDAY, "星期一");
+          map.put(DayOfWeek.TUESDAY, "星期二");
+          map.put(DayOfWeek.WEDNESDAY, "星期三");
+          map.put(DayOfWeek.THURSDAY, "星期四");
+          map.put(DayOfWeek.FRIDAY, "星期五");
+          map.put(DayOfWeek.SATURDAY, "星期六");
+          map.put(DayOfWeek.SUNDAY, "星期日");
+          System.out.println(map);
+          System.out.println(map.get(DayOfWeek.MONDAY));
+      }
+  }
+  ```
+
+- 使用`EnumMap`的时候，我们总是用`Map`接口来引用它
+
+### 5、TreeMap
+
+- 有一种`Map`，它在内部会对Key进行排序，这种`Map`就是`SortedMap`。注意到`SortedMap`是接口，它的实现类是`TreeMap`。
+- `SortedMap`保证遍历时以Key的顺序来进行排序。例如，放入的Key是`"apple"`、`"pear"`、  `"orange"`，遍历的顺序一定是`"apple"`、`"orange"`、`"pear"`，因为`String`默认按字母排序。
+- 使用`TreeMap`时，放入的Key必须实现`Comparable`接口。`String`、`Integer`这些类已经实现了`Comparable`接口，因此可以直接作为Key使用。作为Value的对象则没有任何要求。如果作为Key的class没有实现`Comparable`接口，那么，必须在创建`TreeMap`时同时指定一个自定义排序算法。
+- `TreeMap`不使用`equals()`和`hashCode()`。可以不用覆写这两个方法。
+- 

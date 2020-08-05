@@ -1,0 +1,23 @@
+# VUE
+
+## 1、路由跳转
+
+# 
+
+# 附录：账号密码等
+
+业务员：0000000049/Aa12345@！
+
+jwt：cs.edhic.com:8054 找到jwt_token
+
+车架号：KHS13346N66496566
+
+车型：
+
+大众FV7187RADWG轿车
+大众FV7207RBDWG轿车
+大众FV7207RBDWG轿车
+大众FV7207RBDWG轿车
+大众FV7187RADWG轿车
+大众FV7187RADWG轿车
+风神DFM7200G1A轿车
