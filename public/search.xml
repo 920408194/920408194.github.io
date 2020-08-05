@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>JVM</title>
+    <url>/2020/06/21/JVM/</url>
+    <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1>]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Insurance</title>
     <url>/2020/06/26/Insurance/</url>
     <content><![CDATA[<p>一些保险的知识和业务流程</p>
@@ -303,23 +318,8 @@
       </tags>
   </entry>
   <entry>
-    <title>JVM</title>
-    <url>/2020/06/21/JVM/</url>
-    <content><![CDATA[<p>本文是我学习JVM时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-<a id="more"></a>
-
-<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1>]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue</title>
-    <url>/2020/06/10/vue/</url>
+    <url>/2020/07/20/vue/</url>
     <content><![CDATA[<p>本文是我学习VUE时的笔记，大部分内容来自VUE官网。</p>
 <a id="more"></a>
 
@@ -548,104 +548,6 @@
       </tags>
   </entry>
   <entry>
-    <title>JavaException</title>
-    <url>/2020/06/21/Java/JavaException/</url>
-    <content><![CDATA[<p>本文是我学习Java异常处理时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
-<a id="more"></a>
-
-<h1 id="Java异常处理"><a href="#Java异常处理" class="headerlink" title="Java异常处理"></a>Java异常处理</h1><h2 id="1、什么是异常"><a href="#1、什么是异常" class="headerlink" title="1、什么是异常"></a>1、什么是异常</h2><ul>
-<li><p>所谓错误，就是程序调用某个函数的时候，如果失败了，就表示出错。调用方如何获知调用失败的信息？有两种方法：</p>
-</li>
-<li><ul>
-<li>方法一：约定返回错误码。</li>
-<li>方法二：在语言层面上提供一个异常处理机制。</li>
-</ul>
-</li>
-<li><p>Java内置了一套异常处理机制，总是使用异常来表示错误。异常是一种<code>class</code>，因此它本身带有类型信息。异常可以在任何地方抛出，但只需要在上层捕获，这样就和方法调用分离了：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    String s = processFile(“C:\\test.txt”);</span><br><span class="line">    <span class="comment">// ok:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    <span class="comment">// file not found:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (SecurityException e) &#123;</span><br><span class="line">    <span class="comment">// no read permission:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    <span class="comment">// io error:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    <span class="comment">// other error:</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p><img src="/2020/06/21/Java/JavaException/exception.png" alt="exception"></p>
-<ul>
-<li><p><code>Throwable</code>是异常体系的根，<code>Throwable</code>有两个体系：<code>Error</code>和<code>Exception</code>，</p>
-</li>
-<li><ul>
-<li><code>Error</code>表示严重的错误，程序对此一般无能为力，</li>
-<li>而<code>Exception</code>则是运行时的错误，它可以被捕获并处理。</li>
-</ul>
-</li>
-<li><p>必须捕获的异常，包括<code>Exception</code>及其子类，但不包括<code>RuntimeException</code>及其子类，这种类型的异常称为<code>Checked Exception</code>。</p>
-</li>
-<li><p>不需要捕获的异常，包括<code>Error</code>及其子类，<code>RuntimeException</code>及其子类。</p>
-</li>
-</ul>
-<h2 id="2、捕获异常"><a href="#2、捕获异常" class="headerlink" title="2、捕获异常"></a>2、捕获异常</h2><ul>
-<li><p>捕获异常使用<code>try...catch</code>语句，把可能发生异常的代码放到<code>try {…}</code>中，然后使用<code>catch</code>捕获对应的<code>Exception</code>及其子类：</p>
-</li>
-<li><p>还有一些童鞋喜欢在函数内部“消化”异常：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">byte</span>[] toGBK(String s) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> s.getBytes(<span class="string">"GBK"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">        <span class="comment">// 什么也不干</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>可以使用多个<code>catch</code>语句，每个<code>catch</code>分别捕获对应的<code>Exception</code>及其子类。<strong>JVM</strong>在捕获到异常后，会从上到下匹配<code>catch</code>语句，匹配到某个<code>catch</code>后，执行<code>catch</code>代码块，然后不再继续匹配。存在多个<code>catch</code>的时候，<code>catch</code>的顺序非常重要：子类必须写在前面。</p>
-</li>
-<li><p>那么如何消除这些重复的代码？<strong>Java</strong>的<code>try … catch</code>机制还提供了<code>finally</code>语句，<code>finally</code>语句块保证有无错误都会执行。<code>finally</code>语句不是必须的，可写可不写；<code>finally</code>总是最后执行。</p>
-</li>
-<li><p>某些情况下，可以没有<code>catch</code>，只使用<code>try … finally</code>结构。</p>
-</li>
-<li><p>如果处理某两个异常的代码是相同的，所以我们可以把它两用<code>|</code>合并到一起</p>
-</li>
-</ul>
-<h2 id="3、抛出异常"><a href="#3、抛出异常" class="headerlink" title="3、抛出异常"></a>3、抛出异常</h2><ul>
-<li><p>需要捕获异常的语句，一般在定义时会抛出一个异常：</p>
-</li>
-<li><pre><code class="java"><span class="keyword">public</span> <span class="keyword">byte</span>[] getBytes(String charsetName) <span class="keyword">throws</span> UnsupportedEncodingException{
-  ....
-}
-&lt;!--￼<span class="number">2</span>--&gt;</code></pre>
-</li>
-<li><p>如果一个方法捕获了某个异常后，又在<code>catch</code>子句中抛出新的异常，就相当于把抛出的异常类型“转换”了。但是新的异常丢失了原始异常信息，我们已经看不到原始异常的信息了。为了能追踪到完整的异常栈，在构造异常的时候，把原始的<code>Exception</code>实例作为参数传进去。<strong>捕获到异常并再次抛出时，一定要留住原始异常，否则很难定位第一案发现场！</strong></p>
-</li>
-<li><p><code>finally</code>抛出异常后，原来在<code>catch</code>中准备抛出的异常就“消失”了，因为只能抛出一个异常。没有被抛出的异常称为“被屏蔽”的异常（<code>Suppressed Exception</code>）我们一般先用<code>origin</code>变量保存原始异常，然后调用<code>Throwable.addSuppressed()</code>，把原始异常添加进来，最后在<code>finally</code>抛出</p>
-</li>
-</ul>
-<h2 id="4、自定义异常"><a href="#4、自定义异常" class="headerlink" title="4、自定义异常"></a>4、自定义异常</h2><ul>
-<li>自定义一个<code>BaseException</code>作为“根异常”，然后，派生出各种业务类型的异常。<code>BaseException</code>需要从一个适合的<code>Exception</code>派生，通常建议从<code>RuntimeException</code>派生</li>
-</ul>
-<h2 id="5、断言"><a href="#5、断言" class="headerlink" title="5、断言"></a>5、断言</h2><ul>
-<li>语句<code>assert x &gt;= 0</code>;即为断言，断言条件<code>x &gt;= 0</code>预期为<code>true</code>。如果计算结果为<code>false</code>，则断言失败，抛出<code>AssertionError</code>。</li>
-<li>Java断言的特点是：断言失败时会抛出<code>AssertionError</code>，导致程序结束退出。因此，断言不能用于可恢复的程序错误，只应该用于开发和测试阶段。</li>
-<li>断言需要命令行开启。</li>
-</ul>
-<h2 id="6、JDK-logging"><a href="#6、JDK-logging" class="headerlink" title="6、JDK logging"></a>6、JDK logging</h2><ul>
-<li><p>输出日志，而不是用<code>System.out.println()</code>，有以下几个好处：</p>
-</li>
-<li><ol>
-<li>可以设置输出样式，避免自己每次都写”ERROR: “ + var；</li>
-<li>可以设置输出级别，禁止某些级别输出。例如，只输出错误日志；</li>
-<li>可以被重定向到文件，这样可以在程序运行结束后查看日志；</li>
-<li>可以按包名控制日志级别，只输出某些包打的日志；</li>
-<li>可以……</li>
-</ol>
-<p><img src="/2020/06/21/Java/JavaException/log1.png" alt="log1"></p>
-<p><img src="/2020/06/21/Java/JavaException/log2.png" alt="log2"></p>
-</li>
-<li><p>和Java标准库提供的日志不同，<code>Commons Logging</code>是一个第三方日志库，它是由Apache创建的日志模块。</p>
-</li>
-<li><p>使用<code>Commons Logging</code>只需要和两个类打交道，并且只有两步：第一步，通过<code>LogFactory</code>获取<code>Log</code>类的实例； 第二步，使用<code>Log</code>实例的方法打日志。（需要apache的第三方包）</p>
-</li>
-<li><p><code>Log4j</code>是一种非常流行的日志框架，最新版本是2.x。当我们使用<code>Log4j</code>输出一条日志时，<code>Log4j</code>自动通过不同的<code>Appender</code>把同一条日志输出到不同的目的地。</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>技术文档</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>JavaCollection</title>
     <url>/2020/06/29/Java/JavaCollection/</url>
     <content><![CDATA[<p>本文是我学习Java集合时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
@@ -849,21 +751,181 @@
 </li>
 <li><p>通过上述代码可知：<code>Map&lt;K, V&gt;</code>是一种键-值映射表，当我们调用<code>put(K key, V value)</code>方法时，就把<code>key</code>和<code>value</code>做了映射并放入<code>Map</code>。当我们调用<code>V get(K key)</code>时，就可以通过<code>key</code>获取到对应的<code>value</code>。如果<code>key</code>不存在，则返回<code>null</code>。和<code>List</code>类似，<code>Map</code>也是一个接口，最常用的实现类是<code>HashMap</code>。</p>
 </li>
+<li><p>如果只是想查询某个<code>key</code>是否存在，可以调用<code>boolean containsKey(K key)</code>方法。</p>
+</li>
+<li><p><code>put</code>方法会有一个返回值，如果放入的<code>key</code>已经存在，<code>put()</code>方法会返回被删除的旧的<code>value</code>，否则，返回<code>null</code>。</p>
+</li>
 </ul>
-<p>如果只是想查询某个<code>key</code>是否存在，可以调用<code>boolean containsKey(K key)</code>方法。</p>
-<p>如果我们在存储<code>Map</code>映射关系的时候，对同一个key调用两次<code>put()</code>方法，分别放入不同的<code>value</code>，会有什么问题呢？例如：</p>
-<p>import java.util.HashMap; import java.util.Map; Run</p>
-<p>重复放入<code>key-value</code>并不会有任何问题，但是一个<code>key</code>只能关联一个<code>value</code>。在上面的代码中，一开始我们把<code>key</code>对象<code>&quot;apple&quot;</code>映射到<code>Integer</code>对象<code>123</code>，然后再次调用<code>put()</code>方法把<code>&quot;apple&quot;</code>映射到<code>789</code>，这时，原来关联的<code>value</code>对象<code>123</code>就被“冲掉”了。实际上，<code>put()</code>方法的签名是<code>V put(K key, V value)</code>，如果放入的<code>key</code>已经存在，<code>put()</code>方法会返回被删除的旧的<code>value</code>，否则，返回<code>null</code>。</p>
 <p>始终牢记：Map中不存在重复的key，因为放入相同的key，只会把原有的key-value对应的value给替换掉。</p>
-<p>此外，在一个<code>Map</code>中，虽然<code>key</code>不能重复，但<code>value</code>是可以重复的：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Map&lt;String, Integer&gt; map &#x3D; new HashMap&lt;&gt;();</span><br><span class="line">map.put(&quot;apple&quot;, 123);</span><br><span class="line">map.put(&quot;pear&quot;, 123); &#x2F;&#x2F; ok</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>此外，在一个<code>Map</code>中，虽然<code>key</code>不能重复，但<code>value</code>是可以重复的：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">map.put(<span class="string">"apple"</span>, <span class="number">123</span>);</span><br><span class="line">map.put(<span class="string">"pear"</span>, <span class="number">123</span>); <span class="comment">// ok</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="2、遍历Map"><a href="#2、遍历Map" class="headerlink" title="2、遍历Map"></a>2、遍历Map</h3><p>对<code>Map</code>来说，要遍历<code>key</code>可以使用<code>for each</code>循环遍历<code>Map</code>实例的<code>keySet()</code>方法返回的<code>Set</code>集合，它包含不重复的<code>key</code>的集合：</p>
-<p>import java.util.HashMap; import java.util.Map; Run</p>
-<p>同时遍历<code>key</code>和<code>value</code>可以使用<code>for each</code>循环遍历<code>Map</code>对象的<code>entrySet()</code>集合，它包含每一个<code>key-value</code>映射：</p>
-<p>import java.util.HashMap; import java.util.Map; Run</p>
-<p><code>Map</code>和<code>List</code>不同的是，<code>Map</code>存储的是<code>key-value</code>的映射关系，并且，它<em>不保证顺序</em>。在遍历的时候，遍历的顺序既不一定是<code>put()</code>时放入的<code>key</code>的顺序，也不一定是<code>key</code>的排序顺序。使用<code>Map</code>时，任何依赖顺序的逻辑都是不可靠的。以<code>HashMap</code>为例，假设我们放入<code>&quot;A&quot;</code>，<code>&quot;B&quot;</code>，<code>&quot;C&quot;</code>这3个<code>key</code>，遍历的时候，每个<code>key</code>会保证被遍历一次且仅遍历一次，但顺序完全没有保证，甚至对于不同的JDK版本，相同的代码遍历的输出顺序都是不同的！</p>
-<p>遍历Map时，不可假设输出的key是有序的！</p>
+
+</li>
+</ul>
+<h3 id="2、遍历Map"><a href="#2、遍历Map" class="headerlink" title="2、遍历Map"></a>2、遍历Map</h3><ul>
+<li><p>对<code>Map</code>来说，要遍历<code>key</code>可以使用<code>for each</code>循环遍历<code>Map</code>实例的<code>keySet()</code>方法返回的<code>Set</code>集合，它包含不重复的<code>key</code>的集合：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       Map&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">       map.put(<span class="string">"apple"</span>, <span class="number">123</span>);</span><br><span class="line">       map.put(<span class="string">"pear"</span>, <span class="number">456</span>);</span><br><span class="line">       map.put(<span class="string">"banana"</span>, <span class="number">789</span>);</span><br><span class="line">       <span class="keyword">for</span> (String key : map.keySet()) &#123;</span><br><span class="line">           Integer value = map.get(key);</span><br><span class="line">           System.out.println(key + <span class="string">" = "</span> + value);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<ul>
+<li><p>同时遍历<code>key</code>和<code>value</code>可以使用<code>for each</code>循环遍历<code>Map</code>对象的<code>entrySet()</code>集合，它包含每一个<code>key-value</code>映射：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        map.put(<span class="string">"apple"</span>, <span class="number">123</span>);</span><br><span class="line">        map.put(<span class="string">"pear"</span>, <span class="number">456</span>);</span><br><span class="line">        map.put(<span class="string">"banana"</span>, <span class="number">789</span>);</span><br><span class="line">        <span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">            String key = entry.getKey();</span><br><span class="line">            Integer value = entry.getValue();</span><br><span class="line">            System.out.println(key + <span class="string">" = "</span> + value);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>map</code>不保证顺序。在遍历的时候，遍历的顺序既不一定是<code>put()</code>时放入的<code>key</code>的顺序，也不一定是<code>key</code>的排序顺序。使用<code>Map</code>时，任何依赖顺序的逻辑都是不可靠的。</p>
+</li>
+</ul>
+<h3 id="3、HashMap"><a href="#3、HashMap" class="headerlink" title="3、HashMap"></a>3、HashMap</h3><ul>
+<li><p><code>HashMap</code>之所以能根据<code>key</code>直接拿到<code>value</code>，原因是它内部通过空间换时间的方法，用一个大数组存储所有<code>value</code>，并根据key直接计算出<code>value</code>应该存储在哪个索引。</p>
+</li>
+<li><p>key值要求内容匹配，但是不一定是同一对象。在Map内部，对key的比较是通过equals来实现的。所以我们经常使用String作为key，因为他内部已经正确复写了equals方法。</p>
+</li>
+<li><p>通过<code>key</code>计算索引的方式就是调用<code>key</code>对象的<code>hashCode()</code>方法，它返回一个<code>int</code>整数。<code>HashMap</code>正是通过这个方法直接定位<code>key</code>对应的<code>value</code>的索引，继而直接返回<code>value</code>。</p>
+</li>
+<li><p>正确使用<code>Map</code>必须保证：</p>
+<ol>
+<li><p>作为<code>key</code>的对象必须正确覆写<code>equals()</code>方法，相等的两个<code>key</code>实例调用<code>equals()</code>必须返回<code>true</code>；</p>
+</li>
+<li><p>作为<code>key</code>的对象还必须正确覆写<code>hashCode()</code>方法，且<code>hashCode()</code>方法要严格遵循以下规范：</p>
+<ul>
+<li><p>如果两个对象相等，则两个对象的<code>hashCode()</code>必须相等；</p>
+</li>
+<li><p>如果两个对象不相等，则两个对象的<code>hashCode()</code>尽量不要相等。</p>
+</li>
+<li><p>为使hashCode不相等，一般使用31*h的方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> h = <span class="number">0</span>;</span><br><span class="line">    h = <span class="number">31</span> * h + A.hashCode();<span class="comment">//String</span></span><br><span class="line">    h = <span class="number">31</span> * h + B.hashCode();<span class="comment">//String</span></span><br><span class="line">    h = <span class="number">31</span> * h + C;			  <span class="comment">//int</span></span><br><span class="line">    <span class="keyword">return</span> h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>实际上<code>HashMap</code>初始化时默认的数组大小只有16，任何<code>key</code>，无论它的<code>hashCode()</code>有多大，都可以简单地通过：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> index = key.hashCode() &amp; <span class="number">0xf</span>; <span class="comment">// 0xf = 15</span></span><br></pre></td></tr></table></figure>
+
+<p>把索引确定在0～15，即永远不会超出数组范围，上述算法只是一种最简单的实现。添加超过一定数量的<code>key-value</code>时，<code>HashMap</code>会在内部自动扩容，每次扩容一倍，即长度为16的数组扩展为长度32。</p>
+<p>频繁扩容对<code>HashMap</code>的性能影响很大。如果我们确定要使用一个容量为<code>10000</code>个<code>key-value</code>的<code>HashMap</code>，更好的方式是创建<code>HashMap</code>时就指定容量：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Map&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;(<span class="number">10000</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果不同的两个<code>key</code>，例如<code>&quot;a&quot;</code>和<code>&quot;b&quot;</code>，它们的<code>hashCode()</code>恰好是相同的。在<code>HashMap</code>的数组中，实际存储的不是一个实例，而是一个<code>List</code>，它包含两个<code>Entry</code>，HashMap内部查找到的实际上是一个List，它还需要遍历这个List，并找到一个<code>Entry</code>。</p>
+</li>
+</ul>
+<h3 id="4、EnumMap"><a href="#4、EnumMap" class="headerlink" title="4、EnumMap"></a>4、EnumMap</h3><ul>
+<li><p>Java集合库提供的一种<code>EnumMap</code>，它在内部以一个非常紧凑的数组存储value，并且根据<code>enum</code>类型的key直接定位到内部数组的索引，并不需要计算<code>hashCode()</code>，不但效率最高，而且没有额外的空间浪费。</p>
+</li>
+<li><p>以<code>DayOfWeek</code>这个枚举类型为例，为它做一个“翻译”功能：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Map&lt;DayOfWeek, String&gt; map = <span class="keyword">new</span> EnumMap&lt;&gt;(DayOfWeek<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        map.put(DayOfWeek.MONDAY, <span class="string">"星期一"</span>);</span><br><span class="line">        map.put(DayOfWeek.TUESDAY, <span class="string">"星期二"</span>);</span><br><span class="line">        map.put(DayOfWeek.WEDNESDAY, <span class="string">"星期三"</span>);</span><br><span class="line">        map.put(DayOfWeek.THURSDAY, <span class="string">"星期四"</span>);</span><br><span class="line">        map.put(DayOfWeek.FRIDAY, <span class="string">"星期五"</span>);</span><br><span class="line">        map.put(DayOfWeek.SATURDAY, <span class="string">"星期六"</span>);</span><br><span class="line">        map.put(DayOfWeek.SUNDAY, <span class="string">"星期日"</span>);</span><br><span class="line">        System.out.println(map);</span><br><span class="line">        System.out.println(map.get(DayOfWeek.MONDAY));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>EnumMap</code>的时候，我们总是用<code>Map</code>接口来引用它</p>
+</li>
+</ul>
+<h3 id="5、TreeMap"><a href="#5、TreeMap" class="headerlink" title="5、TreeMap"></a>5、TreeMap</h3><ul>
+<li>有一种<code>Map</code>，它在内部会对Key进行排序，这种<code>Map</code>就是<code>SortedMap</code>。注意到<code>SortedMap</code>是接口，它的实现类是<code>TreeMap</code>。</li>
+<li><code>SortedMap</code>保证遍历时以Key的顺序来进行排序。例如，放入的Key是<code>&quot;apple&quot;</code>、<code>&quot;pear&quot;</code>、  <code>&quot;orange&quot;</code>，遍历的顺序一定是<code>&quot;apple&quot;</code>、<code>&quot;orange&quot;</code>、<code>&quot;pear&quot;</code>，因为<code>String</code>默认按字母排序。</li>
+<li>使用<code>TreeMap</code>时，放入的Key必须实现<code>Comparable</code>接口。<code>String</code>、<code>Integer</code>这些类已经实现了<code>Comparable</code>接口，因此可以直接作为Key使用。作为Value的对象则没有任何要求。如果作为Key的class没有实现<code>Comparable</code>接口，那么，必须在创建<code>TreeMap</code>时同时指定一个自定义排序算法。</li>
+<li><code>TreeMap</code>不使用<code>equals()</code>和<code>hashCode()</code>。可以不用覆写这两个方法。</li>
+<li></li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaException</title>
+    <url>/2020/06/21/Java/JavaException/</url>
+    <content><![CDATA[<p>本文是我学习Java异常处理时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。</p>
+<a id="more"></a>
+
+<h1 id="Java异常处理"><a href="#Java异常处理" class="headerlink" title="Java异常处理"></a>Java异常处理</h1><h2 id="1、什么是异常"><a href="#1、什么是异常" class="headerlink" title="1、什么是异常"></a>1、什么是异常</h2><ul>
+<li><p>所谓错误，就是程序调用某个函数的时候，如果失败了，就表示出错。调用方如何获知调用失败的信息？有两种方法：</p>
+</li>
+<li><ul>
+<li>方法一：约定返回错误码。</li>
+<li>方法二：在语言层面上提供一个异常处理机制。</li>
+</ul>
+</li>
+<li><p>Java内置了一套异常处理机制，总是使用异常来表示错误。异常是一种<code>class</code>，因此它本身带有类型信息。异常可以在任何地方抛出，但只需要在上层捕获，这样就和方法调用分离了：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    String s = processFile(“C:\\test.txt”);</span><br><span class="line">    <span class="comment">// ok:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">    <span class="comment">// file not found:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (SecurityException e) &#123;</span><br><span class="line">    <span class="comment">// no read permission:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">    <span class="comment">// io error:</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    <span class="comment">// other error:</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="/2020/06/21/Java/JavaException/exception.png" alt="exception"></p>
+<ul>
+<li><p><code>Throwable</code>是异常体系的根，<code>Throwable</code>有两个体系：<code>Error</code>和<code>Exception</code>，</p>
+</li>
+<li><ul>
+<li><code>Error</code>表示严重的错误，程序对此一般无能为力，</li>
+<li>而<code>Exception</code>则是运行时的错误，它可以被捕获并处理。</li>
+</ul>
+</li>
+<li><p>必须捕获的异常，包括<code>Exception</code>及其子类，但不包括<code>RuntimeException</code>及其子类，这种类型的异常称为<code>Checked Exception</code>。</p>
+</li>
+<li><p>不需要捕获的异常，包括<code>Error</code>及其子类，<code>RuntimeException</code>及其子类。</p>
+</li>
+</ul>
+<h2 id="2、捕获异常"><a href="#2、捕获异常" class="headerlink" title="2、捕获异常"></a>2、捕获异常</h2><ul>
+<li><p>捕获异常使用<code>try...catch</code>语句，把可能发生异常的代码放到<code>try {…}</code>中，然后使用<code>catch</code>捕获对应的<code>Exception</code>及其子类：</p>
+</li>
+<li><p>还有一些童鞋喜欢在函数内部“消化”异常：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">byte</span>[] toGBK(String s) &#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> s.getBytes(<span class="string">"GBK"</span>);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (UnsupportedEncodingException e) &#123;</span><br><span class="line">        <span class="comment">// 什么也不干</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以使用多个<code>catch</code>语句，每个<code>catch</code>分别捕获对应的<code>Exception</code>及其子类。<strong>JVM</strong>在捕获到异常后，会从上到下匹配<code>catch</code>语句，匹配到某个<code>catch</code>后，执行<code>catch</code>代码块，然后不再继续匹配。存在多个<code>catch</code>的时候，<code>catch</code>的顺序非常重要：子类必须写在前面。</p>
+</li>
+<li><p>那么如何消除这些重复的代码？<strong>Java</strong>的<code>try … catch</code>机制还提供了<code>finally</code>语句，<code>finally</code>语句块保证有无错误都会执行。<code>finally</code>语句不是必须的，可写可不写；<code>finally</code>总是最后执行。</p>
+</li>
+<li><p>某些情况下，可以没有<code>catch</code>，只使用<code>try … finally</code>结构。</p>
+</li>
+<li><p>如果处理某两个异常的代码是相同的，所以我们可以把它两用<code>|</code>合并到一起</p>
+</li>
+</ul>
+<h2 id="3、抛出异常"><a href="#3、抛出异常" class="headerlink" title="3、抛出异常"></a>3、抛出异常</h2><ul>
+<li><p>需要捕获异常的语句，一般在定义时会抛出一个异常：</p>
+</li>
+<li><pre><code class="java"><span class="keyword">public</span> <span class="keyword">byte</span>[] getBytes(String charsetName) <span class="keyword">throws</span> UnsupportedEncodingException{
+  ....
+}
+&lt;!--￼<span class="number">2</span>--&gt;</code></pre>
+</li>
+<li><p>如果一个方法捕获了某个异常后，又在<code>catch</code>子句中抛出新的异常，就相当于把抛出的异常类型“转换”了。但是新的异常丢失了原始异常信息，我们已经看不到原始异常的信息了。为了能追踪到完整的异常栈，在构造异常的时候，把原始的<code>Exception</code>实例作为参数传进去。<strong>捕获到异常并再次抛出时，一定要留住原始异常，否则很难定位第一案发现场！</strong></p>
+</li>
+<li><p><code>finally</code>抛出异常后，原来在<code>catch</code>中准备抛出的异常就“消失”了，因为只能抛出一个异常。没有被抛出的异常称为“被屏蔽”的异常（<code>Suppressed Exception</code>）我们一般先用<code>origin</code>变量保存原始异常，然后调用<code>Throwable.addSuppressed()</code>，把原始异常添加进来，最后在<code>finally</code>抛出</p>
+</li>
+</ul>
+<h2 id="4、自定义异常"><a href="#4、自定义异常" class="headerlink" title="4、自定义异常"></a>4、自定义异常</h2><ul>
+<li>自定义一个<code>BaseException</code>作为“根异常”，然后，派生出各种业务类型的异常。<code>BaseException</code>需要从一个适合的<code>Exception</code>派生，通常建议从<code>RuntimeException</code>派生</li>
+</ul>
+<h2 id="5、断言"><a href="#5、断言" class="headerlink" title="5、断言"></a>5、断言</h2><ul>
+<li>语句<code>assert x &gt;= 0</code>;即为断言，断言条件<code>x &gt;= 0</code>预期为<code>true</code>。如果计算结果为<code>false</code>，则断言失败，抛出<code>AssertionError</code>。</li>
+<li>Java断言的特点是：断言失败时会抛出<code>AssertionError</code>，导致程序结束退出。因此，断言不能用于可恢复的程序错误，只应该用于开发和测试阶段。</li>
+<li>断言需要命令行开启。</li>
+</ul>
+<h2 id="6、JDK-logging"><a href="#6、JDK-logging" class="headerlink" title="6、JDK logging"></a>6、JDK logging</h2><ul>
+<li><p>输出日志，而不是用<code>System.out.println()</code>，有以下几个好处：</p>
+</li>
+<li><ol>
+<li>可以设置输出样式，避免自己每次都写”ERROR: “ + var；</li>
+<li>可以设置输出级别，禁止某些级别输出。例如，只输出错误日志；</li>
+<li>可以被重定向到文件，这样可以在程序运行结束后查看日志；</li>
+<li>可以按包名控制日志级别，只输出某些包打的日志；</li>
+<li>可以……</li>
+</ol>
+<p><img src="/2020/06/21/Java/JavaException/log1.png" alt="log1"></p>
+<p><img src="/2020/06/21/Java/JavaException/log2.png" alt="log2"></p>
+</li>
+<li><p>和Java标准库提供的日志不同，<code>Commons Logging</code>是一个第三方日志库，它是由Apache创建的日志模块。</p>
+</li>
+<li><p>使用<code>Commons Logging</code>只需要和两个类打交道，并且只有两步：第一步，通过<code>LogFactory</code>获取<code>Log</code>类的实例； 第二步，使用<code>Log</code>实例的方法打日志。（需要apache的第三方包）</p>
+</li>
+<li><p><code>Log4j</code>是一种非常流行的日志框架，最新版本是2.x。当我们使用<code>Log4j</code>输出一条日志时，<code>Log4j</code>自动通过不同的<code>Appender</code>把同一条日志输出到不同的目的地。</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>java</category>
@@ -1154,6 +1216,105 @@ System.out.println(sr.nextInt(<span class="number">100</span>));</code></pre>
 </li>
 <li><p><code>SecureRandom</code>无法指定种子，它使用<code>RNG</code>（<code>random number generator</code>）算法。<code>SecureRandom</code>的安全性是通过操作系统提供的安全的随机种子来生成随机数。这个种子是通过CPU的热噪声、读写磁盘的字节、网络流量等各种随机事件产生的“熵”。</p>
 </li>
+</ul>
+]]></content>
+      <categories>
+        <category>java</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>技术文档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaSE</title>
+    <url>/2020/06/13/Java/JavaSE/</url>
+    <content><![CDATA[<p>本文是我学习JavaSE时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。笔记内容主要是Java的基础语法部分。</p>
+<a id="more"></a>
+
+<h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h2 id="一、什么是Java"><a href="#一、什么是Java" class="headerlink" title="一、什么是Java"></a>一、什么是Java</h2><h3 id="1、JavaSE"><a href="#1、JavaSE" class="headerlink" title="1、JavaSE"></a>1、JavaSE</h3><p><img src="/2020/06/13/Java/JavaSE/JavaSE.png" alt="JavaSE"></p>
+<ul>
+<li>Java SE就是标准版，包含标准的JVM和标准库，</li>
+<li>Java EE是企业版，它只是在Java SE的基础上加上了大量的API和库，以便方便开发Web应用、数据库、消息服务等，Java EE的应用使用的虚拟机和Java SE完全相同。</li>
+<li>Java ME就和Java SE不同，它是一个针对嵌入式设备的“瘦身版”，Java SE的标准库无法在Java ME上使用，Java ME的虚拟机也是“瘦身版”。</li>
+</ul>
+<h3 id="2、JDK与JRE"><a href="#2、JDK与JRE" class="headerlink" title="2、JDK与JRE"></a>2、JDK与JRE</h3><p><img src="/2020/06/13/Java/JavaSE/JDKJRE.png" alt="JDKJRE"></p>
+<ul>
+<li>JRE就是运行Java字节码的虚拟机。</li>
+<li>但是，如果只有Java源码，要编译成Java字节码，就需要JDK；</li>
+<li>JDK除了包含JRE，还提供了编译器、调试器等开发工具。</li>
+<li>JSR是一系列的规范，从JVM的内存模型到Web程序接口，全部都标准化了。而负责审核JSR的组织就是JCP。</li>
+</ul>
+<h3 id="3、白皮书关键术语"><a href="#3、白皮书关键术语" class="headerlink" title="3、白皮书关键术语"></a>3、白皮书关键术语</h3><ul>
+<li>面向对象：重点在数据对象和对象的接口上</li>
+<li>网络能力：能够通过url打开和访问网络上的对象</li>
+<li>健壮性：java编译器能够检测出一些其他语言仅在运行时才能检测出的错误；java不需要指针来构造数据结构，在必要时却能具有指针的能力</li>
+<li>可移植性：数据类型规范</li>
+<li>多线程：带来更好的交互和响应</li>
+</ul>
+<h2 id="二、java程序基础"><a href="#二、java程序基础" class="headerlink" title="二、java程序基础"></a>二、java程序基础</h2><h3 id="1、基本数据类型"><a href="#1、基本数据类型" class="headerlink" title="1、基本数据类型"></a>1、基本数据类型</h3><ul>
+<li><p>整数类型：<code>byte</code>，<code>short</code>，<code>int</code>，<code>long</code></p>
+<ul>
+<li><code>byte</code>：-128 ~ 127</li>
+<li><code>short</code>: -32768 ~ 32767</li>
+<li><code>int</code>: -2147483648 ~ 2147483647</li>
+<li><code>long</code>: -9223372036854775808 ~ 9223372036854775807</li>
+</ul>
+</li>
+<li><p>浮点数类型：<code>float</code>，<code>double</code></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> f2 = <span class="number">3.14e38f</span>; <span class="comment">// 科学计数法表示的3.14x10^38（对于float类型，需要加上f后缀。）</span></span><br><span class="line"><span class="keyword">double</span> d3 = <span class="number">4.9e-324</span>; <span class="comment">// 科学计数法表示的4.9x10^-324</span></span><br><span class="line"><span class="comment">//float类型可最大表示3.4x1038，而double类型可最大表示1.79x10308。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>字符类型：<code>char</code></p>
+</li>
+<li><p>布尔类型：<code>boolean</code></p>
+</li>
+<li><p>定义变量的时候，如果加上<code>final</code>修饰符，这个变量就变成了常量（根据习惯，常量名通常全部大写。）</p>
+</li>
+</ul>
+<h3 id="2、计算"><a href="#2、计算" class="headerlink" title="2、计算"></a>2、计算</h3><ul>
+<li><p>普通运算、自增自减</p>
+</li>
+<li><p>移位计算、与或运算</p>
+</li>
+<li><p>由于浮点数存在运算误差，所以比较两个浮点数是否相等常常会出现错误的结果。正确的比较方法是判断两个浮点数之差的绝对值是否小于一个很小的数:</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> r = Math.abs(x - y);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>溢出：<code>NaN</code>表示<strong>Not a Number</strong>   <code>Infinity</code>表示无穷大   <code>-Infinity</code>表示负无穷大</p>
+</li>
+<li><p>三元计算  <code>b ? x : y</code>会首先计算<strong>b</strong>，如果<strong>b</strong>为<code>true</code>，则只计算<strong>x</strong>，否则，只计算<strong>y</strong></p>
+</li>
+</ul>
+<h3 id="3、字符串"><a href="#3、字符串" class="headerlink" title="3、字符串"></a>3、字符串</h3><ul>
+<li><p><code>\n</code>表示换行符</p>
+</li>
+<li><p><code>\r</code> 表示回车符</p>
+</li>
+<li><p><code>\t</code> 表示Tab</p>
+</li>
+<li><p>从Java 13开始//预览功能//，字符串可以用<code>&quot;&quot;&quot;...&quot;&quot;&quot;</code>表示多行字符串（<code>Text Blocks</code>）了。举个例子：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">	         SELECT * FROM</span></span><br><span class="line"><span class="string">	           users</span></span><br><span class="line"><span class="string">	         WHERE id &gt; 100</span></span><br><span class="line"><span class="string">	         ORDER BY name DESC</span></span><br><span class="line"><span class="string">           "</span><span class="string">""</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>上述多行字符串实际上是5行，在最后一个<code>DESC</code>后面还有一个<code>\n</code>。如果我们不想在字符串末尾加一个<code>\n</code>，就需要这么写：<code>ORDER BY name DESC&quot;&quot;&quot;</code>;</li>
+<li>多行字符串前面共同的空格会被去掉</li>
+</ul>
+</li>
+<li><p>字符串匹配：两个<code>String</code>类型，它们的内容是相同的，但是，分别指向不同的对象，用<code>==</code>判断，结果为<code>false</code>，要判断引用类型的变量内容是否相等，必须使用<code>equals()</code>方法：<code>s1.equals(s2)</code></p>
+</li>
+</ul>
+<h3 id="4、循环和流程"><a href="#4、循环和流程" class="headerlink" title="4、循环和流程"></a>4、循环和流程</h3><ul>
+<li><p><code>while</code>循环是先判断循环条件，再执行循环。而另一种<code>do while</code>循环则是先执行循环，再判断条件，条件满足时继续循环，条件不满足时退出。</p>
+</li>
+<li><p>Java还提供了另一种<code>for each</code>循环，它可以更简单地遍历数组：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[]ns=&#123;<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(intn:ns)&#123;</span><br><span class="line">  System.*out*.println(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>break</code>和<code>continue</code></p>
+</li>
+</ul>
+<h3 id="5、数组操作"><a href="#5、数组操作" class="headerlink" title="5、数组操作"></a>5、数组操作</h3><ul>
+<li>直接打印数组变量，得到的是数组在<strong>JVM</strong>中的引用地址</li>
+<li>我们只需要调用<strong>JDK</strong>提供的<code>Arrays.sort()</code>就可以排序</li>
+<li><code>Arrays.deepToString()</code>二维数组变字符串</li>
 </ul>
 ]]></content>
       <categories>
@@ -1608,105 +1769,6 @@ Class[] is = s.getInterfaces();
         <tag>java</tag>
         <tag>技术文档</tag>
         <tag>前端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>JavaSE</title>
-    <url>/2020/06/13/Java/JavaSE/</url>
-    <content><![CDATA[<p>本文是我学习JavaSE时的笔记，大部分内容来自廖雪峰的Java教程和java3y的公众号。笔记内容主要是Java的基础语法部分。</p>
-<a id="more"></a>
-
-<h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h2 id="一、什么是Java"><a href="#一、什么是Java" class="headerlink" title="一、什么是Java"></a>一、什么是Java</h2><h3 id="1、JavaSE"><a href="#1、JavaSE" class="headerlink" title="1、JavaSE"></a>1、JavaSE</h3><p><img src="/2020/06/13/Java/JavaSE/JavaSE.png" alt="JavaSE"></p>
-<ul>
-<li>Java SE就是标准版，包含标准的JVM和标准库，</li>
-<li>Java EE是企业版，它只是在Java SE的基础上加上了大量的API和库，以便方便开发Web应用、数据库、消息服务等，Java EE的应用使用的虚拟机和Java SE完全相同。</li>
-<li>Java ME就和Java SE不同，它是一个针对嵌入式设备的“瘦身版”，Java SE的标准库无法在Java ME上使用，Java ME的虚拟机也是“瘦身版”。</li>
-</ul>
-<h3 id="2、JDK与JRE"><a href="#2、JDK与JRE" class="headerlink" title="2、JDK与JRE"></a>2、JDK与JRE</h3><p><img src="/2020/06/13/Java/JavaSE/JDKJRE.png" alt="JDKJRE"></p>
-<ul>
-<li>JRE就是运行Java字节码的虚拟机。</li>
-<li>但是，如果只有Java源码，要编译成Java字节码，就需要JDK；</li>
-<li>JDK除了包含JRE，还提供了编译器、调试器等开发工具。</li>
-<li>JSR是一系列的规范，从JVM的内存模型到Web程序接口，全部都标准化了。而负责审核JSR的组织就是JCP。</li>
-</ul>
-<h3 id="3、白皮书关键术语"><a href="#3、白皮书关键术语" class="headerlink" title="3、白皮书关键术语"></a>3、白皮书关键术语</h3><ul>
-<li>面向对象：重点在数据对象和对象的接口上</li>
-<li>网络能力：能够通过url打开和访问网络上的对象</li>
-<li>健壮性：java编译器能够检测出一些其他语言仅在运行时才能检测出的错误；java不需要指针来构造数据结构，在必要时却能具有指针的能力</li>
-<li>可移植性：数据类型规范</li>
-<li>多线程：带来更好的交互和响应</li>
-</ul>
-<h2 id="二、java程序基础"><a href="#二、java程序基础" class="headerlink" title="二、java程序基础"></a>二、java程序基础</h2><h3 id="1、基本数据类型"><a href="#1、基本数据类型" class="headerlink" title="1、基本数据类型"></a>1、基本数据类型</h3><ul>
-<li><p>整数类型：<code>byte</code>，<code>short</code>，<code>int</code>，<code>long</code></p>
-<ul>
-<li><code>byte</code>：-128 ~ 127</li>
-<li><code>short</code>: -32768 ~ 32767</li>
-<li><code>int</code>: -2147483648 ~ 2147483647</li>
-<li><code>long</code>: -9223372036854775808 ~ 9223372036854775807</li>
-</ul>
-</li>
-<li><p>浮点数类型：<code>float</code>，<code>double</code></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">float</span> f2 = <span class="number">3.14e38f</span>; <span class="comment">// 科学计数法表示的3.14x10^38（对于float类型，需要加上f后缀。）</span></span><br><span class="line"><span class="keyword">double</span> d3 = <span class="number">4.9e-324</span>; <span class="comment">// 科学计数法表示的4.9x10^-324</span></span><br><span class="line"><span class="comment">//float类型可最大表示3.4x1038，而double类型可最大表示1.79x10308。</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>字符类型：<code>char</code></p>
-</li>
-<li><p>布尔类型：<code>boolean</code></p>
-</li>
-<li><p>定义变量的时候，如果加上<code>final</code>修饰符，这个变量就变成了常量（根据习惯，常量名通常全部大写。）</p>
-</li>
-</ul>
-<h3 id="2、计算"><a href="#2、计算" class="headerlink" title="2、计算"></a>2、计算</h3><ul>
-<li><p>普通运算、自增自减</p>
-</li>
-<li><p>移位计算、与或运算</p>
-</li>
-<li><p>由于浮点数存在运算误差，所以比较两个浮点数是否相等常常会出现错误的结果。正确的比较方法是判断两个浮点数之差的绝对值是否小于一个很小的数:</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> r = Math.abs(x - y);</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>溢出：<code>NaN</code>表示<strong>Not a Number</strong>   <code>Infinity</code>表示无穷大   <code>-Infinity</code>表示负无穷大</p>
-</li>
-<li><p>三元计算  <code>b ? x : y</code>会首先计算<strong>b</strong>，如果<strong>b</strong>为<code>true</code>，则只计算<strong>x</strong>，否则，只计算<strong>y</strong></p>
-</li>
-</ul>
-<h3 id="3、字符串"><a href="#3、字符串" class="headerlink" title="3、字符串"></a>3、字符串</h3><ul>
-<li><p><code>\n</code>表示换行符</p>
-</li>
-<li><p><code>\r</code> 表示回车符</p>
-</li>
-<li><p><code>\t</code> 表示Tab</p>
-</li>
-<li><p>从Java 13开始//预览功能//，字符串可以用<code>&quot;&quot;&quot;...&quot;&quot;&quot;</code>表示多行字符串（<code>Text Blocks</code>）了。举个例子：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">String s = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">	         SELECT * FROM</span></span><br><span class="line"><span class="string">	           users</span></span><br><span class="line"><span class="string">	         WHERE id &gt; 100</span></span><br><span class="line"><span class="string">	         ORDER BY name DESC</span></span><br><span class="line"><span class="string">           "</span><span class="string">""</span>;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>上述多行字符串实际上是5行，在最后一个<code>DESC</code>后面还有一个<code>\n</code>。如果我们不想在字符串末尾加一个<code>\n</code>，就需要这么写：<code>ORDER BY name DESC&quot;&quot;&quot;</code>;</li>
-<li>多行字符串前面共同的空格会被去掉</li>
-</ul>
-</li>
-<li><p>字符串匹配：两个<code>String</code>类型，它们的内容是相同的，但是，分别指向不同的对象，用<code>==</code>判断，结果为<code>false</code>，要判断引用类型的变量内容是否相等，必须使用<code>equals()</code>方法：<code>s1.equals(s2)</code></p>
-</li>
-</ul>
-<h3 id="4、循环和流程"><a href="#4、循环和流程" class="headerlink" title="4、循环和流程"></a>4、循环和流程</h3><ul>
-<li><p><code>while</code>循环是先判断循环条件，再执行循环。而另一种<code>do while</code>循环则是先执行循环，再判断条件，条件满足时继续循环，条件不满足时退出。</p>
-</li>
-<li><p>Java还提供了另一种<code>for each</code>循环，它可以更简单地遍历数组：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span>[]ns=&#123;<span class="number">1</span>,<span class="number">4</span>,<span class="number">9</span>,<span class="number">16</span>,<span class="number">25</span>&#125;;</span><br><span class="line"><span class="keyword">for</span>(intn:ns)&#123;</span><br><span class="line">  System.*out*.println(n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p><code>break</code>和<code>continue</code></p>
-</li>
-</ul>
-<h3 id="5、数组操作"><a href="#5、数组操作" class="headerlink" title="5、数组操作"></a>5、数组操作</h3><ul>
-<li>直接打印数组变量，得到的是数组在<strong>JVM</strong>中的引用地址</li>
-<li>我们只需要调用<strong>JDK</strong>提供的<code>Arrays.sort()</code>就可以排序</li>
-<li><code>Arrays.deepToString()</code>二维数组变字符串</li>
-</ul>
-]]></content>
-      <categories>
-        <category>java</category>
-      </categories>
-      <tags>
-        <tag>java</tag>
-        <tag>技术文档</tag>
       </tags>
   </entry>
   <entry>
